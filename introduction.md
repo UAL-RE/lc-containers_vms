@@ -1,19 +1,20 @@
 ---
-title: "Using Markdown"
+title: "Introduction"
 teaching: 10
 exercises: 2
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you write a lesson using Markdown and `{sandpaper}`?
+- What are virtual machines and containers?
+- How are they used in open science?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain how to use markdown with The Carpentries Workbench
-- Demonstrate how to include pieces of code, figures, and nested challenge blocks
+- Explain the main components of a virtual machine and a container and list the major differences between them
+- Explain at a conceptual level how these tools can be used in research workflows to enable open and reproducible research
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
