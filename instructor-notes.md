@@ -2,4 +2,4 @@
 title: 'Instructor Notes'
 ---
 
-This is a placeholder file. Please add content here. 
+See the [setup](setup.html) for important instructor notes on setting up the lesson and possible troubleshooting steps on installing VirtualBox.
