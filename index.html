@@ -316,28 +316,44 @@ any links that you are not going to use.
  -->
 
 
-      <section id="setup"><p>FIXME: Setup instructions live in this document. Please specify the
-tools and the data sets the Learner needs to have installed.</p>
-<section><h2 class="section-heading" id="data-sets">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a></h2>
+      <section id="setup"><!--
+FIXME: Setup instructions live in this document. Please specify the tools and
+the data sets the Learner needs to have installed.
+--><section><h2 class="section-heading" id="data-sets">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a></h2>
 <hr class="half-width"><!--
 FIXME: place any data you want learners to use in `episodes/data` and then use
        a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
        link to it, replacing the example.com link.
---><p>Download the <a href="https://example.com/FIXME" class="external-link">data zip file</a>
-and unzip it to your Desktop</p>
+--><p>We will be using a prebuilt virtual machine that already contains
+most things needed to get started. Download the <a href="#">.ova
+file</a> to your system but do not do anything else with it at the
+moment. We will import it as part of the <a href="virtualmachines.html">virtual machines</a> episode.</p>
 </section><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
-<hr class="half-width"><div id="details" class="callout discussion">
+<hr class="half-width"><div id="virtualbox" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<div id="details" class="callout-inner">
-<h3 class="callout-title">Details</h3>
+<div id="virtualbox" class="callout-inner">
+<h3 class="callout-title">VirtualBox</h3>
 <div class="callout-content">
-<p>Setup for different systems can be presented in dropdown menus via a
-<code>spoiler</code> tag. They will join to this discussion block, so
-you can give a general overview of the software used in this lesson here
-and fill out the individual operating systems (and potentially add more,
-e.g. online setup) in the solutions blocks.</p>
+<!--
+Setup for different systems can be presented in dropdown menus via a `spoiler`
+tag. They will join to this discussion block, so you can give a general overview
+of the software used in this lesson here and fill out the individual operating
+systems (and potentially add more, e.g. online setup) in the solutions blocks.
+-->
+<p>VirtualBox is the software we will be using for this lesson. Your
+computer must meet these requirements:</p>
+<ul><li>A recent Intel or AMD CPU</li>
+<li>Windows, Linux, or MacOS (see the sections below for additional
+information).</li>
+<li>Administrative access</li>
+<li>8 GB of total memory</li>
+<li>7 GB of free disk space</li>
+</ul><p>Most laptops that are newer than 5-6 years should work.</p>
+<p>The prebuilt virtual machine image you downloaded previously contains
+a preconfigured Docker installation which will be used for the
+containers portion of the lesson.</p>
 </div>
 </div>
 </div>
@@ -349,10 +365,16 @@ e.g. online setup) in the solutions blocks.</p>
   Windows
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
-<p>Use PuTTY</p>
-</div>
+<p>Although VirtualBox runs under older version of Windows, at least
+Windows 10 v1803 is needed to minimize the chance for conflicts if there
+is other virtualization software installed (e.g., Hyper-V).</p>
+<ul><li>On the <a href="https://www.virtualbox.org/wiki/Downloads" class="external-link">downloads
+page</a> under the VirtualBox Platform Packages section, select Windows
+hosts.</li>
+<li>Install the downloaded package.</li>
+</ul></div>
 </div>
 </div>
 </div>
@@ -364,9 +386,18 @@ e.g. online setup) in the solutions blocks.</p>
   MacOS
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
-<p>Use Terminal.app</p>
+<p>There are different download packages depending if you have an Intel
+Mac or an If you have a Mac with an Intel CPU or an Apple Arm CPU (M1,
+M2, or M3).</p>
+<ul><li>Intel Macs: On the <a href="https://www.virtualbox.org/wiki/Downloads" class="external-link">downloads page</a>
+under the VirtualBox Platform Packages section, select MacOS / Intel
+hosts</li>
+<li>Apple M1, M2, or M3: On the <a href="https://www.virtualbox.org/wiki/Testbuilds" class="external-link">Test builds</a> page,
+download the MacOS / ARM64 Dev Preview file. This version of VirtualBox
+is experimental and may or may not work for you.</li>
+</ul><p>Install the downloaded package.</p>
 </div>
 </div>
 </div>
@@ -379,9 +410,13 @@ e.g. online setup) in the solutions blocks.</p>
   Linux
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
-<p>Use Terminal</p>
+<p>We recommend installing VirtualBox from your distribution’s package
+manager. If the version that comes with your distribution is different
+than the version used in this lesson, the screenshots might differ. If
+you wish to install the latest version, follow the <a href="https://www.virtualbox.org/wiki/Linux_Downloads" class="external-link">instructions</a>
+for your distribution.</p>
 </div>
 </div>
 </div>
@@ -438,9 +473,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/index.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/index.html",
-  "dateCreated": "2024-08-23",
-  "dateModified": "2024-08-27",
-  "datePublished": "2024-08-27"
+  "dateCreated": "2024-08-28",
+  "dateModified": "2024-08-28",
+  "datePublished": "2024-08-28"
 }
 
   </script><script>
