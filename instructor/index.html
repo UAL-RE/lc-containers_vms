@@ -371,6 +371,111 @@ FIXME: place any data you want learners to use in `episodes/data` and then use
 most things needed to get started. Download the <a href="#">.ova
 file</a> to your system but do not do anything else with it at the
 moment. We will import it as part of the <a href="virtualmachines.html">virtual machines</a> episode.</p>
+<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
+  <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
+</button>
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div class="accordion-body">
+<p>Instructors are responsible for creating the prebuilt virtual machine
+and hosting it somewhere accessible to instructors.</p>
+<div class="section level3">
+<h3 id="building">Building<a class="anchor" aria-label="anchor" href="#building"></a></h3>
+<p>This lesson will use a single virtual machine for both the virtual
+machine AND container episodes. Instructors will be responsible for
+creating this virtual machine image and distributing it to students. The
+image should be based on a lightweight Linux distribution that has a
+graphical desktop environment and is able to run Docker. The
+Debian-based DietPi distribution is one recommendation as it is light on
+resources and is easily configurable.</p>
+<p>Virtual machine image creation instructions for the Debian
+Bookworm-based DietPi.</p>
+<ul><li><p>Follow steps 1-3 of the DietPi VirtualBox installation guide.
+Ignore the Wifi and Virtualbox extension pack instructions in step 3. <a href="https://dietpi.com/docs/install/#__tabbed_1_2" class="external-link uri">https://dietpi.com/docs/install/#__tabbed_1_2</a>. At the
+end, you should see the DietPi login prompt. <img src="../fig/dietpi-login-prompt.png" alt="DietPi login prompt" class="figure"></p></li>
+<li>
+<p>Log in as <code>root</code> using the given password.</p>
+<ul><li>The DietPi configuration wizard will launch. Use Tab or the arrow
+keys on your keyboard to change the selection, Enter to confirm a
+selection.</li>
+<li>If your keyboard is captured by VirtualBox, you will not be able to
+use your keyboard/mouse on your main operating system. Press the right
+<code>CTRL</code> key (on Windows) to return the keyboard/mouse to your
+main operating system.</li>
+</ul></li>
+<li>
+<p>In the configuration wizard</p>
+<ul><li>Opt out of the DietPi survey. Upon selecting <code>Ok</code>, the VM
+will reboot. Let it reboot and the wizard will continue</li>
+<li>Select the <code>Generic 105-Key PC</code> for the keyboard
+configuration. Select <code>Ok</code>
+</li>
+<li>Select the <code>English (US) keyboard layout</code> (under Other).
+Select <code>Ok</code>
+</li>
+<li>Select <code>No Alt-Gr</code> and <code>No compose key</code> in the
+next two dialogs.</li>
+<li>In the dialog that asks to change the global software password,
+select <code>Cancel</code>
+</li>
+<li>In the dialog that asks to change the password of the
+<code>root</code> and <code>dietpi</code> users, select
+<code>Cancel</code>
+</li>
+<li>After completing these steps, you should see the software
+installation wizard <img src="../fig/dietpi-software-menu.png" alt="DietPi setup menu window" class="figure"></li>
+</ul></li>
+<li>
+<p>In the software installation wizard</p>
+<ul><li>Select Browse Software from the menu. Then from the list that
+appears, select (use the arrow keys to navigate, spacebar to select):
+<ul><li><code>23 LXDE ultra lightweight desktop</code></li>
+<li><code>134 Docker compose</code></li>
+<li><code>162 Docker</code></li>
+<li><code>67 Firefox</code></li>
+</ul></li>
+<li>Select <code>Confirm</code> to return to the main menu</li>
+<li>From the main menu, select <code>Install</code>, then click
+<code>Ok</code> to begin <img src="../fig/dietpi-software-install-confirmation.png" alt="DietPi software installation confirmation window" class="figure"></li>
+<li>Wait for the software to install. On success, the system will return
+you to a command prompt with the root user already logged in.</li>
+<li>Type <code>dietpi-config</code> to launch the configuration</li>
+<li>Select <code>Autostart</code> from the menu</li>
+<li>Select <code>2: Automatic Login</code> <img src="../fig/dietpi-autologin-setup.png" alt="DietPi autologin setup window" class="figure"></li>
+<li>Then select <code>root</code>, and select <code>Ok</code> to
+confirm</li>
+<li>Exit out of the menus and exit out of the configuration tool. You
+should see a command prompt at the bottom of the window.</li>
+<li>At the prompt, type <code>reboot</code> to reboot the VM.</li>
+<li>If successful, the system should reboot and you should see a
+graphical desktop with a green DietPi wallpaper. You may optionally
+remove this wallpaper via the Desktop Preferences.</li>
+<li>At this point, the size of the Virtualbox image should be just over
+2.5 GB in size.</li>
+</ul></li>
+<li>
+<p>Set up Docker according to the lesson</p>
+<ul><li>TODO</li>
+</ul></li>
+<li><p>Shut down the VM via the menus inside the graphical desktop or
+from the terminal</p></li>
+<li><p>Export the image as a VirtualBox appliance (.ova file)</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="hosting">Hosting<a class="anchor" aria-label="anchor" href="#hosting"></a></h3>
+<p>The .ova file can be hosted on any online file sharing service with
+sufficient space like Box, Google Drive, DropBox, etc.</p>
+<p>If there are many learners, remain mindful of any bandwidth limits.
+For example, Google Drive may cut off access to publicly shared files
+that exceed a certain amount of transferred data within a certain time
+period. Therefore, you may wish to host the file on two different
+services or accounts.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
 <hr class="half-width"><div id="virtualbox" class="callout discussion">
 <div class="callout-square">
@@ -403,12 +508,9 @@ containers portion of the lesson.</p>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Windows
-  </h3>
+  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Windows </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>Although VirtualBox runs under older version of Windows, at least
 Windows 10 v1803 is needed to minimize the chance for conflicts if there
@@ -424,12 +526,9 @@ hosts.</li>
 <div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
-  <h3 class="accordion-header" id="headingSpoiler2">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  MacOS
-  </h3>
+  <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> MacOS </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>There are different download packages depending if you have an Intel
 Mac or an If you have a Mac with an Intel CPU or an Apple Arm CPU (M1,
@@ -448,12 +547,9 @@ is experimental and may or may not work for you.</li>
 <div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
-  <h3 class="accordion-header" id="headingSpoiler3">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Linux
-  </h3>
+  <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Linux </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <p>We recommend installing VirtualBox from your distribution’s package
 manager. If the version that comes with your distribution is different
