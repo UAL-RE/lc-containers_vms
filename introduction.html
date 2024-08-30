@@ -217,8 +217,9 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#introduction">Introduction</a></li>
-<li><a href="#figures">Figures</a></li>
-<li><a href="#math">Math</a></li>
+<li><a href="#what-are-virtual-machines-and-what-do-they-do">What are virtual machines and what do they do?</a></li>
+<li><a href="#what-are-containers-and-what-do-they-do">What are containers and what do they do?</a></li>
+<li><a href="#comparing-virtual-machines-and-containers">Comparing virtual machines and containers</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -310,7 +311,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction</h1>
-        <p>Last updated on 2024-08-28 |
+        <p>Last updated on 2024-08-30 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -321,7 +322,7 @@
         </div>
 
         
-
+<!-- required section --><!-- required section -->
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -348,85 +349,57 @@ research workflows to enable open and reproducible research</li>
 </div>
 </div>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a></h2>
-<hr class="half-width"><p>This is a lesson created via The Carpentries Workbench. It is written
-in <a href="https://pandoc.org/MANUAL.txt" class="external-link">Pandoc-flavored Markdown</a>
-for static files and <a href="https://rmarkdown.rstudio.com/" class="external-link">R
-Markdown</a> for dynamic files that can render code into output. Please
-refer to the <a href="https://carpentries.github.io/sandpaper-docs/" class="external-link">Introduction to The
-Carpentries Workbench</a> for full documentation.</p>
-<p>What you need to know is that there are three sections required for a
-valid Carpentries lesson:</p>
-<ol style="list-style-type: decimal"><li>
-<code>questions</code> are displayed at the beginning of the episode
-to prime the learner for the content.</li>
-<li>
-<code>objectives</code> are the learning objectives for an episode
-displayed with the questions.</li>
-<li>
-<code>keypoints</code> are displayed at the end of the episode to
-reinforce the objectives.</li>
-</ol><div id="challenge-1-can-you-do-it" class="callout challenge">
+<hr class="half-width"><p>You might have heard of containers and virtual machines in various
+contexts. For example, you might have heard of ‘containerizing’ an
+application, running an application in ‘Docker’, ‘spinning up’ a virtual
+machine in order to run a certain program.</p>
+<p>This lesson is intended to provide a hands-on primer to both virtual
+machines and containers. We will begin with a conceptual overview. We
+will follow it by hands-on explorations of two tools: VirtualBox and
+Docker.</p>
+<p>If you forget what a particular term means, refer to the <a href="reference.html">Glossary</a>.</p>
+<div id="prereq1" class="callout prereq">
 <div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
+<i class="callout-icon" data-feather="check"></i>
 </div>
-<div id="challenge-1-can-you-do-it" class="callout-inner">
-<h3 class="callout-title">Challenge 1: Can you do it?</h3>
+<div class="callout-inner">
+<h3 class="callout-title">Prerequisite</h3>
 <div class="callout-content">
-<p>What is the output of this command?</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">paste</span><span class="op">(</span><span class="st">"This"</span>, <span class="st">"new"</span>, <span class="st">"lesson"</span>, <span class="st">"looks"</span>, <span class="st">"good"</span><span class="op">)</span></span></code></pre>
+<p>This lesson assumes no prior experience with containers or virtual
+machines. However, it does assume basic knowledge about computer and
+networking concepts. These include</p>
+<ul><li>Ability to install software (and obtaining elevated/administrative
+rights to do so),</li>
+<li>Basic knowledge of the components of a computer and what they do
+(CPU, network, storage)</li>
+<li>Knowledge of how to navigate your computer’s directory structure
+(either graphically or via the command line).</li>
+</ul><p>Prior exposure to using command line tools is useful but not
+required.</p>
 </div>
 </div>
 </div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Output </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[1] "This new lesson looks good"</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout-inner">
-<h3 class="callout-title">Challenge 2: how do you nest solutions within challenge blocks?</h3>
-<div class="callout-content">
-
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
-<div class="accordion-body">
-<p>You can add a line with at least three colons and a
-<code>solution</code> tag.</p>
-</div>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="figures">Figures<a class="anchor" aria-label="anchor" href="#figures"></a></h2>
-<hr class="half-width"><p>You can use standard markdown for static figures with the following
-syntax:</p>
-<p><code>![optional caption that appears below the figure](figure url){alt='alt text for accessibility purposes'}</code></p>
-<figure><img src="https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg" alt="Blue Carpentries hex person logo with no text." class="figure mx-auto d-block"><div class="figcaption">You belong in The Carpentries!</div>
+</section><section><h2 class="section-heading" id="what-are-virtual-machines-and-what-do-they-do">What are virtual machines and what do they do?<a class="anchor" aria-label="anchor" href="#what-are-virtual-machines-and-what-do-they-do"></a></h2>
+<hr class="half-width"><p>We’re all familiar with computers like Macs and PCs. They run an
+operating system like Windows or Mac, and we can run programs on that
+computer like web browsers and word processors. The operating ssystem
+controls all of the physical resources.</p>
+<figure><img src="fig/vms-01-resources.png" alt="diagram showing boxes with hardware resources, applications, and the operating system" class="figure mx-auto d-block"><div class="figcaption">An ordinary (unvirtualized) system. The
+operating system has complete control of the hardware resources and
+handles the execution of individual applications.</div>
+</figure><p>Normally, computers run a single operating system with a single set
+of applications. Sometimes (for reasons we’ll discuss soon), people
+might want to run a totally separate operating system with a different
+set of applications. One way to do that is to split up the physical
+resources like CPU, RAM, etc. and share them with that second operating
+system. The concept of “virtualizing” these resources to share and
+separate them so that only this second operating system can access them
+is the idea behind a virtual machine.</p>
+<p>At its core, a virtual machine is a complete set of operating system,
+application, and any other needed files needed that runs on hardware
+resources shared (i.e., virtualized) by the host operating system.</p>
+<figure><img src="fig/vms-02-virtresources.png" alt="diagram showing boxes with hardware resources, applications, the operating system, and how virtualization shares resources" class="figure mx-auto d-block"><div class="figcaption">The relationship between the “real” system and
+its virtualized resources.</div>
 </figure><div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -434,38 +407,108 @@ syntax:</p>
 <div class="callout-inner">
 <h3 class="callout-title">Callout</h3>
 <div class="callout-content">
-<p>Callout sections can highlight information.</p>
-<p>They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present “asides”: content that is
-not central to the narrative of the lesson, e.g. by providing the answer
-to a commonly-asked question.</p>
+<p>One way to think of the concept is that a virtual machine is a
+computer that runs inside your computer. This mini computer is
+completely separated from the main computer.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="math">Math<a class="anchor" aria-label="anchor" href="#math"></a></h2>
-<hr class="half-width"><p>One of our episodes contains <span class="math inline">\(\LaTeX\)</span> equations when describing how to
-create dynamic reports with {knitr}, so we now use mathjax to describe
-this:</p>
-<p><code>$\alpha = \dfrac{1}{(1 - \beta)^2}$</code> becomes: <span class="math inline">\(\alpha = \dfrac{1}{(1 - \beta)^2}\)</span></p>
-<p>Cool, right?</p>
-<div id="keypoints1" class="callout keypoints">
+<p>Why would we want to</p>
+</section><section><h2 class="section-heading" id="what-are-containers-and-what-do-they-do">What are containers and what do they do?<a class="anchor" aria-label="anchor" href="#what-are-containers-and-what-do-they-do"></a></h2>
+<hr class="half-width"></section><section><h2 class="section-heading" id="comparing-virtual-machines-and-containers">Comparing virtual machines and containers<a class="anchor" aria-label="anchor" href="#comparing-virtual-machines-and-containers"></a></h2>
+<hr class="half-width"><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<ul><li>A virtual machine is a separate computer that runs with its own
+operating system and applications inside of a host operating system</li>
+<li>A virtual machine manager handles the sharing of resources and
+execution of the virtual machine itself.</li>
 </ul></div>
 </div>
 </div>
+<!--
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
+Inline instructor notes can help inform instructors of timing challenges
+associated with the lessons. They appear in the "Instructor View"
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Challenge 1: Can you do it?
+
+What is the output of this command?
+
+```r
+paste("This", "new", "lesson", "looks", "good")
+```
+
+:::::::::::::::::::::::: solution
+
+## Output
+
+```output
+[1] "This new lesson looks good"
+```
+
+:::::::::::::::::::::::::::::::::
+
+
+## Challenge 2: how do you nest solutions within challenge blocks?
+
+:::::::::::::::::::::::: solution
+
+You can add a line with at least three colons and a `solution` tag.
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Figures
+
+You can use standard markdown for static figures with the following syntax:
+
+`![optional caption that appears below the figure](figure url){alt='alt text for
+accessibility purposes'}`
+
+![You belong in The Carpentries!](https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg){alt='Blue Carpentries hex person logo with no text.'}
+
+::::::::::::::::::::::::::::::::::::: callout
+
+Callout sections can highlight information.
+
+They are sometimes used to emphasise particularly important points
+but are also used in some lessons to present "asides":
+content that is not central to the narrative of the lesson,
+e.g. by providing the answer to a commonly-asked question.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+## Math
+
+One of our episodes contains $\LaTeX$ equations when describing how to create
+dynamic reports with {knitr}, so we now use mathjax to describe this:
+
+`$\alpha = \dfrac{1}{(1 - \beta)^2}$` becomes: $\alpha = \dfrac{1}{(1 - \beta)^2}$
+
+Cool, right?
+
+::::::::::::::::::::::::::::::::::::: keypoints
+
+- Use `.md` files for episodes when you want static content
+- Use `.Rmd` files for episodes when you need to generate output
+- Run `sandpaper::check_lesson()` to identify any issues with your lesson
+- Run `sandpaper::build_lesson()` to preview your lesson locally
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+[r-markdown]: https://rmarkdown.rstudio.com/
+-->
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
@@ -527,9 +570,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/introduction.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/introduction.html",
-  "dateCreated": "2024-08-28",
-  "dateModified": "2024-08-28",
-  "datePublished": "2024-08-28"
+  "dateCreated": "2024-08-30",
+  "dateModified": "2024-08-30",
+  "datePublished": "2024-08-30"
 }
 
   </script><script>
