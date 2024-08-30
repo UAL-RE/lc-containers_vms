@@ -1,9 +1,10 @@
 ---
 title: "Introduction"
-teaching: 10
+teaching: 20
 exercises: 2
 ---
 
+<!-- required section -->
 :::::::::::::::::::::::::::::::::::::: questions 
 
 - What are virtual machines and containers?
@@ -11,6 +12,7 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+<!-- required section -->
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Explain the main components of a virtual machine and a container and list the major differences between them
@@ -20,22 +22,57 @@ exercises: 2
 
 ## Introduction
 
-This is a lesson created via The Carpentries Workbench. It is written in
-[Pandoc-flavored Markdown](https://pandoc.org/MANUAL.txt) for static files and
-[R Markdown][r-markdown] for dynamic files that can render code into output. 
-Please refer to the [Introduction to The Carpentries 
-Workbench](https://carpentries.github.io/sandpaper-docs/) for full documentation.
+You might have heard of containers and virtual machines in various contexts. For example, you might have heard of 'containerizing' an application, running an application in 'Docker', 'spinning up' a virtual machine in order to run a certain program.
 
-What you need to know is that there are three sections required for a valid
-Carpentries lesson:
+This lesson is intended to provide a hands-on primer to both virtual machines and containers. We will begin with a conceptual overview. We will follow it by hands-on explorations of two tools: VirtualBox and Docker.
 
- 1. `questions` are displayed at the beginning of the episode to prime the
-    learner for the content.
- 2. `objectives` are the learning objectives for an episode displayed with
-    the questions.
- 3. `keypoints` are displayed at the end of the episode to reinforce the
-    objectives.
+If you forget what a particular term means, refer to the [Glossary](reference.html).
 
+:::::::::::::::::::::::prereq
+This lesson assumes no prior experience with containers or virtual machines. However, it does assume basic knowledge about computer and networking concepts. These include
+
+- Ability to install software (and obtaining elevated/administrative rights to do so), 
+- Basic knowledge of the components of a computer and what they do (CPU, network, storage)
+- Knowledge of how to navigate your computer's directory structure (either graphically or via the command line).
+
+Prior exposure to using command line tools is useful but not required.
+:::::::::::::::::::::::
+
+## What are virtual machines and what do they do?
+
+We're all familiar with computers like Macs and PCs. They run an operating system like Windows or Mac, and we can run programs on that computer like web browsers and word processors. The operating ssystem controls all of the physical resources.
+
+![An ordinary (unvirtualized) system. The operating system has complete control of the hardware resources and handles the execution of individual applications.](fig/vms-01-resources.png){alt='diagram showing boxes with hardware resources, applications, and the operating system'}
+
+Normally, computers run a single operating system with a single set of applications. Sometimes (for reasons we'll discuss soon), people might want to run a totally separate operating system with a different set of applications. One way to do that is to split up the physical resources like CPU, RAM, etc. and share them with that second operating system. The concept of "virtualizing" these resources to share and separate them so that only this second operating system can access them is the idea behind a virtual machine.
+
+At its core, a virtual machine is a complete set of operating system, application, and any other needed files needed that runs on hardware resources shared (i.e., virtualized) by the host operating system. 
+
+![The relationship between the "real" system and its virtualized resources.](fig/vms-02-virtresources.png){alt='diagram showing boxes with hardware resources, applications, the operating system, and how virtualization shares resources'}
+
+:::::::::::::::::::::::::::::::::::::callout
+
+One way to think of the concept is that a virtual machine is a computer that runs inside your computer. This mini computer is completely separated from the main computer. 
+
+::::::::::::::::::::::::::::::::::::
+
+Why would we want to 
+
+
+## What are containers and what do they do?
+
+
+## Comparing virtual machines and containers
+
+
+::::::::::::::::::::::::::::::::::::: keypoints 
+
+- A virtual machine is a separate computer that runs with its own operating system and applications inside of a host operating system
+- A virtual machine manager handles the sharing of resources and execution of the virtual machine itself.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+<!--
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
 Inline instructor notes can help inform instructors of timing challenges
@@ -113,3 +150,4 @@ Cool, right?
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 [r-markdown]: https://rmarkdown.rstudio.com/
+-->
