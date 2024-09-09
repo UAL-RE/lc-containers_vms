@@ -1,75 +1,160 @@
 ---
 title: "Basics of Containers with Docker"
 teaching: 10
-exercises: 2
+exercises: 10
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you write a lesson using Markdown and `{sandpaper}`?
+- What is a Docker image?
+- What is a Docker container?
+- How do you start and stop a container?
+- How do retrieve output from a container to a local machine?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain how to use markdown with The Carpentries Workbench
-- Demonstrate how to include pieces of code, figures, and nested challenge blocks
+- Explain the difference between a Docker image and a Docker container
+- Retrieve a Docker image from the cloud
+- Start a Docker container running on a local machine
+- Use the command line to check the status of the container
+- Clean the environment by stopping the container
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
 
-This is a lesson created via The Carpentries Workbench. It is written in
-[Pandoc-flavored Markdown](https://pandoc.org/MANUAL.txt) for static files and
-[R Markdown][r-markdown] for dynamic files that can render code into output. 
-Please refer to the [Introduction to The Carpentries 
-Workbench](https://carpentries.github.io/sandpaper-docs/) for full documentation.
+**TODO**: images vs. containers
 
-What you need to know is that there are three sections required for a valid
-Carpentries lesson:
+### Images
 
- 1. `questions` are displayed at the beginning of the episode to prime the
-    learner for the content.
- 2. `objectives` are the learning objectives for an episode displayed with
-    the questions.
- 3. `keypoints` are displayed at the end of the episode to reinforce the
-    objectives.
+1. Read-only
+2. Contain instructions (in a file called a "Dockerfile")
+3. They do not actually "do" anything
+
+### Containers
+
+1. Modifyable (while running)
+2. Can include files and programs (like your computer!)
+3. Can run analyses or web applications (and more)
+
+
+images are for Platonists, containers for nominalists.
+
+Images are blueprints, containers are buildings
+
+Also, containers (at least starting and stopping) are command-line
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
-Inline instructor notes can help inform instructors of timing challenges
-associated with the lessons. They appear in the "Instructor View"
+**TODO**: Anything the instructor should be aware of. Maybe here's a point for an 
+image of some sorts.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge 1: Can you do it?
+## Challenge 1: Images versus containers
 
-What is the output of this command?
+You instructor introduced one analogy for explaining the difference between a 
+Docker image and a Docker container. What is another way to explain images and 
+containers?
 
-```r
-paste("This", "new", "lesson", "looks", "good")
+:::::::::::::::::::::::: solution 
+
+Several analogies exist, and here are a few:
+
+- An image is a recipe, say, for your favorite curry, while the container is 
+the actual curry dish you can eat.
+- "Think of a container as a shipping container for software - it holds 
+important content like files and programs so that an application can be 
+delivered efficiently from producer to consumer. An image is more like a 
+read-only manifest or schematic of what will be inside the container.""
+(from [Jacob Schmitt](https://circleci.com/blog/docker-image-vs-container/))
+- If you are familiar with object-oriented programming, you can think of an 
+image as a class, and a container an object of that class. 
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Retrieving images
+
+**TODO** docker pull 
+
+## Starting an image
+
+**TODO** docker start
+
+## Status check
+
+**TODO** docker ps
+
+## Using the container
+
+**TODO** Do something in OpenRefine
+
+## Stopping the container
+
+**TODO** docker stop (after docker ps)
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Challenge 2: Checking the status of containers
+
+We saw before that we could check the status of running containers by using the 
+command `docker ps`. What happens when you run the same command now? What about
+when you run the same command with the `-a` flag?
+
+:::::::::::::::::::::::: solution 
+
+- `docker ps` will show the status of all running containers. If you have no 
+containers running, and you probably do not at this point of the lesson, you 
+should see an empty table, like:
+```
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+$ 
+```
+- `docker ps -a` will show all containers that are running or _have been_ run 
+on the machine. This includes the container that we stopped earlier.
+```
+$ docker ps -a
+CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS                       PORTS     NAMES
+906072ff88f6   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   2 days ago      Exited (143) 2 days ago                determined_torvalds
+
+$
+```
+Note the date information (in the `CREATED` and `STATUS` fields) and the 
+container name (the `NAMES` field) will likely be different on your machine.
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Challenge 3: Order of operations
+
+Rearrange the following commands to (in the following order) (1) start the 
+OpenRefine container, (2) find the container image ID of the running OpenRefine 
+container, and (3) terminal the OpenRefine container.
+
+```
+docker stop <container ID>
+docker run -p 3333:3333 felixlohmeier/openrefine
+docker ps
 ```
 
 :::::::::::::::::::::::: solution 
 
-## Output
- 
-```output
-[1] "This new lesson looks good"
+```
+docker run -p 3333:3333 felixlohmeier/openrefine
+docker ps
+docker stop <container ID>
 ```
 
 :::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
-
-## Challenge 2: how do you nest solutions within challenge blocks?
-
-:::::::::::::::::::::::: solution 
-
-You can add a line with at least three colons and a `solution` tag.
-
-:::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Figures
