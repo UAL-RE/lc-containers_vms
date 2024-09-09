@@ -118,11 +118,11 @@
   A gentle, hands-on introduction to containers and virtual machines
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 59%" class="percentage">
-    59%
+<aside class="col-md-12 lesson-progress"><div style="width: 52%" class="percentage">
+    52%
   </div>
   <div class="progress library">
-    <div class="progress-bar library" role="progressbar" style="width: 59%" aria-valuenow="59" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar library" role="progressbar" style="width: 52%" aria-valuenow="52" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -235,6 +235,11 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#introduction">Introduction</a></li>
+<li><a href="#retrieving-images">Retrieving images</a></li>
+<li><a href="#starting-an-image">Starting an image</a></li>
+<li><a href="#status-check">Status check</a></li>
+<li><a href="#using-the-container">Using the container</a></li>
+<li><a href="#stopping-the-container">Stopping the container</a></li>
 <li><a href="#figures">Figures</a></li>
 <li><a href="#math">Math</a></li>
         </ul></div><!--/div.accordion-body-->
@@ -310,7 +315,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Basics of Containers with Docker</h1>
-        <p>Last updated on 2024-08-23 |
+        <p>Last updated on 2024-09-09 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -329,8 +334,10 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>How do you write a lesson using Markdown and
-<a href="https://carpentries.github.io/sandpaper/" class="external-link">sandpaper</a>?</li>
+<ul><li>What is a Docker image?</li>
+<li>What is a Docker container?</li>
+<li>How do you start and stop a container?</li>
+<li>How do retrieve output from a container to a local machine?</li>
 </ul></div>
 </div>
 </div>
@@ -338,73 +345,92 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Explain how to use markdown with The Carpentries Workbench</li>
-<li>Demonstrate how to include pieces of code, figures, and nested
-challenge blocks</li>
+<ul><li>Explain the difference between a Docker image and a Docker
+container</li>
+<li>Retrieve a Docker image from the cloud</li>
+<li>Start a Docker container running on a local machine</li>
+<li>Use the command line to check the status of the container</li>
+<li>Clean the environment by stopping the container</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a></h2>
-<hr class="half-width"><p>This is a lesson created via The Carpentries Workbench. It is written
-in <a href="https://pandoc.org/MANUAL.txt" class="external-link">Pandoc-flavored Markdown</a>
-for static files and <a href="https://rmarkdown.rstudio.com/" class="external-link">R
-Markdown</a> for dynamic files that can render code into output. Please
-refer to the <a href="https://carpentries.github.io/sandpaper-docs/" class="external-link">Introduction to The
-Carpentries Workbench</a> for full documentation.</p>
-<p>What you need to know is that there are three sections required for a
-valid Carpentries lesson:</p>
-<ol style="list-style-type: decimal"><li>
-<code>questions</code> are displayed at the beginning of the episode
-to prime the learner for the content.</li>
-<li>
-<code>objectives</code> are the learning objectives for an episode
-displayed with the questions.</li>
-<li>
-<code>keypoints</code> are displayed at the end of the episode to
-reinforce the objectives.</li>
-</ol><div id="challenge-1-can-you-do-it" class="callout challenge">
+<hr class="half-width"><p><strong>TODO</strong>: images vs. containers</p>
+<div class="section level3">
+<h3 id="images">Images<a class="anchor" aria-label="anchor" href="#images"></a></h3>
+<ol style="list-style-type: decimal"><li>Read-only</li>
+<li>Contain instructions (in a file called a “Dockerfile”)</li>
+<li>They do not actually “do” anything</li>
+</ol></div>
+<div class="section level3">
+<h3 id="containers">Containers<a class="anchor" aria-label="anchor" href="#containers"></a></h3>
+<ol style="list-style-type: decimal"><li>Modifyable (while running)</li>
+<li>Can include files and programs (like your computer!)</li>
+<li>Can run analyses or web applications (and more)</li>
+</ol><p>images are for Platonists, containers for nominalists.</p>
+<p>Images are blueprints, containers are buildings</p>
+<p>Also, containers (at least starting and stopping) are
+command-line</p>
+
+<div id="challenge-1-images-versus-containers" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-1-can-you-do-it" class="callout-inner">
-<h3 class="callout-title">Challenge 1: Can you do it?</h3>
+<div id="challenge-1-images-versus-containers" class="callout-inner">
+<h3 class="callout-title">Challenge 1: Images versus containers</h3>
 <div class="callout-content">
-<p>What is the output of this command?</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">paste</span><span class="op">(</span><span class="st">"This"</span>, <span class="st">"new"</span>, <span class="st">"lesson"</span>, <span class="st">"looks"</span>, <span class="st">"good"</span><span class="op">)</span></span></code></pre>
-</div>
+<p>You instructor introduced one analogy for explaining the difference
+between a Docker image and a Docker container. What is another way to
+explain images and containers?</p>
 </div>
 </div>
 </div>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Output </h4>
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[1] "This new lesson looks good"</code></pre>
+<p>Several analogies exist, and here are a few:</p>
+<ul><li>An image is a recipe, say, for your favorite curry, while the
+container is the actual curry dish you can eat.</li>
+<li>“Think of a container as a shipping container for software - it
+holds important content like files and programs so that an application
+can be delivered efficiently from producer to consumer. An image is more
+like a read-only manifest or schematic of what will be inside the
+container.”” (from <a href="https://circleci.com/blog/docker-image-vs-container/" class="external-link">Jacob
+Schmitt</a>)</li>
+<li>If you are familiar with object-oriented programming, you can think
+of an image as a class, and a container an object of that class.</li>
+</ul></div>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout challenge">
+</section><section><h2 class="section-heading" id="retrieving-images">Retrieving images<a class="anchor" aria-label="anchor" href="#retrieving-images"></a></h2>
+<hr class="half-width"><p><strong>TODO</strong> docker pull</p>
+</section><section><h2 class="section-heading" id="starting-an-image">Starting an image<a class="anchor" aria-label="anchor" href="#starting-an-image"></a></h2>
+<hr class="half-width"><p><strong>TODO</strong> docker start</p>
+</section><section><h2 class="section-heading" id="status-check">Status check<a class="anchor" aria-label="anchor" href="#status-check"></a></h2>
+<hr class="half-width"><p><strong>TODO</strong> docker ps</p>
+</section><section><h2 class="section-heading" id="using-the-container">Using the container<a class="anchor" aria-label="anchor" href="#using-the-container"></a></h2>
+<hr class="half-width"><p><strong>TODO</strong> Do something in OpenRefine</p>
+</section><section><h2 class="section-heading" id="stopping-the-container">Stopping the container<a class="anchor" aria-label="anchor" href="#stopping-the-container"></a></h2>
+<hr class="half-width"><p><strong>TODO</strong> docker stop (after docker ps)</p>
+<div id="challenge-2-checking-the-status-of-containers" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout-inner">
-<h3 class="callout-title">Challenge 2: how do you nest solutions within challenge blocks?</h3>
+<div id="challenge-2-checking-the-status-of-containers" class="callout-inner">
+<h3 class="callout-title">Challenge 2: Checking the status of containers</h3>
 <div class="callout-content">
-
+<p>We saw before that we could check the status of running containers by
+using the command <code>docker ps</code>. What happens when you run the
+same command now? What about when you run the same command with the
+<code>-a</code> flag?</p>
 </div>
 </div>
 </div>
@@ -413,10 +439,70 @@ reinforce the objectives.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>You can add a line with at least three colons and a
-<code>solution</code> tag.</p>
+<ul><li>
+<code>docker ps</code> will show the status of all running
+containers. If you have no containers running, and you probably do not
+at this point of the lesson, you should see an empty table, like:</li>
+</ul><pre><code>$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+$ </code></pre>
+<ul><li>
+<code>docker ps -a</code> will show all containers that are running
+or <em>have been</em> run on the machine. This includes the container
+that we stopped earlier.</li>
+</ul><pre><code>$ docker ps -a
+CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS                       PORTS     NAMES
+906072ff88f6   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   2 days ago      Exited (143) 2 days ago                determined_torvalds
+
+$</code></pre>
+<p>Note the date information (in the <code>CREATED</code> and
+<code>STATUS</code> fields) and the container name (the
+<code>NAMES</code> field) will likely be different on your machine.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-2-checking-the-status-of-containers" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-2-checking-the-status-of-containers" class="callout-inner">
+<h3 class="callout-title">Challenge 2: Checking the status of
+containers<em> (continued)</em>
+</h3>
+<div class="callout-content">
+<div id="challenge-3-order-of-operations" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-3-order-of-operations" class="callout-inner">
+<h3 class="callout-title">Challenge 3: Order of operations</h3>
+<div class="callout-content">
+<p>Rearrange the following commands to (in the following order) (1)
+start the OpenRefine container, (2) find the container image ID of the
+running OpenRefine container, and (3) terminal the OpenRefine
+container.</p>
+<pre><code>docker stop &lt;container ID&gt;
+docker run -p 3333:3333 felixlohmeier/openrefine
+docker ps</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<pre><code>docker run -p 3333:3333 felixlohmeier/openrefine
+docker ps
+docker stop &lt;container ID&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -505,7 +591,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.6" class="external-link">sandpaper (0.16.6)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.4" class="external-link">varnish (1.0.4)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.7" class="external-link">sandpaper (0.16.7)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.4" class="external-link">varnish (1.0.4)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -526,9 +612,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/containers-part1.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/containers-part1.html",
-  "dateCreated": "2024-08-30",
-  "dateModified": "2024-08-23",
-  "datePublished": "2024-09-03"
+  "dateCreated": "2024-09-09",
+  "dateModified": "2024-09-09",
+  "datePublished": "2024-09-09"
 }
 
   </script><script>
