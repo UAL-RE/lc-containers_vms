@@ -1,19 +1,21 @@
 ---
-title: "Using a Real-world container"
+title: "Creating Containers with Docker"
 teaching: 10
 exercises: 2
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you write a lesson using Markdown and `{sandpaper}`?
+- How do you create new Docker images?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain how to use markdown with The Carpentries Workbench
-- Demonstrate how to include pieces of code, figures, and nested challenge blocks
+- Explain how a Dockerfile is used to create Docker images
+- Create a Dockerfile to run a command
+- Use `docker build` to create a new image
+- Update a Dockerfile to run a Python script
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
