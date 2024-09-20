@@ -347,13 +347,16 @@
 <h3 id="introduction-figure-1">Figure 1</h3>
 <p aria-hidden="true">Image 1 of 1: ‘diagram showing boxes with hardware resources, applications, and the operating system’</p>
 <figure><img src="fig/vms-01-resources.png" alt="diagram showing boxes with hardware resources, applications, and the operating system" class="figure mx-auto d-block"><div class="figcaption">An ordinary (unvirtualized) system. The
-operating system has complete control of the hardware resources and
-handles the execution of individual applications.</div>
+operating system has complete control of the physical hardware resources
+and is responsible for executing individual applications and allocating
+those resources to them.</div>
 </figure><hr>
 <h3 id="introduction-figure-2">Figure 2</h3>
 <p aria-hidden="true">Image 1 of 1: ‘diagram showing boxes with hardware resources, applications, the operating system, and how virtualization shares resources’</p>
-<figure><img src="fig/vms-02-virtresources.png" alt="diagram showing boxes with hardware resources, applications, the operating system, and how virtualization shares resources" class="figure mx-auto d-block"><div class="figcaption">The relationship between the “real” system and
-its virtualized resources.</div>
+<figure><img src="fig/vms-02-virtresources.png" alt="diagram showing boxes with hardware resources, applications, the operating system, and how virtualization shares resources" class="figure mx-auto d-block"><div class="figcaption">The physical hardware resources are divided
+between the host operating system and any virtual machines. The virtual
+machine manager (VMM) takes care of managing the virtualized resources.
+Each virtual machine only sees the resources allocated to it.</div>
 </figure><hr></section><section id="virtualmachines"><h2 class="section-heading"><a href="virtualmachines.html">Virtual machines using VirtualBox</a></h2>
 <hr class="half-width">
 <h3 id="virtualmachines-figure-1">Figure 1</h3>
@@ -408,9 +411,9 @@ its virtualized resources.</div>
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/images.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/images.html",
-  "dateCreated": "2024-09-17",
-  "dateModified": "2024-09-17",
-  "datePublished": "2024-09-17"
+  "dateCreated": "2024-09-20",
+  "dateModified": "2024-09-20",
+  "datePublished": "2024-09-20"
 }
 
   </script><script>

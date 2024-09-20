@@ -344,7 +344,7 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2024-08-30 |
+<p>Last updated on 2024-09-20 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -422,35 +422,70 @@ operating system like Windows or Mac, and we can run programs on that
 computer like web browsers and word processors. The operating ssystem
 controls all of the physical resources.</p>
 <figure><img src="fig/vms-01-resources.png" alt="diagram showing boxes with hardware resources, applications, and the operating system" class="figure mx-auto d-block"><div class="figcaption">An ordinary (unvirtualized) system. The
-operating system has complete control of the hardware resources and
-handles the execution of individual applications.</div>
+operating system has complete control of the physical hardware resources
+and is responsible for executing individual applications and allocating
+those resources to them.</div>
 </figure><p>Normally, computers run a single operating system with a single set
 of applications. Sometimes (for reasons we’ll discuss soon), people
 might want to run a totally separate operating system with a different
 set of applications. One way to do that is to split up the physical
-resources like CPU, RAM, etc. and share them with that second operating
-system. The concept of “virtualizing” these resources to share and
-separate them so that only this second operating system can access them
-is the idea behind a virtual machine.</p>
-<p>At its core, a virtual machine is a complete set of operating system,
-application, and any other needed files needed that runs on hardware
-resources shared (i.e., virtualized) by the host operating system.</p>
-<figure><img src="fig/vms-02-virtresources.png" alt="diagram showing boxes with hardware resources, applications, the operating system, and how virtualization shares resources" class="figure mx-auto d-block"><div class="figcaption">The relationship between the “real” system and
-its virtualized resources.</div>
-</figure><div id="callout1" class="callout">
+resources like CPU, RAM, etc. and allocate them to that second operating
+system. The concept of splitting up these resources so that only this
+second operating system can access them is the idea behind a virtual
+machine. The operating system inside the virtual machine only sees the
+virtual resources allocated to it (not the real, physical
+resources).</p>
+<figure><img src="fig/vms-02-virtresources.png" alt="diagram showing boxes with hardware resources, applications, the operating system, and how virtualization shares resources" class="figure mx-auto d-block"><div class="figcaption">The physical hardware resources are divided
+between the host operating system and any virtual machines. The virtual
+machine manager (VMM) takes care of managing the virtualized resources.
+Each virtual machine only sees the resources allocated to it.</div>
+</figure><p>At its core, a virtual machine (referred to as VM from now on) is the
+self-contained set of operating system, applications, and any other
+needed files that run on a host machine. The VM files are contained
+inside of a inside single file (usually) called a VM image. The file you
+downloaded during the lesson setup is an example of an image.</p>
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Callout</h3>
 <div class="callout-content">
-<p>One way to think of the concept is that a virtual machine is a
-computer that runs inside your computer. This mini computer is
-completely separated from the main computer.</p>
+<p>One way to think of the concept is that a VM is a computer that runs
+inside your computer. All the programs that run inside this mini
+computer can’t “see” anything running inside the host (or other
+VMs).</p>
 </div>
 </div>
 </div>
-<p>Why would we want to</p>
+<p>Why would we want to run a mini computer inside of our main computer?
+Vs are commonly used in enterprise settings to make managing and
+deploying complex applications easier. For example, a web application
+(like your bank’s online portal), needs to stay running in case there is
+a lot of traffic or if the network or server goes down. One way to
+achieve this is to run several identical servers spread out
+geographically. While one could install all the software on each server,
+doing so is complicated by the fact that the physical hardware and
+software present on each server might be slightly different. Also, we
+might want to run multiple complex applications on the same server which
+could result in conflicting software dependencies. VMs help solve these
+problems</p>
+<p>VMs help with - Running applications on different physical computers
+by encapsulating all the files and dependencies needed to run them
+(including the operating system) - Distributing applications with
+complex dependencies and configurations so that others can run them more
+easily. - Securing applications so that they are isolated from each
+other. - Getting the most use of physical hardware resources by running
+multiple isolated operating systems at the same time instead of running
+one operating system per physical computer.</p>
+<p>Examples of VM usage in research scenarios - Packaging data and
+software together into a VM image so others can more easily reproduce
+results or conduct their own analysis using the same tools and
+configuration used by the original researcher. - Providing computing
+resources to researchers. For example, a research institution might wish
+to give access to licensed software to researchers. The institution
+might set up virtual machines with the software already installed where
+researchers can then log into remotely to access it.</p>
 </section><section><h2 class="section-heading" id="what-are-containers-and-what-do-they-do">What are containers and what do they do?<a class="anchor" aria-label="anchor" href="#what-are-containers-and-what-do-they-do"></a>
 </h2>
 <hr class="half-width"></section><section><h2 class="section-heading" id="comparing-virtual-machines-and-containers">Comparing virtual machines and containers<a class="anchor" aria-label="anchor" href="#comparing-virtual-machines-and-containers"></a>
@@ -468,6 +503,8 @@ completely separated from the main computer.</p>
 operating system and applications inside of a host operating system</li>
 <li>A virtual machine manager handles the sharing of resources and
 execution of the virtual machine itself.</li>
+<li>Both virtual machines and containers are commonly used in academic
+research.</li>
 </ul>
 </div>
 </div>
@@ -635,7 +672,7 @@ reinforce the objectives.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Output </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -662,7 +699,7 @@ reinforce the objectives.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>You can add a line with at least three colons and a
 <code>solution</code> tag.</p>
@@ -809,7 +846,7 @@ explain images and containers?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Several analogies exist, and here are a few:</p>
 <ul>
@@ -868,7 +905,7 @@ same command now? What about when you run the same command with the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ul>
 <li>
@@ -919,7 +956,7 @@ docker ps</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <pre><code>docker run -p 3333:3333 felixlohmeier/openrefine
 docker ps
@@ -1192,9 +1229,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/aio.html",
-  "dateCreated": "2024-09-17",
-  "dateModified": "2024-09-17",
-  "datePublished": "2024-09-17"
+  "dateCreated": "2024-09-20",
+  "dateModified": "2024-09-20",
+  "datePublished": "2024-09-20"
 }
 
   </script><script>
