@@ -659,7 +659,7 @@ reinforce the objectives.</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Inline instructor notes can help inform instructors of timing
 challenges associated with the lessons. They appear in the “Instructor
@@ -690,7 +690,7 @@ View”</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Output </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -717,7 +717,7 @@ View”</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>You can add a line with at least three colons and a
 <code>solution</code> tag.</p>
@@ -781,7 +781,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-containers-part1"><p>Content from <a href="containers-part1.html">Basics of Containers with Docker</a></p>
 <hr>
-<p>Last updated on 2024-09-17 |
+<p>Last updated on 2024-09-20 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -824,28 +824,35 @@ container</li>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <hr class="half-width">
-<p><strong>TODO</strong>: images vs. containers</p>
+<p><strong>TODO</strong> Flavor text introducing containers. Why we use
+them. Include at least a couple use cases. If necessary, provide high
+level distinction from Virtual Machines.</p>
 <div class="section level3">
-<h3 id="images">Images<a class="anchor" aria-label="anchor" href="#images"></a>
+<h3 id="images-versus-containers">Images versus containers<a class="anchor" aria-label="anchor" href="#images-versus-containers"></a>
 </h3>
+<p><strong>TODO</strong> Flavor text introducing images
+vs. containers</p>
+<div class="section level4">
+<h4 id="images-are">Images are<a class="anchor" aria-label="anchor" href="#images-are"></a>
+</h4>
 <ol style="list-style-type: decimal">
 <li>Read-only</li>
-<li>Contain instructions (in a file called a “Dockerfile”)</li>
+<li>Contain instructions (in a file called a “Dockerfile” - we talk
+about Dockerfiles later in the lesson)</li>
 <li>They do not actually “do” anything</li>
 </ol>
 </div>
-<div class="section level3">
-<h3 id="containers">Containers<a class="anchor" aria-label="anchor" href="#containers"></a>
-</h3>
+<div class="section level4">
+<h4 id="containers-are">Containers are<a class="anchor" aria-label="anchor" href="#containers-are"></a>
+</h4>
 <ol style="list-style-type: decimal">
-<li>Modifyable (while running)</li>
+<li>Modifiable (while running)</li>
 <li>Can include files and programs (like your computer!)</li>
 <li>Can run analyses or web applications (and more)</li>
 </ol>
-<p>images are for Platonists, containers for nominalists.</p>
+<p><strong>TODO</strong>: Analogy for images vs. containers</p>
 <p>Images are blueprints, containers are buildings</p>
-<p>Also, containers (at least starting and stopping) are
-command-line</p>
+<p>images are for Platonists, containers for nominalists.</p>
 <div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
@@ -887,7 +894,7 @@ container is the actual curry dish you can eat.</li>
 holds important content like files and programs so that an application
 can be delivered efficiently from producer to consumer. An image is more
 like a read-only manifest or schematic of what will be inside the
-container.”” (from <a href="https://circleci.com/blog/docker-image-vs-container/" class="external-link">Jacob
+container.” (from <a href="https://circleci.com/blog/docker-image-vs-container/" class="external-link">Jacob
 Schmitt</a>)</li>
 <li>If you are familiar with object-oriented programming, you can think
 of an image as a class, and a container an object of that class.</li>
@@ -897,25 +904,40 @@ of an image as a class, and a container an object of that class.</li>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="retrieving-images">Retrieving images<a class="anchor" aria-label="anchor" href="#retrieving-images"></a>
-</h2>
-<hr class="half-width">
+</div>
+<div class="section level3">
+<h3 id="working-with-containers">Working with containers<a class="anchor" aria-label="anchor" href="#working-with-containers"></a>
+</h3>
+<p>One thing to note right away is that a lot of the work of running
+containers happens through the command line interface. That is, we do
+not have a graphical user interface (GUI) with menus to work with.
+Instead, we type commands into a terminal for starting and stopping
+containers.</p>
+<p><strong>TODO</strong> General overview of what we do (copy them,
+start them, stop them)</p>
+<div class="section level4">
+<h4 id="retrieving-images">Retrieving images<a class="anchor" aria-label="anchor" href="#retrieving-images"></a>
+</h4>
 <p><strong>TODO</strong> docker pull</p>
-</section><section><h2 class="section-heading" id="starting-an-image">Starting an image<a class="anchor" aria-label="anchor" href="#starting-an-image"></a>
-</h2>
-<hr class="half-width">
+</div>
+<div class="section level4">
+<h4 id="starting-an-image">Starting an image<a class="anchor" aria-label="anchor" href="#starting-an-image"></a>
+</h4>
 <p><strong>TODO</strong> docker start</p>
-</section><section><h2 class="section-heading" id="status-check">Status check<a class="anchor" aria-label="anchor" href="#status-check"></a>
-</h2>
-<hr class="half-width">
+</div>
+<div class="section level4">
+<h4 id="status-check">Status check<a class="anchor" aria-label="anchor" href="#status-check"></a>
+</h4>
 <p><strong>TODO</strong> docker ps</p>
-</section><section><h2 class="section-heading" id="using-the-container">Using the container<a class="anchor" aria-label="anchor" href="#using-the-container"></a>
-</h2>
-<hr class="half-width">
+</div>
+<div class="section level4">
+<h4 id="using-the-container">Using the container<a class="anchor" aria-label="anchor" href="#using-the-container"></a>
+</h4>
 <p><strong>TODO</strong> Do something in OpenRefine</p>
-</section><section><h2 class="section-heading" id="stopping-the-container">Stopping the container<a class="anchor" aria-label="anchor" href="#stopping-the-container"></a>
-</h2>
-<hr class="half-width">
+</div>
+<div class="section level4">
+<h4 id="stopping-the-container">Stopping the container<a class="anchor" aria-label="anchor" href="#stopping-the-container"></a>
+</h4>
 <p><strong>TODO</strong> docker stop (after docker ps)</p>
 <div id="challenge-2-checking-the-status-of-containers" class="callout challenge">
 <div class="callout-square">
@@ -1003,11 +1025,8 @@ docker stop &lt;container ID&gt;</code></pre>
 <div class="callout-inner">
 <h3 class="callout-title">Callout</h3>
 <div class="callout-content">
-<p>Callout sections can highlight information.</p>
-<p>They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present “asides”: content that is
-not central to the narrative of the lesson, e.g. by providing the answer
-to a commonly-asked question.</p>
+<p><strong>TODO</strong> Add any notes that may be relevant, but not
+necessary for lesson?</p>
 </div>
 </div>
 </div>
@@ -1018,17 +1037,14 @@ to a commonly-asked question.</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<p><strong>TODO</strong> Update these keypoints to reflect questions and
-objectives</p>
 <ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<li>Containers are a way to provide a consistent environment for
+reproducible work.</li>
+<li>Use <code>docker pull</code> to copy an image to your machine</li>
+<li>Use <code>docker start</code> to start running a container</li>
+<li>Use <code>docker ps</code> to check the status of running
+containers</li>
+<li>Use <code>docker stop</code> to stop running a container</li>
 </ul>
 </div>
 </div>
@@ -1037,9 +1053,11 @@ locally</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
+</div>
 </section></section><section id="aio-containers-part2"><p>Content from <a href="containers-part2.html">Creating Containers with Docker</a></p>
 <hr>
-<p>Last updated on 2024-09-17 |
+<p>Last updated on 2024-09-20 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part2.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -1077,14 +1095,16 @@ any links that you are not going to use.
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <hr class="half-width">
-<p>Dockerfiles -&gt; Images -&gt; Containers</p>
-<p>Might be a good spot for a visual.</p>
+<p><strong>TODO</strong> Dockerfiles -&gt; Images -&gt; Containers</p>
+<p><strong>TODO</strong> Might be a good spot for a visual.</p>
+<p><strong>TODO</strong> How do we extend analogies that we presented in
+episode 1?</p>
 <div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p><strong>TODO</strong> Anything instructors should be aware of for
 this episode?</p>
@@ -1095,19 +1115,22 @@ this episode?</p>
 <div class="section level3">
 <h3 id="dockerfile-gross-anatomy">Dockerfile gross anatomy<a class="anchor" aria-label="anchor" href="#dockerfile-gross-anatomy"></a>
 </h3>
-<p>Cover two commands: <code>FROM</code> and <code>CMD</code> (or maybe
-<code>ENTRYPOINT</code> instead of <code>CMD</code>?) Maybe
-<code>COPY</code>, too?</p>
+<p><strong>TODO</strong> Cover two commands: <code>FROM</code> and
+<code>CMD</code> (or maybe <code>ENTRYPOINT</code> instead of
+<code>CMD</code>?)</p>
 </div>
 <div class="section level3">
 <h3 id="creating-images-from-dockerfiles">Creating images from Dockerfiles<a class="anchor" aria-label="anchor" href="#creating-images-from-dockerfiles"></a>
 </h3>
+<p><strong>TODO</strong> Explain commands. Note how no new <em>file</em>
+is created in our directory, it gets created…somewhere, though?</p>
 <p><code>docker build -t ...</code></p>
 <p><code>docker image ls</code></p>
 </div>
 <div class="section level3">
 <h3 id="starting-containers">Starting containers<a class="anchor" aria-label="anchor" href="#starting-containers"></a>
 </h3>
+<p><strong>TODO</strong> This is review.</p>
 <p><code>docker run ...</code></p>
 <p>Confirm it ran and quit</p>
 <p><code>docker ps -a</code></p>
@@ -1132,7 +1155,7 @@ version 3.12 (instead of Python version 3.9)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Update the Dockerfile </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>To change the base image, update the information passed to the
 <code>FROM</code> command. That is, open the Dockerfile and change this
@@ -1169,13 +1192,15 @@ based on the updated image.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="copying-files-into-the-image">Copying files into the image<a class="anchor" aria-label="anchor" href="#copying-files-into-the-image"></a>
-</h2>
-<hr class="half-width">
+<div class="section level3">
+<h3 id="copying-files-into-the-image">Copying files into the image<a class="anchor" aria-label="anchor" href="#copying-files-into-the-image"></a>
+</h3>
+<p><strong>TODO</strong> Add flavor text about why we might do this.</p>
 <p><code>COPY ...</code></p>
 <p>See <a href="https://stackoverflow.com/questions/32727594/how-to-pass-arguments-to-shell-script-through-docker-run" class="external-link uri">https://stackoverflow.com/questions/32727594/how-to-pass-arguments-to-shell-script-through-docker-run</a>
 and <a href="https://www.tutorialspoint.com/how-to-pass-command-line-arguments-to-a-python-docker-container" class="external-link uri">https://www.tutorialspoint.com/how-to-pass-command-line-arguments-to-a-python-docker-container</a></p>
-<p>for example of passing arguments to a script.</p>
+<p>for example of passing arguments to a script. Passing arguments might
+be too much.</p>
 <div id="challenge-2-copy-a-script-to-run-in-the-container" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1193,7 +1218,7 @@ python script) you want to include</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 
 </div>
@@ -1207,17 +1232,15 @@ python script) you want to include</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<p><strong>TODO</strong> Update these keypoints to reflect questions and
-objectives</p>
 <ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<li>Dockerfiles include instructions for creating a Docker image</li>
+<li>The <code>FROM</code> command in a Dockerfile indicates the base
+image to build on</li>
+<li>The <code>CMD</code> command in a Dockerfile includes commands to
+execute when a container starts running</li>
+<li>The <code>COPY</code> command in a Dockerfile copies files from your
+local machine to the Docker image so they are available for use when the
+container is running</li>
 </ul>
 </div>
 </div>
@@ -1226,6 +1249,7 @@ locally</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </section></section>
 </div>
     </main>

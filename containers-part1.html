@@ -235,11 +235,6 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#introduction">Introduction</a></li>
-<li><a href="#retrieving-images">Retrieving images</a></li>
-<li><a href="#starting-an-image">Starting an image</a></li>
-<li><a href="#status-check">Status check</a></li>
-<li><a href="#using-the-container">Using the container</a></li>
-<li><a href="#stopping-the-container">Stopping the container</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -313,7 +308,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Basics of Containers with Docker</h1>
-        <p>Last updated on 2024-09-17 |
+        <p>Last updated on 2024-09-20 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -355,22 +350,28 @@ container</li>
 </div>
 </div>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a></h2>
-<hr class="half-width"><p><strong>TODO</strong>: images vs. containers</p>
+<hr class="half-width"><p><strong>TODO</strong> Flavor text introducing containers. Why we use
+them. Include at least a couple use cases. If necessary, provide high
+level distinction from Virtual Machines.</p>
 <div class="section level3">
-<h3 id="images">Images<a class="anchor" aria-label="anchor" href="#images"></a></h3>
+<h3 id="images-versus-containers">Images versus containers<a class="anchor" aria-label="anchor" href="#images-versus-containers"></a></h3>
+<p><strong>TODO</strong> Flavor text introducing images
+vs. containers</p>
+<div class="section level4">
+<h4 id="images-are">Images are<a class="anchor" aria-label="anchor" href="#images-are"></a></h4>
 <ol style="list-style-type: decimal"><li>Read-only</li>
-<li>Contain instructions (in a file called a “Dockerfile”)</li>
+<li>Contain instructions (in a file called a “Dockerfile” - we talk
+about Dockerfiles later in the lesson)</li>
 <li>They do not actually “do” anything</li>
 </ol></div>
-<div class="section level3">
-<h3 id="containers">Containers<a class="anchor" aria-label="anchor" href="#containers"></a></h3>
-<ol style="list-style-type: decimal"><li>Modifyable (while running)</li>
+<div class="section level4">
+<h4 id="containers-are">Containers are<a class="anchor" aria-label="anchor" href="#containers-are"></a></h4>
+<ol style="list-style-type: decimal"><li>Modifiable (while running)</li>
 <li>Can include files and programs (like your computer!)</li>
 <li>Can run analyses or web applications (and more)</li>
-</ol><p>images are for Platonists, containers for nominalists.</p>
+</ol><p><strong>TODO</strong>: Analogy for images vs. containers</p>
 <p>Images are blueprints, containers are buildings</p>
-<p>Also, containers (at least starting and stopping) are
-command-line</p>
+<p>images are for Platonists, containers for nominalists.</p>
 
 <div id="challenge-1-images-versus-containers" class="callout challenge">
 <div class="callout-square">
@@ -399,7 +400,7 @@ container is the actual curry dish you can eat.</li>
 holds important content like files and programs so that an application
 can be delivered efficiently from producer to consumer. An image is more
 like a read-only manifest or schematic of what will be inside the
-container.”” (from <a href="https://circleci.com/blog/docker-image-vs-container/" class="external-link">Jacob
+container.” (from <a href="https://circleci.com/blog/docker-image-vs-container/" class="external-link">Jacob
 Schmitt</a>)</li>
 <li>If you are familiar with object-oriented programming, you can think
 of an image as a class, and a container an object of that class.</li>
@@ -408,16 +409,35 @@ of an image as a class, and a container an object of that class.</li>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="retrieving-images">Retrieving images<a class="anchor" aria-label="anchor" href="#retrieving-images"></a></h2>
-<hr class="half-width"><p><strong>TODO</strong> docker pull</p>
-</section><section><h2 class="section-heading" id="starting-an-image">Starting an image<a class="anchor" aria-label="anchor" href="#starting-an-image"></a></h2>
-<hr class="half-width"><p><strong>TODO</strong> docker start</p>
-</section><section><h2 class="section-heading" id="status-check">Status check<a class="anchor" aria-label="anchor" href="#status-check"></a></h2>
-<hr class="half-width"><p><strong>TODO</strong> docker ps</p>
-</section><section><h2 class="section-heading" id="using-the-container">Using the container<a class="anchor" aria-label="anchor" href="#using-the-container"></a></h2>
-<hr class="half-width"><p><strong>TODO</strong> Do something in OpenRefine</p>
-</section><section><h2 class="section-heading" id="stopping-the-container">Stopping the container<a class="anchor" aria-label="anchor" href="#stopping-the-container"></a></h2>
-<hr class="half-width"><p><strong>TODO</strong> docker stop (after docker ps)</p>
+</div>
+<div class="section level3">
+<h3 id="working-with-containers">Working with containers<a class="anchor" aria-label="anchor" href="#working-with-containers"></a></h3>
+<p>One thing to note right away is that a lot of the work of running
+containers happens through the command line interface. That is, we do
+not have a graphical user interface (GUI) with menus to work with.
+Instead, we type commands into a terminal for starting and stopping
+containers.</p>
+<p><strong>TODO</strong> General overview of what we do (copy them,
+start them, stop them)</p>
+<div class="section level4">
+<h4 id="retrieving-images">Retrieving images<a class="anchor" aria-label="anchor" href="#retrieving-images"></a></h4>
+<p><strong>TODO</strong> docker pull</p>
+</div>
+<div class="section level4">
+<h4 id="starting-an-image">Starting an image<a class="anchor" aria-label="anchor" href="#starting-an-image"></a></h4>
+<p><strong>TODO</strong> docker start</p>
+</div>
+<div class="section level4">
+<h4 id="status-check">Status check<a class="anchor" aria-label="anchor" href="#status-check"></a></h4>
+<p><strong>TODO</strong> docker ps</p>
+</div>
+<div class="section level4">
+<h4 id="using-the-container">Using the container<a class="anchor" aria-label="anchor" href="#using-the-container"></a></h4>
+<p><strong>TODO</strong> Do something in OpenRefine</p>
+</div>
+<div class="section level4">
+<h4 id="stopping-the-container">Stopping the container<a class="anchor" aria-label="anchor" href="#stopping-the-container"></a></h4>
+<p><strong>TODO</strong> docker stop (after docker ps)</p>
 <div id="challenge-2-checking-the-status-of-containers" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -500,11 +520,8 @@ docker stop &lt;container ID&gt;</code></pre>
 <div class="callout-inner">
 <h3 class="callout-title">Callout</h3>
 <div class="callout-content">
-<p>Callout sections can highlight information.</p>
-<p>They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present “asides”: content that is
-not central to the narrative of the lesson, e.g. by providing the answer
-to a commonly-asked question.</p>
+<p><strong>TODO</strong> Add any notes that may be relevant, but not
+necessary for lesson?</p>
 </div>
 </div>
 </div>
@@ -515,16 +532,13 @@ to a commonly-asked question.</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<p><strong>TODO</strong> Update these keypoints to reflect questions and
-objectives</p>
-<ul><li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<ul><li>Containers are a way to provide a consistent environment for
+reproducible work.</li>
+<li>Use <code>docker pull</code> to copy an image to your machine</li>
+<li>Use <code>docker start</code> to start running a container</li>
+<li>Use <code>docker ps</code> to check the status of running
+containers</li>
+<li>Use <code>docker stop</code> to stop running a container</li>
 </ul></div>
 </div>
 </div>
@@ -532,6 +546,8 @@ locally</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="virtualmachines.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
@@ -590,7 +606,7 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-md/containers-part1.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/containers-part1.html",
   "dateCreated": "2024-09-20",
-  "dateModified": "2024-09-17",
+  "dateModified": "2024-09-20",
   "datePublished": "2024-09-20"
 }
 
