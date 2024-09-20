@@ -21,9 +21,11 @@ exercises: 2
 
 ## Introduction
 
-Dockerfiles -> Images -> Containers
+**TODO** Dockerfiles -> Images -> Containers
 
-Might be a good spot for a visual.
+**TODO** Might be a good spot for a visual.
+
+**TODO** How do we extend analogies that we presented in episode 1?
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
@@ -33,16 +35,21 @@ Might be a good spot for a visual.
 
 ### Dockerfile gross anatomy
 
-Cover two commands: `FROM` and `CMD` (or maybe `ENTRYPOINT` instead of `CMD`?)
-Maybe `COPY`, too?
+**TODO** Cover two commands: `FROM` and `CMD` (or maybe `ENTRYPOINT` instead of 
+`CMD`?)
 
 ### Creating images from Dockerfiles
+
+**TODO** Explain commands. Note how no new _file_ is created in our directory, 
+it gets created...somewhere, though?
 
 `docker build -t ...`
 
 `docker image ls`
 
 ### Starting containers
+
+**TODO** This is review.
 
 `docker run ...`
 
@@ -94,7 +101,9 @@ docker run <username>/python-container
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Copying files into the image
+### Copying files into the image
+
+**TODO** Add flavor text about why we might do this.
 
 `COPY ...`
 
@@ -103,9 +112,8 @@ https://stackoverflow.com/questions/32727594/how-to-pass-arguments-to-shell-scri
 and
 https://www.tutorialspoint.com/how-to-pass-command-line-arguments-to-a-python-docker-container
 
-for example of passing arguments to a script.
-
-
+for example of passing arguments to a script. Passing arguments might be too 
+much.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -122,13 +130,11 @@ to include
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-**TODO** Update these keypoints to reflect questions and objectives
-
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
+- Dockerfiles include instructions for creating a Docker image
+- The `FROM` command in a Dockerfile indicates the base image to build on
+- The `CMD` command in a Dockerfile includes commands to execute when a 
+container starts running
+- The `COPY` command in a Dockerfile copies files from your local machine to 
+the Docker image so they are available for use when the container is running
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-[r-markdown]: https://rmarkdown.rstudio.com/

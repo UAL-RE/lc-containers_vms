@@ -25,31 +25,38 @@ exercises: 10
 
 ## Introduction
 
-**TODO**: images vs. containers
+**TODO** Flavor text introducing containers. Why we use them. Include at least 
+a couple use cases. If necessary, provide high level distinction from Virtual 
+Machines. 
 
-### Images
+### Images versus containers
+
+**TODO** Flavor text introducing images vs. containers
+
+#### Images are
 
 1. Read-only
-2. Contain instructions (in a file called a "Dockerfile")
+2. Contain instructions (in a file called a "Dockerfile" - we talk about 
+Dockerfiles later in the lesson)
 3. They do not actually "do" anything
 
-### Containers
+#### Containers are
 
-1. Modifyable (while running)
+1. Modifiable (while running)
 2. Can include files and programs (like your computer!)
 3. Can run analyses or web applications (and more)
 
-
-images are for Platonists, containers for nominalists.
+**TODO**: Analogy for images vs. containers
 
 Images are blueprints, containers are buildings
 
-Also, containers (at least starting and stopping) are command-line
+images are for Platonists, containers for nominalists.
+
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
-**TODO**: Anything the instructor should be aware of. Maybe here's a point for an 
-image of some sorts.
+**TODO**: Anything the instructor should be aware of. Maybe here's a point for 
+an image of some sorts.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -70,7 +77,7 @@ the actual curry dish you can eat.
 - "Think of a container as a shipping container for software - it holds 
 important content like files and programs so that an application can be 
 delivered efficiently from producer to consumer. An image is more like a 
-read-only manifest or schematic of what will be inside the container.""
+read-only manifest or schematic of what will be inside the container."
 (from [Jacob Schmitt](https://circleci.com/blog/docker-image-vs-container/))
 - If you are familiar with object-oriented programming, you can think of an 
 image as a class, and a container an object of that class. 
@@ -78,23 +85,32 @@ image as a class, and a container an object of that class.
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Retrieving images
+### Working with containers
+
+One thing to note right away is that a lot of the work of running containers 
+happens through the command line interface. That is, we do not have a graphical 
+user interface (GUI) with menus to work with. Instead, we type commands into a 
+terminal for starting and stopping containers. 
+
+**TODO** General overview of what we do (copy them, start them, stop them)
+
+#### Retrieving images
 
 **TODO** docker pull 
 
-## Starting an image
+#### Starting an image
 
 **TODO** docker start
 
-## Status check
+#### Status check
 
 **TODO** docker ps
 
-## Using the container
+#### Using the container
 
 **TODO** Do something in OpenRefine
 
-## Stopping the container
+#### Stopping the container
 
 **TODO** docker stop (after docker ps)
 
@@ -160,22 +176,17 @@ docker stop <container ID>
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-Callout sections can highlight information.
-
-They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present "asides": 
-content that is not central to the narrative of the lesson,
-e.g. by providing the answer to a commonly-asked question.
+**TODO** Add any notes that may be relevant, but not necessary for lesson?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-**TODO** Update these keypoints to reflect questions and objectives
-
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
+- Containers are a way to provide a consistent environment for reproducible 
+work.
+- Use `docker pull` to copy an image to your machine
+- Use `docker start` to start running a container
+- Use `docker ps` to check the status of running containers
+- Use `docker stop` to stop running a container
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
