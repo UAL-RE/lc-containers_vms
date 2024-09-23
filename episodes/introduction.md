@@ -59,17 +59,20 @@ One way to think of the concept is that a VM is a computer that runs inside your
 Why would we want to run a mini computer inside of our main computer? Vs are commonly used in enterprise settings to make managing and deploying complex applications easier. For example, a web application (like your bank's online portal), needs to stay running in case there is a lot of traffic or if the network or server goes down. One way to achieve this is to run several identical servers spread out geographically. While one could install all the software on each server, doing so is complicated by the fact that the physical hardware and software present on each server might be slightly different. Also, we might want to run multiple complex applications on the same server which could result in conflicting software dependencies. VMs help solve these problems
 
 VMs help with
+
 - Running applications on different physical computers by encapsulating all the files and dependencies needed to run them (including the operating system)
 - Distributing applications with complex dependencies and configurations so that others can run them more easily.
 - Securing applications so that they are isolated from each other.
 - Getting the most use of physical hardware resources by running multiple isolated operating systems at the same time instead of running one operating system per physical computer.
 
 Examples of VM usage in research scenarios
+
 - Packaging data and software together into a VM image so others can more easily reproduce results or conduct their own analysis using the same tools and configuration used by the original researcher. 
 - Providing computing resources to researchers. For example, a research institution might wish to give access to licensed software to researchers. The institution might set up virtual machines with the software already installed where researchers can then log into remotely to access it.
 
 ## What are containers and what do they do?
 
+Containers are conceptually similar to VMs in that they also encapsulate applications and their dependencies into packages that can be easily distributed and run on physical machines that have different underlying hardware and operating systems. 
 
 ## Comparing virtual machines and containers
 
