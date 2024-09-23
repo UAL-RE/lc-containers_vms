@@ -29,9 +29,31 @@ exercises: 10
 a couple use cases. If necessary, provide high level distinction from Virtual 
 Machines. 
 
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
+Instructors should feel free to add their own examples in the introduction, to 
+help your learners appreciate the utility of containers. Providing your own use 
+case of containers helps lend authenticity to the lesson.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 ### Images versus containers
 
-**TODO** Flavor text introducing images vs. containers
+There are two big pieces of the container world: images and containers. They 
+are related to one another, but they are not synonymous. Briefly, images 
+provide the plans for making a container, and a container is similar to a 
+virtual machine in that it is effectively _another_ computer running on your 
+computer. To use an analogy from architecture, images are the blueprints and 
+containers are the actual building.
+
+::::::::::::::::::::::::::::::::::::: callout
+
+If you are a fan of philosophy, images are for Platonists and containers are 
+for nominalists.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+Considering the differences between images and containers...
 
 #### Images are
 
@@ -45,13 +67,6 @@ Dockerfiles later in the lesson)
 1. Modifiable (while running)
 2. Can include files and programs (like your computer!)
 3. Can run analyses or web applications (and more)
-
-**TODO**: Analogy for images vs. containers
-
-Images are blueprints, containers are buildings
-
-images are for Platonists, containers for nominalists.
-
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
@@ -98,13 +113,25 @@ terminal for starting and stopping containers.
 
 **TODO** docker pull 
 
+```
+$ docker pull felixlohmeier/openrefine
+```
+
 #### Starting an image
 
 **TODO** docker start
 
+```
+$ docker run -p 3333:3333 felixlohmeier/openrefine
+```
+
 #### Status check
 
 **TODO** docker ps
+
+```
+$ docker ps
+```
 
 #### Using the container
 
@@ -113,6 +140,14 @@ terminal for starting and stopping containers.
 #### Stopping the container
 
 **TODO** docker stop (after docker ps)
+
+```
+$ docker ps
+```
+
+```
+$ docker stop <container ID>
+```
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
