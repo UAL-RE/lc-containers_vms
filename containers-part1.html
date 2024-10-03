@@ -308,7 +308,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Basics of Containers with Docker</h1>
-        <p>Last updated on 2024-09-23 |
+        <p>Last updated on 2024-10-03 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -406,7 +406,7 @@ explain images and containers?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Several analogies exist, and here are a few:</p>
 <ul><li>An image is a recipe, say, for your favorite curry, while the
@@ -432,10 +432,57 @@ containers happens through the command line interface. That is, we do
 not have a graphical user interface (GUI) with menus to work with.
 Instead, we type commands into a terminal for starting and stopping
 containers.</p>
-<p><strong>TODO</strong> General overview of what we do (copy them,
-start them, stop them)</p>
-<div class="section level4">
+<p>For the purposes of this lesson, we are going to use a relatively
+lightweight workflow of using a container. Briefly, the steps of using a
+container are:</p>
+<ol style="list-style-type: decimal"><li>Retrieve the image we would like to use from an online
+repository.</li>
+<li>Start the container running (like turning on a computer).</li>
+<li>Interact with the container, if the container has such functionality
+(some containers are just programmed to run without additional
+interaction from users).</li>
+<li>Check the status of the container.</li>
+<li>Upon completion of whatever task we are using the container for,
+stop the container (like turning off the computer).</li>
+</ol><p>Steps 1, 2, 4, and 5 are all associated with a specific docker
+command:</p>
+<ol style="list-style-type: decimal"><li>Retrieve image: <code>docker pull</code>
+</li>
+<li>Start container: <code>docker run</code>
+</li>
+<li>Check status: <code>docker ps</code>
+</li>
+<li>Stop container: <code>docker stop</code>
+</li>
+</ol><div class="section level4">
 <h4 id="retrieving-images">Retrieving images<a class="anchor" aria-label="anchor" href="#retrieving-images"></a></h4>
+<p>The first step of using containers is to download a copy of the image
+you would like to use. For Docker images, there are multiple sites on
+the internet that serve as sources for Docker images. Two common
+repositories are <a href="https://hub.docker.com/" class="external-link">DockerHub</a> and <a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry" class="external-link">GitHub’s
+Container Registry</a>; for this lesson, we will be downloading from
+DockerHub. The nice thing is that we do not have to open a web browser
+and manually download a file - instead we can use the Docker commands to
+do this for us. For downloading images, the syntax is:</p>
+<pre><code>docker pull &lt;image creator&gt;/&lt;image name&gt;</code></pre>
+<p>Where we replace <code>&lt;image creator&gt;</code> with the username
+of the person or organization responsible for the image and
+<code>&lt;image name&gt;</code> with the name of the image. For this
+lesson, we are going to use an image that includes the <a href="https://openrefine.org/" class="external-link">OpenRefine</a> software. OpenRefine is a
+powerful data-wrangling tool that runs in a web browser.</p>
+<div id="callout2" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
+<p>Want to learn more about OpenRefine? Check out the Library Carpentry
+<a href="https://librarycarpentry.org/lc-open-refine/" class="external-link">Lesson on Open
+Refine</a>.</p>
+</div>
+</div>
+</div>
 <p><strong>TODO</strong> docker pull</p>
 <pre><code>$ docker pull felixlohmeier/openrefine</code></pre>
 </div>
@@ -477,7 +524,7 @@ same command now? What about when you run the same command with the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ul><li>
 <code>docker ps</code> will show the status of all running
@@ -524,7 +571,7 @@ docker ps</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <pre><code>docker run -p 3333:3333 felixlohmeier/openrefine
 docker ps
@@ -533,7 +580,7 @@ docker stop &lt;container ID&gt;</code></pre>
 </div>
 </div>
 </div>
-<div id="callout2" class="callout">
+<div id="callout3" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -626,7 +673,7 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-md/containers-part1.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/containers-part1.html",
   "dateCreated": "2024-10-03",
-  "dateModified": "2024-09-23",
+  "dateModified": "2024-10-03",
   "datePublished": "2024-10-03"
 }
 
