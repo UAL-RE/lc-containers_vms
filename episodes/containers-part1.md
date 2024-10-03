@@ -107,9 +107,65 @@ happens through the command line interface. That is, we do not have a graphical
 user interface (GUI) with menus to work with. Instead, we type commands into a 
 terminal for starting and stopping containers. 
 
-**TODO** General overview of what we do (copy them, start them, stop them)
+For the purposes of this lesson, we are going to use a relatively lightweight 
+workflow of using a container. Briefly, the steps of using a container are:
+
+1. Retrieve the image we would like to use from an online repository.
+2. Start the container running (like turning on a computer).
+3. Interact with the container, if the container has such functionality (some 
+containers are just programmed to run without additional interaction from 
+users).
+4. Check the status of the container.
+5. Upon completion of whatever task we are using the container for, stop the 
+container (like turning off the computer).
+
+Steps 1, 2, 4, and 5 are all associated with a specific docker command:
+
+1. Retrieve image: `docker pull`
+2. Start container: `docker run`
+4. Check status: `docker ps`
+5. Stop container: `docker stop`
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
+The instructions included in the two episodes on containers assume that 
+learners are using the virtual machines described in prior episodes. However, 
+the following Docker instructions can all be run on any computer that has an 
+internet connection and has [Docker installed](https://docs.docker.com/engine/install/). 
+You can find more information about installing Docker at the Carpentries' 
+[Containers](https://carpentries-incubator.github.io/docker-introduction/#software-to-install) 
+lesson.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 #### Retrieving images
+
+The first step of using containers is to download a copy of the image you would 
+like to use. For Docker images, there are multiple sites on the internet that 
+serve as sources for Docker images. Two common repositories are 
+[DockerHub](https://hub.docker.com/) and 
+[GitHub's Container Registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry); 
+for this lesson, we will be downloading from DockerHub. The nice thing is that 
+we do not have to open a web browser and manually download a file - instead we 
+can use the Docker commands to do this for us. For downloading images, the 
+syntax is:
+
+```
+docker pull <image creator>/<image name>
+```
+
+Where we replace `<image creator>` with the username of the person or 
+organization responsible for the image and `<image name>` with the name of the 
+image. For this lesson, we are going to use an image that includes the 
+[OpenRefine](https://openrefine.org/) software. OpenRefine is a powerful 
+data-wrangling tool that runs in a web browser.
+
+::::::::::::::::::::::::::::::::::::: callout
+
+Want to learn more about OpenRefine? Check out the Library Carpentry [Lesson on Open Refine](https://librarycarpentry.org/lc-open-refine/).
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 **TODO** docker pull 
 
