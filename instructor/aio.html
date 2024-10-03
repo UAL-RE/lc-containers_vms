@@ -346,10 +346,10 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2024-09-20 |
+<p>Last updated on 2024-10-03 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 22 minutes</p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 25 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -420,10 +420,30 @@ required.</p>
 </section><section><h2 class="section-heading" id="what-are-virtual-machines-and-what-do-they-do">What are virtual machines and what do they do?<a class="anchor" aria-label="anchor" href="#what-are-virtual-machines-and-what-do-they-do"></a>
 </h2>
 <hr class="half-width">
-<p>We’re all familiar with computers like Macs and PCs. They run an
-operating system like Windows or Mac, and we can run programs on that
-computer like web browsers and word processors. The operating ssystem
-controls all of the physical resources.</p>
+<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
+  <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
+</button>
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div class="accordion-body">
+<p>Lead off script: <em>We’re all familiar with computers like Macs and
+PCs. They run an operating system like Windows or Mac, and we can run
+programs on that computer like web browsers and word processors. The
+operating system controls all of the physical resources.</em></p>
+<p>Explain the diagram</p>
+<ul>
+<li>Physical resources, and how the OS controls access to them</li>
+<li>The VMM is a program that gets a slice of those resources and
+presents them as if they were physical resources to virtual
+machines</li>
+<li>Define the relationship between the host and guest OS.</li>
+<li>Use the concept of a computer-within-a-computer</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <figure><img src="../fig/vms-01-resources.png" alt="diagram showing boxes with hardware resources, applications, and the operating system" class="figure mx-auto d-block"><div class="figcaption">An ordinary (unvirtualized) system. The
 operating system has complete control of the physical hardware resources
 and is responsible for executing individual applications and allocating
@@ -446,7 +466,7 @@ Each virtual machine only sees the resources allocated to it.</div>
 self-contained set of operating system, applications, and any other
 needed files that run on a host machine. The VM files are contained
 inside of a inside single file (usually) called a VM image. The file you
-downloaded during the lesson setup is an example of an image.</p>
+downloaded during the lesson setup is an example of a VM image.</p>
 <div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -462,50 +482,205 @@ VMs).</p>
 </div>
 </div>
 <p>Why would we want to run a mini computer inside of our main computer?
-Vs are commonly used in enterprise settings to make managing and
-deploying complex applications easier. For example, a web application
-(like your bank’s online portal), needs to stay running in case there is
-a lot of traffic or if the network or server goes down. One way to
-achieve this is to run several identical servers spread out
-geographically. While one could install all the software on each server,
-doing so is complicated by the fact that the physical hardware and
-software present on each server might be slightly different. Also, we
-might want to run multiple complex applications on the same server which
-could result in conflicting software dependencies. VMs help solve these
-problems</p>
-<p>VMs help with</p>
+VMs are commonly used to</p>
 <ul>
-<li>Running applications on different physical computers by
-encapsulating all the files and dependencies needed to run them
-(including the operating system)</li>
-<li>Distributing applications with complex dependencies and
-configurations so that others can run them more easily.</li>
-<li>Securing applications so that they are isolated from each
-other.</li>
-<li>Getting the most use of physical hardware resources by running
-multiple isolated operating systems at the same time instead of running
-one operating system per physical computer.</li>
+<li>Make managing and deploying complex applications easier.</li>
+<li>Run multiple applications and operating systems on the same
+hardware.</li>
 </ul>
-<p>Examples of VM usage in research scenarios</p>
+<p>For example, a web application (like your bank’s online portal),
+needs to stay running in case there is a lot of traffic or if the
+network or server goes down. One way to achieve this is to run several
+identical servers spread out geographically. While one could install all
+the software on each server, doing so is complicated by the fact that
+the physical hardware and software present on each server might be
+slightly different. Also, we might want to run multiple complex
+applications on the same server which could result in conflicting
+software dependencies. VMs help solve these problems.</p>
+<p>VMs are also commonly used in academic research scenarios as well as
+they can help with the problem of research reproducibility by packaging
+all data and code together so that others can easily re-run the same
+analysis while avoiding the issue of having to install and configure the
+environment in the same way as the original researcher. They also help
+optimize the usage of the computing resources owned by the
+institution</p>
+<div id="callout2" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
+<p>Benefits of VMs</p>
 <ul>
-<li>Packaging data and software together into a VM image so others can
-more easily reproduce results or conduct their own analysis using the
-same tools and configuration used by the original researcher.</li>
-<li>Providing computing resources to researchers. For example, a
-research institution might wish to give access to licensed software to
-researchers. The institution might set up virtual machines with the
-software already installed where researchers can then log into remotely
-to access it.</li>
-</ul></section><section><h2 class="section-heading" id="what-are-containers-and-what-do-they-do">What are containers and what do they do?<a class="anchor" aria-label="anchor" href="#what-are-containers-and-what-do-they-do"></a>
+<li>Helps with distributing and managing applications by including all
+needed dependencies and configurations.</li>
+<li>Increases security by isolating applications from each other.</li>
+<li>Maximizes the use of physical hardware resources by running multiple
+isolated operating systems at the same time.</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="what-are-containers-and-what-do-they-do">What are containers and what do they do?<a class="anchor" aria-label="anchor" href="#what-are-containers-and-what-do-they-do"></a>
 </h2>
 <hr class="half-width">
-<p>Containers are conceptually similar to VMs in that they also
+<figure><img src="../fig/containers-01.png" alt="diagram showing boxes with hardware resources, applications, containers, and the operating system" class="figure mx-auto d-block"><div class="figcaption">Containers are self-contained environments that
+run using the host operating system’s resources. Programs running inside
+a container only see resources allocated to it via the container
+manager. For example, from the point of view of the host system, App1’s
+files live in a normal directory somewhere in the file system. From
+App1’s perspective, the only directories that it can directly access on
+the host are controlled by the container manager.</div>
+</figure><p>Containers are conceptually similar to VMs in that they also
 encapsulate applications and their dependencies into packages that can
-be easily distributed and run on physical machines that have different
-underlying hardware and operating systems.</p>
+be easily distributed and run on different physical machines. The big
+difference is that hardware is not virtualized. This means that
+applications running in a container must be compatible with the host OS
+and its hardware. In more technical terms, applications running in a
+container share the host’s kernel and therefore must be compatible with
+the host’s architecture.</p>
+<p>Containers are generally more lightweight in terms of disk space and
+memory requirements than comparable VMs. However, it comes at the cost
+of portability. Applications inside a container can only run on a
+compatible host, unlike VMs which can run applications from differing
+operating systems or hardware architectures.</p>
+<p>A core concept is that containers should be ephemeral and all user
+data and configurations should live outside the container. This means
+that containers can be created and destroyed quickly and easily without
+affecting the data that the container depends on. This separation is
+what enables some of the use cases below.</p>
+<p>Examples:</p>
+<ul>
+<li>Web applications (e.g., a web front-end with a database backend –
+each running in its own container)</li>
+<li>Data science and machine learning software stacks</li>
+</ul>
+<p>Additional characteristics:</p>
+<ul>
+<li>Containers can contain applications from various OSs like Linux or
+Windows, but containers based on Unix-like OSs (e.g., Linux) are the
+most common.</li>
+<li>Containers are generally console based. If they have a graphical
+interface, the main way containers present it is via a web browser.</li>
+<li>Software to create an manage containers is varied. Docker is the
+most popular one.</li>
+</ul>
+<div id="callout3" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
+<p>Benefits of containers</p>
+<ul>
+<li>A lighter application footprint (mainly around lower CPU and memory
+requirements) compared to VMs.</li>
+<li>Quickly and easily update a complex application without affecting
+any user data or causing issues with conflicting dependencies in the
+host OS.</li>
+<li>Quickly and easily scale applications. For example, when there is a
+need to dynamically run multiple instances of an application across a
+cluster of servers to handle increased demand.</li>
+<li>Robustness of an application stack. If an application is made up of
+smaller applications that talk to each other via standard mechanisms
+(e.g., web APIs), it is easier to pinpoint issues and update individual
+applications.</li>
+</ul>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="comparing-virtual-machines-and-containers">Comparing virtual machines and containers<a class="anchor" aria-label="anchor" href="#comparing-virtual-machines-and-containers"></a>
 </h2>
 <hr class="half-width">
+<table class="table">
+<colgroup>
+<col width="37%">
+<col width="37%">
+<col width="25%">
+</colgroup>
+<thead><tr class="header">
+<th></th>
+<th>Virtual Machines</th>
+<th>Containers</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Contains all the dependencies needed to run an application</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>Isolates an application from the host OS</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>Ease of distribution</td>
+<td>Very easy</td>
+<td>Easy/hard (depending on complexity and hardware compatibility)</td>
+</tr>
+<tr class="even">
+<td>Disk space, CPU, and memory requirements</td>
+<td>Larger</td>
+<td>Smaller</td>
+</tr>
+<tr class="odd">
+<td>Presents virtual versions of real hardware like CPUs, disks,
+etc</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>Scaling based on computing needs</td>
+<td>More difficult</td>
+<td>Easier</td>
+</tr>
+<tr class="odd">
+<td>Able to run applications from one operating system on another</td>
+<td>Yes</td>
+<td>No*</td>
+</tr>
+<tr class="even">
+<td>Able to run applications from one CPU architecture (e.g., 32 bit
+x86) on another (e.g., 64 bit ARM)</td>
+<td>Yes (via emulation)</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<div id="challenge-1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-1" class="callout-inner">
+<h3 class="callout-title">Challenge 1:</h3>
+<div class="callout-content">
+<p>If you are running a web browser inside a VM, can the host OS see the
+web pages you’re visiting? What your application is making web requests
+from inside a container? Can the host see the IP addresses your
+application is connecting to?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>In both cases, the host can usually see what sites (domain only if
+using HTTPS) or IP addresses the guest OS or container is connecting to.
+In the VM case, even though the network hardware is virtualized, the
+actual data still has to go through the real hardware at some point. For
+containers, the container already uses the real hardware as if it were
+running natively in the host and the effect is the same.</p>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -515,11 +690,14 @@ underlying hardware and operating systems.</p>
 <div class="callout-content">
 <ul>
 <li>A virtual machine is a separate computer that runs with its own
-operating system and applications inside of a host operating system</li>
-<li>A virtual machine manager handles the sharing of resources and
-execution of the virtual machine itself.</li>
+operating system and applications inside of a host operating
+system.</li>
+<li>Containers are like lightweight virtual machines with some subtle
+but consequential differences.</li>
+<li>Containers and virtual machines can address many of the same use
+cases.</li>
 <li>Both virtual machines and containers are commonly used in academic
-research.</li>
+research but containers are more popular.</li>
 </ul>
 </div>
 </div>
@@ -844,7 +1022,7 @@ level distinction from Virtual Machines.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Instructors should feel free to add their own examples in the
 introduction, to help your learners appreciate the utility of
@@ -900,7 +1078,7 @@ about Dockerfiles later in the lesson)</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
   <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <p><strong>TODO</strong>: Anything the instructor should be aware of.
 Maybe here’s a point for an image of some sorts.</p>
@@ -926,7 +1104,7 @@ explain images and containers?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Several analogies exist, and here are a few:</p>
 <ul>
@@ -1005,7 +1183,7 @@ same command now? What about when you run the same command with the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ul>
 <li>
@@ -1056,7 +1234,7 @@ docker ps</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <pre><code>docker run -p 3333:3333 felixlohmeier/openrefine
 docker ps
@@ -1344,9 +1522,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/instructor/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/aio.html",
-  "dateCreated": "2024-09-23",
-  "dateModified": "2024-10-01",
-  "datePublished": "2024-10-01"
+  "dateCreated": "2024-10-03",
+  "dateModified": "2024-10-03",
+  "datePublished": "2024-10-03"
 }
 
   </script><script>
