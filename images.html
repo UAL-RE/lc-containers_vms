@@ -346,27 +346,29 @@
 <hr class="half-width">
 <h3 id="introduction-figure-1">Figure 1</h3>
 <p aria-hidden="true">Image 1 of 1: ‘diagram showing boxes with hardware resources, applications, and the operating system’</p>
-<figure><img src="fig/vms-01-resources.png" alt="diagram showing boxes with hardware resources, applications, and the operating system" class="figure mx-auto d-block"><div class="figcaption">An ordinary (unvirtualized) system. The
-operating system has complete control of the physical hardware resources
-and is responsible for executing individual applications and allocating
-those resources to them.</div>
+<figure><img src="fig/vms-01-resources.png" alt="diagram showing boxes with hardware resources, applications, and the operating system" class="figure mx-auto d-block"><div class="figcaption">A conceptual representation of an ordinary
+computer system. The operating system oversees the physical hardware
+resources and is responsible for executing individual applications and
+allocating those resources to them.</div>
 </figure><hr>
 <h3 id="introduction-figure-2">Figure 2</h3>
 <p aria-hidden="true">Image 1 of 1: ‘diagram showing boxes with hardware resources, applications, the operating system, and how virtualization shares resources’</p>
-<figure><img src="fig/vms-02-virtresources.png" alt="diagram showing boxes with hardware resources, applications, the operating system, and how virtualization shares resources" class="figure mx-auto d-block"><div class="figcaption">The physical hardware resources are divided
-between the host operating system and any virtual machines. The virtual
-machine manager (VMM) takes care of managing the virtualized resources.
-Each virtual machine only sees the resources allocated to it.</div>
-</figure><hr>
+<p>Normally, computers run a single operating system with a single set
+of applications. Sometimes (for reasons we’ll discuss soon), people
+might want to run a totally separate operating system with a different
+set of applications. One way to do that is to split up the physical
+resources like CPU, RAM, etc. and present them to that second operating
+system for its exclusive use. The concept of splitting up these
+resources (i.e., virtualizing them) so that only this second operating
+system can access them is the idea behind a virtual machine. <img src="fig/vms-02-virtresources.png" alt="diagram showing boxes with hardware resources, applications, the operating system, and how virtualization shares resources" class="figure"></p>
+<hr>
 <h3 id="introduction-figure-3">Figure 3</h3>
 <p aria-hidden="true">Image 1 of 1: ‘diagram showing boxes with hardware resources, applications, containers, and the operating system’</p>
-<figure><img src="fig/containers-01.png" alt="diagram showing boxes with hardware resources, applications, containers, and the operating system" class="figure mx-auto d-block"><div class="figcaption">Containers are self-contained environments that
-run using the host operating system’s resources. Programs running inside
-a container only see resources allocated to it via the container
-manager. For example, from the point of view of the host system, App1’s
-files live in a normal directory somewhere in the file system. From
-App1’s perspective, the only directories that it can directly access on
-the host are controlled by the container manager.</div>
+<figure><img src="fig/containers-01.png" alt="diagram showing boxes with hardware resources, applications, containers, and the operating system" class="figure mx-auto d-block"><div class="figcaption">Containers are environments that encapsulate
+applications and their dependencies. Applications running inside a
+container are functionally isolated from the host. The container manager
+runs containers and determines what each container can “see” outside of
+itself.</div>
 </figure><hr></section><section id="virtualmachines"><h2 class="section-heading"><a href="virtualmachines.html">Virtual machines using VirtualBox</a></h2>
 <hr class="half-width">
 <h3 id="virtualmachines-figure-1">Figure 1</h3>
@@ -421,9 +423,9 @@ the host are controlled by the container manager.</div>
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/images.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/images.html",
-  "dateCreated": "2024-10-03",
-  "dateModified": "2024-10-03",
-  "datePublished": "2024-10-03"
+  "dateCreated": "2024-10-04",
+  "dateModified": "2024-10-04",
+  "datePublished": "2024-10-04"
 }
 
   </script><script>
