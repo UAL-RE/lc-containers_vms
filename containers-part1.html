@@ -308,7 +308,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Basics of Containers with Docker</h1>
-        <p>Last updated on 2024-10-03 |
+        <p>Last updated on 2024-10-08 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -483,13 +483,63 @@ Refine</a>.</p>
 </div>
 </div>
 </div>
-<p><strong>TODO</strong> docker pull</p>
-<pre><code>$ docker pull felixlohmeier/openrefine</code></pre>
-</div>
+<p><strong>TODO</strong> A screenshot of opening a terminal in the VM
+would be useful here.</p>
+<p>To run this command (and all subsequent Docker commands), we will be
+using the command-line interface (CLI) in our virtual machines. Open the
+terminal window by (<strong>TODO</strong> instructions here)… and enter
+the command to retrieve the OpenRefine image:</p>
+<pre><code>docker pull felixlohmeier/openrefine</code></pre>
+<p>After typing in the command, press “Enter” and Docker will download
+the image from DockerHub. You should see output that tracks the progress
+of the download.</p>
+<figure><img src="fig/docker-pull-progress.png" alt="terminal window showing downloading progress" class="figure mx-auto d-block"><div class="figcaption">The progress display when downloading the
+OpenRefine image</div>
+</figure></div>
 <div class="section level4">
 <h4 id="starting-an-image">Starting an image<a class="anchor" aria-label="anchor" href="#starting-an-image"></a></h4>
-<p><strong>TODO</strong> docker start</p>
-<pre><code>$ docker run -p 3333:3333 felixlohmeier/openrefine</code></pre>
+<p>You now have an image of a Docker container on your machine. This
+means, thinking back to our architecture analogy, you have the
+blueprints and now it is time to actually make the thing (“the thing” in
+this case being the running container on your machine). To start a
+container running from an image, we use the <code>docker run</code>
+command, passing the name of the image and any additional information.
+In our case, we will need to provide information on how we can interact
+with the container by setting the ports (we will see later how we use
+this information). In the command-line interface, run:</p>
+<pre><code>docker run -p 3333:3333 felixlohmeier/openrefine</code></pre>
+<p>Breaking down this command, there are three key parts:</p>
+<ol style="list-style-type: decimal"><li>
+<code>docker run</code>: tells docker to start running a new
+container</li>
+<li>
+<code>-p 3333:3333</code>: tells docker we will use the local port
+3333:3333 to communicate with the running container</li>
+<li>
+<code>felixlohmeier/openrefine</code>: is the name of the image from
+which to build the container</li>
+</ol><p>There is a good chance you will see a variety of messages, including
+some warnings. However, these are not going to interfere with our
+lesson, so we will ignore them for now.</p>
+<div id="callout3" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
+<p>The three warning messages you are likely to see are:</p>
+<pre><code>log4j:WARN No appenders could be found for logger (org.eclipse.jetty.util.log).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.</code></pre>
+<p>These indicate that a logging system in the image is not configured
+the right way. We are not going to be looking at logs of the container,
+so we do not need to worry about these messages. If you end up building
+your own images, logging is likely to be an important part of your
+development and debugging process.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="section level4">
 <h4 id="status-check">Status check<a class="anchor" aria-label="anchor" href="#status-check"></a></h4>
@@ -580,7 +630,7 @@ docker stop &lt;container ID&gt;</code></pre>
 </div>
 </div>
 </div>
-<div id="callout3" class="callout">
+<div id="callout4" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -672,8 +722,8 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/containers-part1.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/containers-part1.html",
-  "dateCreated": "2024-10-04",
-  "dateModified": "2024-10-03",
+  "dateCreated": "2024-10-08",
+  "dateModified": "2024-10-08",
   "datePublished": "2024-10-08"
 }
 
