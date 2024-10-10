@@ -26,7 +26,7 @@ exercises: 2
 
 Let's now turn to exploring how to use virtual machines (VMs). There are [many choices](https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software) for running virtual machines, each with their own strengths and weaknesses. The ones you may encounter more often are the VMWare family of products, Hyper-V which is included with Windows, Parallels which is a product for MacOS, and VirtualBox which is owned by Oracle Corporation and is cross-platform and open-source.
 
-As part of the [setup](index.html), you should have already have VirtualBox installed on your system before continuing.
+As part of the [setup](index.html), you should have already have VirtualBox installed and running on your system before continuing.
 
 ## Running the example VM
 

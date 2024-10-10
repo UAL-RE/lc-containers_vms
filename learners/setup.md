@@ -2,23 +2,11 @@
 title: Setup
 ---
 
-<!--
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
--->
-
 ## Data Sets
 
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
 We will be using a prebuilt virtual machine that already contains most things needed to get started.  Download the [.ova file](#) to your system but do not do anything else with it at the moment. We will import it as part of the [virtual machines](virtualmachines.html) episode.
 
 ::::::::::::::::::::::::::::: instructor
-
-Instructors are responsible for creating the prebuilt virtual machine and hosting it somewhere accessible to instructors. 
 
 ### Building
 This lesson will use a single virtual machine for both the virtual machine AND container episodes. Instructors will be responsible for creating this virtual machine image and distributing it to students. The image should be based on a lightweight Linux distribution that has a graphical desktop environment and is able to run Docker. The Debian-based DietPi distribution is one recommendation as it is light on resources and is easily configurable. 
@@ -68,6 +56,8 @@ Virtual machine image creation instructions for the Debian Bookworm-based DietPi
 
 
 ### Hosting
+Instructors are responsible for creating the prebuilt virtual machine and hosting it somewhere accessible to students. 
+
 The .ova file can be hosted on any online file sharing service with sufficient space like Box, Google Drive, DropBox, etc. 
 
 If there are many learners, remain mindful of any bandwidth limits. For example, Google Drive may cut off access to publicly shared files that exceed a certain amount of transferred data within a certain time period. Therefore, you may wish to host the file on two different services or accounts.
@@ -80,13 +70,6 @@ If there are many learners, remain mindful of any bandwidth limits. For example,
 ::::::::::::::::::::::::::::::::::::::: discussion
 
 ### VirtualBox
-
-<!--
-Setup for different systems can be presented in dropdown menus via a `spoiler`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
--->
 
 VirtualBox is the software we will be using for this lesson. Your computer must meet these requirements:
 
@@ -106,10 +89,12 @@ The prebuilt virtual machine image you downloaded previously contains a preconfi
 
 ### Windows
 
-Although VirtualBox runs under older version of Windows, at least Windows 10 v1803 is needed to minimize the chance for conflicts if there is other virtualization software installed (e.g., Hyper-V). 
+Although VirtualBox runs under older version of Windows, at least **Windows 10 v1803** is needed to minimize the chance for conflicts if there is other virtualization software installed (e.g., Hyper-V). 
 
 - On the [downloads page](https://www.virtualbox.org/wiki/Downloads) under the VirtualBox Platform Packages section, select Windows hosts.
 - Install the downloaded package.
+
+During installation, you may get warnings about missing Python core / win32api dependencies. You may safely ignore this warning as it relates to scripting VirtuaBox with Python which we will not be doing. 
 
 ::::::::::::::::::::::::
 
@@ -123,7 +108,9 @@ If you have a Mac with an Intel CPU or an Apple Arm CPU (M1, M2, or M3).
 - Intel Macs: On the [downloads page](https://www.virtualbox.org/wiki/Downloads) under the VirtualBox Platform Packages section, select MacOS / Intel hosts
 - Apple M1, M2, or M3: On the [Test builds](https://www.virtualbox.org/wiki/Testbuilds) page, download the MacOS / ARM64 Dev Preview file. This version of VirtualBox is experimental and may or may not work for you.
 
-Install the downloaded package.
+Install the downloaded package. Upon first run, you will need to grant the various system permissions it asks you for.
+
+If VirtualBox crashes on startup, even after granting permissions (may happen for the Test Builds), you may not be able to follow the virtual machines portion of the lesson. You may wish to install Docker [directly on your machine](https://www.cprime.com/resources/blog/docker-for-mac-with-homebrew-a-step-by-step-tutorial/) if you would still like to follow the containers portion of the lesson. 
 
 ::::::::::::::::::::::::
 

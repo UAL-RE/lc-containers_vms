@@ -27,4 +27,5 @@ Virtual machine
   ~ A software-defined complete execution stack consisting of virtualized hardware, operating system (guest OS), and applications. ([NIST](https://csrc.nist.gov/glossary/term/virtual_machine))
   ~ An instance of a specific virtual machine image.
   
-
+Virtual private network
+  ~ Software that secures a network connection such that all information transmitted/received is sent via a "tunnel" that automatically encrypts it. Also refer to the [NIST](https://csrc.nist.gov/glossary/term/virtual_private_network) definition.
