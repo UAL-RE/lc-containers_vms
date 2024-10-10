@@ -346,7 +346,7 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2024-10-04 |
+<p>Last updated on 2024-10-10 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 25 minutes</p>
@@ -555,9 +555,7 @@ different architecture.</li>
 <div class="section level3">
 <h3 id="two-core-concepts">Two core concepts<a class="anchor" aria-label="anchor" href="#two-core-concepts"></a>
 </h3>
-<div class="section level4">
-<h4 id="ephemerality">Ephemerality<a class="anchor" aria-label="anchor" href="#ephemerality"></a>
-</h4>
+<p><strong>Ephemerality</strong></p>
 <p>Containers should be considered ephemeral so that they can be
 destroyed and recreated at any time such that the application within
 simply resumes as if nothing had happened. Therefore, containerzied
@@ -565,32 +563,33 @@ applications must be designed in such a way that allows the container
 manager to save all user data and configurations outside of the
 container. This separation is what enables some of the use cases
 below.</p>
-</div>
-<div class="section level4">
-<h4 id="modularization">Modularization<a class="anchor" aria-label="anchor" href="#modularization"></a>
-</h4>
-<p>A popular approach to leveraging containers is modularizing a complex
-application into “microservices”, each running in their own container.
-This helps with maintenance, scalability, and troubleshooting.</p>
-</div>
+<p><strong>Modularization</strong> A popular paradigm is modularizing a
+complex application into smaller, loosely connected components called
+“microservices”. Each microservice runs in its own container and
+communicates with other microservices via an isolated, private network
+that is set up by the container management platform. This approach helps
+with maintenance, scalability, and robustness since a microservice can
+be stopped, updated, and/or swapped without affecting the other
+microservices.</p>
 </div>
 <div class="section level3">
 <h3 id="examples-1">Examples<a class="anchor" aria-label="anchor" href="#examples-1"></a>
 </h3>
 <ul>
-<li>Web applications. E.g., a web front-end with a database backend –
-each running in its own container. In this case, the ephemerality
-concept allows for easily updating the software, while being sure that
-the data won’t be affected. The microservices concept allows, for
-example, easily replacing one database software with another without
-needing to touch the front-end software at all.</li>
+<li>Web applications. E.g., a web front-end container that talks to a
+database backend running in a different container. In this case, the
+ephemerality and microservice concepts allow for easily updating the
+software, while being sure that the data won’t be affected. For example,
+the database can be updated or replaced without needing to touch the
+front-end software at all (thereby allowing error or maintenance
+messages to function).</li>
 <li>Data science, data management, and other research uses. In these
-applications, the same benefits of ephemerality and modularization via
-microservices can be realized. Furthermore, containers enable reuseable,
-reproducible, and cloud-native workflows. Finally, due to their lighter
-weight and the ability to define and create containers via plain-text
-blueprints (e.g., Dockerfiles – more on that later), containers have
-become more popular than virtual machines in research environments.</li>
+applications, the benefits of ephemerality and modularization via
+microservices are realized to enable reuseable, reproducible, and
+cloud-native workflows. Due to their lighter weight and the ability to
+define and create containers via plain-text blueprints (e.g.,
+Dockerfiles – more on that later), containers have become more popular
+than virtual machines in research environments.</li>
 </ul>
 <p>Additional characteristics:</p>
 <ul>
@@ -828,7 +827,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-virtualmachines"><p>Content from <a href="virtualmachines.html">Virtual machines using VirtualBox</a></p>
 <hr>
-<p>Last updated on 2024-08-23 |
+<p>Last updated on 2024-10-10 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/virtualmachines.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -843,8 +842,9 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How do you write a lesson using Markdown and
-<a href="https://carpentries.github.io/sandpaper/" class="external-link">sandpaper</a>?</li>
+<li>How do you import and launch a VM using VirtualBox?</li>
+<li>How do you accomplish common tasks?</li>
+<li>How and why do you change settings for a VM?</li>
 </ul>
 </div>
 </div>
@@ -854,9 +854,11 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Explain how to use markdown with The Carpentries Workbench</li>
-<li>Demonstrate how to include pieces of code, figures, and nested
-challenge blocks</li>
+<li>Explain how to navigate the VirtualBox interface</li>
+<li>Demonstrate how to run a VM</li>
+<li>Show how to manage resources</li>
+<li>Show how to take advantage of snapshots</li>
+<li>Explore changing resource allocations</li>
 </ul>
 </div>
 </div>
@@ -866,80 +868,68 @@ challenge blocks</li>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <hr class="half-width">
-<p>This is a lesson created via The Carpentries Workbench. It is written
-in <a href="https://pandoc.org/MANUAL.txt" class="external-link">Pandoc-flavored Markdown</a>
-for static files and <a href="https://rmarkdown.rstudio.com/" class="external-link">R
-Markdown</a> for dynamic files that can render code into output. Please
-refer to the <a href="https://carpentries.github.io/sandpaper-docs/" class="external-link">Introduction to The
-Carpentries Workbench</a> for full documentation.</p>
-<p>What you need to know is that there are three sections required for a
-valid Carpentries lesson:</p>
-<ol style="list-style-type: decimal">
-<li>
-<code>questions</code> are displayed at the beginning of the episode
-to prime the learner for the content.</li>
-<li>
-<code>objectives</code> are the learning objectives for an episode
-displayed with the questions.</li>
-<li>
-<code>keypoints</code> are displayed at the end of the episode to
-reinforce the objectives.</li>
-</ol>
-<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
-</button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
-<div class="accordion-body">
-<p>Inline instructor notes can help inform instructors of timing
-challenges associated with the lessons. They appear in the “Instructor
-View”</p>
-</div>
-</div>
-</div>
-</div>
-<div id="challenge-1-can-you-do-it" class="callout challenge">
+<p>Let’s now turn to exploring how to use virtual machines (VMs). There
+are <a href="https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software" class="external-link">many
+choices</a> for running virtual machines, each with their own strengths
+and weaknesses. The ones you may encounter more often are the VMWare
+family of products, Hyper-V which is included with Windows, Parallels
+which is a product for MacOS, and VirtualBox which is owned by Oracle
+Corporation and is cross-platform and open-source.</p>
+<p>As part of the <a href="index.html">setup</a>, you should have
+already have VirtualBox installed on your system before continuing.</p>
+</section><section><h2 class="section-heading" id="running-the-example-vm">Running the example VM<a class="anchor" aria-label="anchor" href="#running-the-example-vm"></a>
+</h2>
+<hr class="half-width">
+<p>Exploring the UI - Run VirtualBox - import the VM - run it - see a
+desktop</p>
+</section><section><h2 class="section-heading" id="common-tasks">Common tasks?<a class="anchor" aria-label="anchor" href="#common-tasks"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li>Suspend, resume</li>
+<li>Snapshots</li>
+<li>Mapping folders and hardware resources (?)</li>
+</ul>
+<div id="challenge-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-1-can-you-do-it" class="callout-inner">
-<h3 class="callout-title">Challenge 1: Can you do it?</h3>
+<div id="challenge-1" class="callout-inner">
+<h3 class="callout-title">Challenge 1:</h3>
 <div class="callout-content">
-<p>What is the output of this command?</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">paste</span><span class="op">(</span><span class="st">"This"</span>, <span class="st">"new"</span>, <span class="st">"lesson"</span>, <span class="st">"looks"</span>, <span class="st">"good"</span><span class="op">)</span></span></code></pre>
-</div>
+<p>Take a snapshot of the VM. Start the VM and suspend it. Now Delete
+the parent snapshot. What will be the result if you boot up the VM
+again?</p>
 </div>
 </div>
 </div>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Output </h4>
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[1] "This new lesson looks good"</code></pre>
+<p>Todo</p>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout challenge">
+</section><section><h2 class="section-heading" id="managing-vms">Managing VMs<a class="anchor" aria-label="anchor" href="#managing-vms"></a>
+</h2>
+<hr class="half-width">
+<div id="challenge-2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout-inner">
-<h3 class="callout-title">Challenge 2: how do you nest solutions within challenge blocks?</h3>
+<div id="challenge-2" class="callout-inner">
+<h3 class="callout-title">Challenge 2:</h3>
 <div class="callout-content">
-
+<p>Increase the RAM available to the VM to 2 GB (2048 MB). Verify it by
+running this command inside a terminal window</p>
+<pre><code>cat /proc/meminfo | grep MemTotal</code></pre>
+<p>What number do you see? What should be the effect on the VM’s
+performance?</p>
 </div>
 </div>
 </div>
@@ -948,44 +938,15 @@ View”</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>You can add a line with at least three colons and a
-<code>solution</code> tag.</p>
+<p>You should see <code>2014504 kB</code>. Performance should increase,
+especially when applications are loading a lot of data into memory. Web
+browsers are especially heavy memory users.</p>
 </div>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="figures">Figures<a class="anchor" aria-label="anchor" href="#figures"></a>
-</h2>
-<hr class="half-width">
-<p>You can use standard markdown for static figures with the following
-syntax:</p>
-<p><code>![optional caption that appears below the figure](figure url){alt='alt text for accessibility purposes'}</code></p>
-<figure><img src="https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg" alt="Blue Carpentries hex person logo with no text." class="figure mx-auto d-block"><div class="figcaption">You belong in The Carpentries!</div>
-</figure><div id="callout1" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout</h3>
-<div class="callout-content">
-<p>Callout sections can highlight information.</p>
-<p>They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present “asides”: content that is
-not central to the narrative of the lesson, e.g. by providing the answer
-to a commonly-asked question.</p>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="math">Math<a class="anchor" aria-label="anchor" href="#math"></a>
-</h2>
-<hr class="half-width">
-<p>One of our episodes contains <span class="math inline">\(\LaTeX\)</span> equations when describing how to
-create dynamic reports with {knitr}, so we now use mathjax to describe
-this:</p>
-<p><code>$\alpha = \dfrac{1}{(1 - \beta)^2}$</code> becomes: <span class="math inline">\(\alpha = \dfrac{1}{(1 - \beta)^2}\)</span></p>
-<p>Cool, right?</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -994,14 +955,7 @@ this:</p>
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
 <ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<li>VM point 1</li>
 </ul>
 </div>
 </div>
@@ -1491,7 +1445,7 @@ episode 1?</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p><strong>TODO</strong> Anything instructors should be aware of for
 this episode?</p>
@@ -1542,7 +1496,7 @@ version 3.12 (instead of Python version 3.9)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Update the Dockerfile </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>To change the base image, update the information passed to the
 <code>FROM</code> command. That is, open the Dockerfile and change this
@@ -1605,7 +1559,7 @@ python script) you want to include</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 
 </div>
@@ -1684,9 +1638,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/instructor/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/aio.html",
-  "dateCreated": "2024-10-08",
-  "dateModified": "2024-10-08",
-  "datePublished": "2024-10-08"
+  "dateCreated": "2024-10-10",
+  "dateModified": "2024-10-10",
+  "datePublished": "2024-10-10"
 }
 
   </script><script>
