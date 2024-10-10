@@ -162,24 +162,71 @@ data-wrangling tool that runs in a web browser.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-Want to learn more about OpenRefine? Check out the Library Carpentry [Lesson on Open Refine](https://librarycarpentry.org/lc-open-refine/).
+Want to learn more about OpenRefine? Check out the Library Carpentry 
+[Lesson on Open Refine](https://librarycarpentry.org/lc-open-refine/).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+**TODO** A screenshot of opening a terminal in the VM would be useful here.
 
-**TODO** docker pull 
+To run this command (and all subsequent Docker commands), we will be using the 
+command-line interface (CLI) in our virtual machines. Open the terminal window 
+by (**TODO** instructions here)... and enter the command to retrieve the 
+OpenRefine image:
 
 ```
-$ docker pull felixlohmeier/openrefine
+docker pull felixlohmeier/openrefine
 ```
+
+After typing in the command, press "Enter" and Docker will download the image 
+from DockerHub. You should see output that tracks the progress of the download.
+
+![The progress display when downloading the OpenRefine image](fig/docker-pull-progress.png){alt='terminal window showing downloading progress'}
 
 #### Starting an image
 
-**TODO** docker start
+You now have an image of a Docker container on your machine. This means, 
+thinking back to our architecture analogy, you have the blueprints and now it 
+is time to actually make the thing ("the thing" in this case being the 
+running container on your machine). To start a container running from an image, 
+we use the `docker run` command, passing the name of the image and any 
+additional information. In our case, we will need to provide information on how 
+we can interact with the container by setting the ports (we will see later how 
+we use this information). In the command-line interface, run:
 
 ```
-$ docker run -p 3333:3333 felixlohmeier/openrefine
+docker run -p 3333:3333 felixlohmeier/openrefine
 ```
+
+Breaking down this command, there are three key parts:
+
+1. `docker run`: tells docker to start running a new container
+2. `-p 3333:3333`: tells docker we will use the local port 3333:3333 to 
+communicate with the running container
+3. `felixlohmeier/openrefine`: is the name of the image from which to build the 
+container
+
+There is a good chance you will see a variety of messages, including some 
+warnings. However, these are not going to interfere with our lesson, so we will
+ignore them for now.
+
+::::::::::::::::::::::::::::::::::::: callout
+
+The three warning messages you are likely to see are:
+
+```
+log4j:WARN No appenders could be found for logger (org.eclipse.jetty.util.log).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+```
+
+These indicate that a logging system in the image is not configured the right 
+way. We are not going to be looking at logs of the container, so we do not need 
+to worry about these messages. If you end up building your own images, logging 
+is likely to be an important part of your development and debugging process.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 #### Status check
 
