@@ -238,11 +238,46 @@ is likely to be an important part of your development and debugging process.
 
 #### Status check
 
-**TODO** docker ps
+At this point, our container is running. Or at least it should be. How can we 
+check? In order to see which containers are running, we will use the `docker 
+ps` command. Because the container we just started is running in the terminal 
+window where we issued the `docker run` command, we will need to open a new 
+terminal tab. We can do this in the terminal File menu, selecting the New 
+Tab... option (File > New Tab...).
+
+**TODO** Screenshot of opening new tab via File menu.
+
+In this new terminal window, type the following and press "Enter":
 
 ```
 $ docker ps
 ```
+
+You should see a table print out in the terminal window. Note that if your 
+windows are narrow, the output will wrap around the screen and be a little 
+difficult (although not impossible) to read. If you find this is the case, you 
+can make your terminal (and possibly your virtual machine) windows wider, then 
+run the `docker ps` command again. The output should look something like:
+
+```
+CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   9 seconds ago   Up 8 seconds   0.0.0.0:3333->3333/tcp, :::3333->3333/tcp   epic_nobel
+```
+
+Although the value in the first and last columns (CONTAINER ID and NAMES, 
+respectively) will likely be different for everyone. The important columns to 
+note are:
+
+- `CONTAINER ID`: A unique identifier for this container. You can have multiple 
+containers based on the same image running simultaneously, and they will all 
+have different values for `CONTAINER ID`.
+- `IMAGE`: The name of the image this container is based on.
+- `STATUS`: This will indicate if a container is running (it will say something 
+like `Up 5 minutes`, which means it started running 5 minutes ago) or if it has 
+stopped running (the message will be `Exited (143) 7 seconds ago`).
+
+So now we see that our container is running and we are ready to actually use 
+the OpenRefine program.
 
 #### Using the container
 
