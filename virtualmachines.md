@@ -6,109 +6,77 @@ exercises: 2
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you write a lesson using Markdown and `{sandpaper}`?
+- How do you import and launch a VM using VirtualBox?
+- How do you accomplish common tasks?
+- How and why do you change settings for a VM?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain how to use markdown with The Carpentries Workbench
-- Demonstrate how to include pieces of code, figures, and nested challenge blocks
+- Explain how to navigate the VirtualBox interface
+- Demonstrate how to run a VM
+- Show how to manage resources
+- Show how to take advantage of snapshots
+- Explore changing resource allocations
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
 
-This is a lesson created via The Carpentries Workbench. It is written in
-[Pandoc-flavored Markdown](https://pandoc.org/MANUAL.txt) for static files and
-[R Markdown][r-markdown] for dynamic files that can render code into output. 
-Please refer to the [Introduction to The Carpentries 
-Workbench](https://carpentries.github.io/sandpaper-docs/) for full documentation.
+Let's now turn to exploring how to use virtual machines (VMs). There are [many choices](https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software) for running virtual machines, each with their own strengths and weaknesses. The ones you may encounter more often are the VMWare family of products, Hyper-V which is included with Windows, Parallels which is a product for MacOS, and VirtualBox which is owned by Oracle Corporation and is cross-platform and open-source.
 
-What you need to know is that there are three sections required for a valid
-Carpentries lesson:
+As part of the [setup](index.html), you should have already have VirtualBox installed on your system before continuing.
 
- 1. `questions` are displayed at the beginning of the episode to prime the
-    learner for the content.
- 2. `objectives` are the learning objectives for an episode displayed with
-    the questions.
- 3. `keypoints` are displayed at the end of the episode to reinforce the
-    objectives.
+## Running the example VM
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+Exploring the UI
+- Run VirtualBox
+- import the VM
+- run it
+- see a desktop
 
-Inline instructor notes can help inform instructors of timing challenges
-associated with the lessons. They appear in the "Instructor View"
+## Common tasks?
+- Suspend, resume
+- Snapshots
+- Mapping folders and hardware resources (?)
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::: challenge
+## Challenge 1: 
 
-::::::::::::::::::::::::::::::::::::: challenge 
+Take a snapshot of the VM. Start the VM and suspend it. Now Delete the parent snapshot. What will be the result if you boot up the VM again?
 
-## Challenge 1: Can you do it?
-
-What is the output of this command?
-
-```r
-paste("This", "new", "lesson", "looks", "good")
-```
 
 :::::::::::::::::::::::: solution 
 
-## Output
- 
-```output
-[1] "This new lesson looks good"
-```
-
-:::::::::::::::::::::::::::::::::
-
-
-## Challenge 2: how do you nest solutions within challenge blocks?
-
-:::::::::::::::::::::::: solution 
-
-You can add a line with at least three colons and a `solution` tag.
+Todo
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Figures
 
-You can use standard markdown for static figures with the following syntax:
+## Managing VMs
 
-`![optional caption that appears below the figure](figure url){alt='alt text for
-accessibility purposes'}`
+::::::::::::::::::::::::::::::::: challenge
+## Challenge 2: 
 
-![You belong in The Carpentries!](https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg){alt='Blue Carpentries hex person logo with no text.'}
+Increase the RAM available to the VM to 2 GB (2048 MB). Verify it by running this command inside a terminal window
+```
+cat /proc/meminfo | grep MemTotal
+```
+What number do you see? What should be the effect on the VM's performance?
 
-::::::::::::::::::::::::::::::::::::: callout
 
-Callout sections can highlight information.
+:::::::::::::::::::::::: solution 
 
-They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present "asides": 
-content that is not central to the narrative of the lesson,
-e.g. by providing the answer to a commonly-asked question.
+You should see `2014504 kB`. Performance should increase, especially when applications are loading a lot of data into memory. Web browsers are especially heavy memory users.
 
+:::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-
-## Math
-
-One of our episodes contains $\LaTeX$ equations when describing how to create
-dynamic reports with {knitr}, so we now use mathjax to describe this:
-
-`$\alpha = \dfrac{1}{(1 - \beta)^2}$` becomes: $\alpha = \dfrac{1}{(1 - \beta)^2}$
-
-Cool, right?
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
+- VM point 1
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-[r-markdown]: https://rmarkdown.rstudio.com/

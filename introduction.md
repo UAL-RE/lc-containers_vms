@@ -101,18 +101,18 @@ Containers are conceptually similar to VMs in that they also encapsulate applica
 
 ### Two core concepts
 
-#### Ephemerality
+**Ephemerality**
 
 Containers should be considered ephemeral so that they can be destroyed and recreated at any time such that the application within simply resumes as if nothing had happened. Therefore, containerzied applications must be designed in such a way that allows the container manager to save all user data and configurations outside of the container. This separation is what enables some of the use cases below.
 
-#### Modularization
-A popular approach to leveraging containers is modularizing a complex application into "microservices", each running in their own container. This helps with maintenance, scalability, and troubleshooting.
+**Modularization**
+A popular paradigm is modularizing a complex application into smaller, loosely connected components called "microservices". Each microservice runs in its own container and communicates with other microservices via an isolated, private network that is set up by the container management platform. This approach helps with maintenance, scalability, and robustness since a microservice can be stopped, updated, and/or swapped without affecting the other microservices.
 
 
 ### Examples
 
-- Web applications. E.g., a web front-end with a database backend -- each running in its own container. In this case, the ephemerality concept allows for easily updating the software, while being sure that the data won't be affected. The microservices concept allows, for example, easily replacing one database software with another without needing to touch the front-end software at all. 
-- Data science, data management, and other research uses. In these applications, the same benefits of ephemerality and modularization via microservices can be realized. Furthermore,  containers enable reuseable, reproducible, and cloud-native workflows. Finally, due to their lighter weight and the ability to define and create containers via plain-text blueprints (e.g., Dockerfiles -- more on that later), containers have become more popular than virtual machines in research environments.
+- Web applications. E.g., a web front-end container that talks to a database backend running in a different container. In this case, the ephemerality and microservice concepts allow for easily updating the software, while being sure that the data won't be affected. For example, the database can be updated or replaced without needing to touch the front-end software at all (thereby allowing error or maintenance messages to function). 
+- Data science, data management, and other research uses. In these applications, the benefits of ephemerality and modularization via microservices are realized to enable reuseable, reproducible, and cloud-native workflows. Due to their lighter weight and the ability to define and create containers via plain-text blueprints (e.g., Dockerfiles -- more on that later), containers have become more popular than virtual machines in research environments.
 
 Additional characteristics:
 
