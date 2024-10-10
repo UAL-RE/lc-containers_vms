@@ -123,6 +123,7 @@ Steps 1, 2, 4, and 5 are all associated with a specific docker command:
 
 1. Retrieve image: `docker pull`
 2. Start container: `docker run`
+3. 
 4. Check status: `docker ps`
 5. Stop container: `docker stop`
 
@@ -183,6 +184,14 @@ from DockerHub. You should see output that tracks the progress of the download.
 
 ![The progress display when downloading the OpenRefine image](fig/docker-pull-progress.png){alt='terminal window showing downloading progress'}
 
+::::::::::::::::::::::::::::::::::::: spoiler
+
+**TODO**: Add information about how the `docker pull` command would change if 
+one wanted to grab an image from GitHub Container Registry (will need to add 
+`ghcr.io/` in front of namespace/imagename)
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 #### Starting an image
 
 You now have an image of a Docker container on your machine. This means, 
@@ -210,7 +219,7 @@ There is a good chance you will see a variety of messages, including some
 warnings. However, these are not going to interfere with our lesson, so we will
 ignore them for now.
 
-::::::::::::::::::::::::::::::::::::: callout
+::::::::::::::::::::::::::::::::::::: spoiler
 
 The three warning messages you are likely to see are:
 
@@ -226,7 +235,6 @@ to worry about these messages. If you end up building your own images, logging
 is likely to be an important part of your development and debugging process.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 #### Status check
 
