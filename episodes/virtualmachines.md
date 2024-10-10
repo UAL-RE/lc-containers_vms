@@ -30,11 +30,18 @@ As part of the [setup](index.html), you should have already have VirtualBox inst
 
 ## Running the example VM
 
+::::::::::::::::::::::: instructor
+
+Users may be prompted to use the Basic or Expert interface. Make sure students know what they see may not be exactly what is on your screen
+
+::::::::::::::::::::::: 
+
 Exploring the UI
 - Run VirtualBox
 - import the VM
 - run it
 - see a desktop
+- proper way to stop the VM
 
 ## Common tasks?
 - Suspend, resume
