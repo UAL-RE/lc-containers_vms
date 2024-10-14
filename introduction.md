@@ -1,6 +1,6 @@
 ---
 title: "Introduction"
-teaching: 23
+teaching: 30
 exercises: 2
 ---
 
@@ -21,6 +21,12 @@ exercises: 2
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
+
+::::::::::::::::::::::: instructor
+- This lesson is basically a lecture. Make sure to set that expectation
+- Remind students that they're not expected to remember everything. They'll have  a chance to do some hands-on later that might help clear up some questions.
+- Don't forget to mention the glossary as reference material
+:::::::::::::::::::::::
 
 You might have heard of containers and virtual machines in various contexts. For example, you might have heard of 'containerizing' an application, running an application in 'Docker', 'spinning up' a virtual machine in order to run a certain program.
 
@@ -56,10 +62,11 @@ Explain the diagram
 
 ![A conceptual representation of an ordinary computer system. The operating system oversees the physical hardware resources and is responsible for executing individual applications and allocating those resources to them.](fig/vms-01-resources.png){alt='diagram showing boxes with hardware resources, applications, and the operating system'}
 
-Normally, computers run a single operating system with a single set of applications. Sometimes (for reasons we'll discuss soon), people might want to run a totally separate operating system with a different set of applications. One way to do that is to split up the physical resources like CPU, RAM, etc. and present them to that second operating system for its exclusive use. The concept of splitting up these resources (i.e., virtualizing them) so that only this second operating system can access them is the idea behind a virtual machine. 
+Normally, computers run a single operating system with a single set of applications. Sometimes (for reasons we'll discuss soon), people might want to run a totally separate operating system with a different set of applications. One way to do that is to split up the physical resources like CPU, RAM, etc. and present them to that second operating system for its exclusive use. The concept of splitting up these resources (i.e., virtualizing them) so that only this second operating system can access them is the idea behind a **virtual machine**.
+
 ![In a virtual machine, physical hardware resources are divided between the host operating system and any virtual machines (guest operating systems). The virtual machine manager (VMM) takes care of managing the virtualized resources. Each virtual machine only sees the resources allocated to it.](fig/vms-02-virtresources.png){alt='diagram showing boxes with hardware resources, applications, the operating system, and how virtualization shares resources'}
 
-At its core, a virtual machine (referred to as VM from now on) is a self-contained set of operating system, applications, and any other needed files that run on a host machine. The VM files are usually encapsulated inside of a inside single file called a VM image. The file you downloaded during the lesson setup is an example of a VM image. 
+At its core, a **virtual machine** (referred to as **VM** from now on) is a self-contained set of operating system, applications, and any other needed files that run on a **host** machine. The VM files are usually encapsulated inside of a inside single file called a VM **image**. The file you downloaded during the lesson setup is an example of an image. 
 
 :::::::::::::::::::::::::::::::::::::callout
 
@@ -74,11 +81,11 @@ Why would we want to run a mini computer inside of our main computer? VMs are co
 
 ### Examples:
 
-- Deploying a complex application on several servers. Your bank's internal systems need to be robust against risks like hardware failure, hacking, weather events, etc. One way to achieve this is to run several identical servers spread out geographically. While one could install all the software on each server, using a VM reduces complexity by allowing the same software and associated configurations to be quickly deployed and managed across varying hardware
-- Maximize usage of available hardware. Many cloud computing providers like Amazon allow users to purchase resources on their systems. To maximize their investment, these companies will set up a virtual server for each customer. Functionally, these virtual servers behave as a standalone machine but in reality, there may be dozens of other virtual servers running on the same physical system
+- Your bank's internal systems need to be robust against risks like hardware failure, hacking, weather events, etc. One way to achieve this is to run several identical servers spread out geographically. While one could install all the software on each server, using a VM reduces complexity by allowing the same software and associated configurations to be quickly deployed and managed across varying hardware.
+- Many cloud computing providers like Amazon allow users to purchase resources on their systems. To maximize their investment on physical hardware, these companies will set up a virtual server for each customer. Functionally, these virtual servers behave as a standalone machine but in reality, there may be dozens of other virtual servers running on the same physical system.
 
 
-VMs are also commonly used in academic research scenarios as well as they can help with the problem of research reproducibility by packaging all data and code together so that others can easily re-run the same analysis while avoiding the issue of having to install and configure the environment in the same way as the original researcher. They also help optimize the usage of the computing resources owned by the institution. You might have interacted with VMs at your institution if you've ever logged into a "remote desktop" or "virtual computing environment" that many instutions use to provide access to licensed software.
+VMs are also commonly used in academic research scenarios as well as they can help with the problem of research reproducibility by packaging all data and code together so that others can easily re-run the same analysis while avoiding the issue of having to install and configure the environment in the same way as the original researcher. They also help optimize the usage of the computing resources owned by the institution. You might have interacted with VMs at your institution if you've ever logged into a "remote desktop" or "virtual computing environment" that many institutions use to provide access to licensed software.
 
 
 
@@ -92,21 +99,21 @@ Benefits of VMs
 
 ## What are containers and what do they do?
 
-![Containers are environments that encapsulate applications and their dependencies. Applications running inside a container are functionally isolated from the host. The container manager runs containers and determines what each container can "see" outside of itself.](fig/containers-01.png){alt='diagram showing boxes with hardware resources, applications, containers, and the operating system'}
+![Containers are environments that encapsulate applications and their dependencies. Applications running inside a container are functionally isolated from the host. The container manager runs containers and determines what each container can "see" on the host. The level of isolation is not as high as VMs (represented by the dashed lines).](fig/containers-01.png){alt='diagram showing boxes with hardware resources, applications, containers, and the operating system'}
 
-Containers are conceptually similar to VMs in that they also encapsulate applications and their dependencies into packages that can be easily distributed and run on different physical machines. A notable difference is that when using containers, hardware is not virtualized and containerized applications must be compatible with the host OS and its hardware. In more technical terms, applications running in a container share the host's kernel and therefore must be compatible with the host's architecture. In practical terms, this means that containers:
+Containers are conceptually similar to VMs in that they also **encapsulate applications** and their dependencies into packages that can be easily distributed and run on different physical machines. A notable difference is that when using containers, hardware is **not virtualized** and containerized applications must be compatible with the host OS and its hardware. In more technical terms, applications running in a container share the host's kernel and therefore must be compatible with the host's architecture. In practical terms, this means that containers:
 
 - Are generally less resource-intensive than comparable VMs, at the cost of portability. 
-- Are not able to run, for example, Windows applications on Linux, or applications written for one CPU architecture on a system with a different architecture.
+- Are generally not able to run applications written for one operating system on another.
 
 ### Two core concepts
 
 **Ephemerality**
 
-Containers should be considered ephemeral so that they can be destroyed and recreated at any time such that the application within simply resumes as if nothing had happened. Therefore, containerzied applications must be designed in such a way that allows the container manager to save all user data and configurations outside of the container. This separation is what enables some of the use cases below.
+Containers should be considered **ephemeral** so that they can be destroyed and recreated at any time such that the application within simply resumes as if nothing had happened. Therefore, containerzied applications must be designed in such a way that allows the container manager to save all user data and configurations outside of the container. This separation is what enables some of the use cases below.
 
 **Modularization**
-A popular paradigm is modularizing a complex application into smaller, loosely connected components called "microservices". Each microservice runs in its own container and communicates with other microservices via an isolated, private network that is set up by the container management platform. This approach helps with maintenance, scalability, and robustness since a microservice can be stopped, updated, and/or swapped without affecting the other microservices.
+A popular paradigm is modularizing a complex application into smaller, loosely connected components called "**microservices**". Each microservice runs in its own container and communicates with other microservices via an isolated, private network that is set up by the container management platform. This approach helps with maintenance, scalability, and robustness since a microservice can be stopped, updated, and/or swapped without affecting the other microservices.
 
 
 ### Examples
@@ -114,20 +121,21 @@ A popular paradigm is modularizing a complex application into smaller, loosely c
 - Web applications. E.g., a web front-end container that talks to a database backend running in a different container. In this case, the ephemerality and microservice concepts allow for easily updating the software, while being sure that the data won't be affected. For example, the database can be updated or replaced without needing to touch the front-end software at all (thereby allowing error or maintenance messages to function). 
 - Data science, data management, and other research uses. In these applications, the benefits of ephemerality and modularization via microservices are realized to enable reuseable, reproducible, and cloud-native workflows. Due to their lighter weight and the ability to define and create containers via plain-text blueprints (e.g., Dockerfiles -- more on that later), containers have become more popular than virtual machines in research environments.
 
-Additional characteristics:
+::::::::::::::::::::::: instructor
+Might also want to mention these additional characteristics:
 
 - Containers can contain applications from various OSs like Linux or Windows, but containers based on Unix-like OSs (e.g., Linux) are the most common.
 - Containers are generally console based. If they have a graphical interface, the main way containers present it is via a web browser.
 - Software to create an manage containers is varied. Docker is the most popular one.
-
+::::::::::::::::::::::: 
 
 :::::::::::::::::::::::::::::::::::::callout
 Benefits of containers
 
-- A lighter application footprint (mainly around lower CPU and memory requirements) compared to VMs.
-- Quickly and easily update a complex application without affecting any user data or causing issues with conflicting dependencies in the host OS.
-- Quickly and easily scale applications. For example, when there is a need to dynamically run multiple instances of an application across a cluster of servers to handle increased demand.
-- Robustness of an application stack. If an application is made up of smaller applications that talk to each other via standard mechanisms (e.g., web APIs), it is easier to pinpoint issues and update individual applications.
+- A **lighter footprint** (mainly around lower CPU and memory requirements) compared to VMs.
+- Quickly and easily **maintain** a complex application without affecting any user data or causing issues with conflicting dependencies in the host OS.
+- Quickly and easily **scale** applications. For example, when there is a need to dynamically run multiple instances of an application across a cluster of servers to handle increased demand.
+- **Robustness** of an application stack. If an application is made up of smaller applications that talk to each other via standard mechanisms (e.g., web APIs), it is easier to pinpoint and recover from problems.
 :::::::::::::::::::::::::::::::::::::
 
 
@@ -143,20 +151,23 @@ Benefits of containers
 | Presents virtual versions of real hardware like CPUs, disks, etc | Yes | No |
 | Scaling based on computing needs | More difficult | Easier |
 | Able to run applications from one operating system on another | Yes | Sometimes* |
-| Able to run applications from one CPU architecture (e.g., x86)  on another (e.g., ARM) | Yes (via emulation) | No |
+| Able to run applications from one CPU architecture | No** | No |
 
 * It's possible in some cases. For example, Docker on Windows can run Linux containers because it secretly runs them inside a Linux VM.
+** It is possible with some VM software and with some architectures. In the background, the software uses emulation which is different on a technical level than virtualization. Examples of architectures are Intel x86 (32 bit or 64 bit), ARM, RISC and more.
 
 ::::::::::::::::::::::::::::::::: challenge
 
 
 ## Challenge 1: 
 
-If you are running a web browser inside a VM, can the host OS see the web pages you're visiting? What about making web requests from inside a container? Can the host see the IP addresses your containerized application is connecting to?
+If you are running a web browser inside a VM, would the host OS able to determine what internet addresses you are connecting to? 
+
+What about an application making web requests from inside a container? Can the host see the IP addresses your containerized application is connecting to?
 
 :::::::::::::::::::::::: solution 
 
-In both cases, the host can usually see what sites or IP addresses the guest OS or container is connecting to. In the VM case, even though the network hardware is virtualized, the actual data still has to go through the real hardware at some point. For containers, the container already uses the real hardware as if it were running natively in the host and the effect is the same.
+In both cases, the host can (in principle) see what sites or IP addresses the guest OS or container is connecting to. In the VM case, even though the network hardware is virtualized, the actual data still has to go through the real hardware at some point. For containers, the container already uses the real hardware the effect is the same. If virtual private network (VPN) software is used within the container or VM, then the only thing the host could see is the address of the VPN.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -165,89 +176,9 @@ In both cases, the host can usually see what sites or IP addresses the guest OS 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- A virtual machine is a separate computer that runs with its own operating system and applications inside of a host operating system.
+- Conceptually, a virtual machine is a separate computer that runs with its own resources, operating system, and applications inside of a host operating system.
 - Containers are like lightweight virtual machines with some subtle but consequential differences.
 - Containers and virtual machines can address many of the same use cases.
 - Both virtual machines and containers are commonly used in academic research but containers are more popular.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-<!--
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
-Inline instructor notes can help inform instructors of timing challenges
-associated with the lessons. They appear in the "Instructor View"
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge 
-
-## Challenge 1: Can you do it?
-
-What is the output of this command?
-
-```r
-paste("This", "new", "lesson", "looks", "good")
-```
-
-:::::::::::::::::::::::: solution 
-
-## Output
- 
-```output
-[1] "This new lesson looks good"
-```
-
-:::::::::::::::::::::::::::::::::
-
-
-## Challenge 2: how do you nest solutions within challenge blocks?
-
-:::::::::::::::::::::::: solution 
-
-You can add a line with at least three colons and a `solution` tag.
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Figures
-
-You can use standard markdown for static figures with the following syntax:
-
-`![optional caption that appears below the figure](figure url){alt='alt text for
-accessibility purposes'}`
-
-![You belong in The Carpentries!](https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg){alt='Blue Carpentries hex person logo with no text.'}
-
-::::::::::::::::::::::::::::::::::::: callout
-
-Callout sections can highlight information.
-
-They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present "asides": 
-content that is not central to the narrative of the lesson,
-e.g. by providing the answer to a commonly-asked question.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-
-## Math
-
-One of our episodes contains $\LaTeX$ equations when describing how to create
-dynamic reports with {knitr}, so we now use mathjax to describe this:
-
-`$\alpha = \dfrac{1}{(1 - \beta)^2}$` becomes: $\alpha = \dfrac{1}{(1 - \beta)^2}$
-
-Cool, right?
-
-::::::::::::::::::::::::::::::::::::: keypoints 
-
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-[r-markdown]: https://rmarkdown.rstudio.com/
--->
