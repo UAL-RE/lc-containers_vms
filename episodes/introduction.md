@@ -104,7 +104,7 @@ Benefits of VMs
 Containers are conceptually similar to VMs in that they also **encapsulate applications** and their dependencies into packages that can be easily distributed and run on different physical machines. A notable difference is that when using containers, hardware is **not virtualized** and containerized applications must be compatible with the host OS and its hardware. In more technical terms, applications running in a container share the host's kernel and therefore must be compatible with the host's architecture. In practical terms, this means that containers:
 
 - Are generally less resource-intensive than comparable VMs, at the cost of portability. 
-- Are not able to run applications written for one CPU architecture on a system with a different architecture.
+- Are generally not able to run applications written for one operating system on another.
 
 ### Two core concepts
 
@@ -151,9 +151,10 @@ Benefits of containers
 | Presents virtual versions of real hardware like CPUs, disks, etc | Yes | No |
 | Scaling based on computing needs | More difficult | Easier |
 | Able to run applications from one operating system on another | Yes | Sometimes* |
-| Able to run applications from one CPU architecture (e.g., x86)  on another (e.g., ARM) | Yes (via emulation) | No |
+| Able to run applications from one CPU architecture | No** | No |
 
 * It's possible in some cases. For example, Docker on Windows can run Linux containers because it secretly runs them inside a Linux VM.
+** It is possible with some VM software and with some architectures. In the background, the software uses emulation which is different on a technical level than virtualization. Examples of architectures are Intel x86 (32 bit or 64 bit), ARM, RISC and more.
 
 ::::::::::::::::::::::::::::::::: challenge
 
