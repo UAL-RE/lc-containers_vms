@@ -180,3 +180,5 @@ In both cases, the host can (in principle) see what sites or IP addresses the gu
 - Containers are like lightweight virtual machines with some subtle but consequential differences.
 - Containers and virtual machines can address many of the same use cases.
 - Both virtual machines and containers are commonly used in academic research but containers are more popular.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
