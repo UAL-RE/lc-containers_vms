@@ -864,7 +864,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-containers-part1"><p>Content from <a href="containers-part1.html">Basics of Containers with Docker</a></p>
 <hr>
-<p>Last updated on 2024-10-14 |
+<p>Last updated on 2024-10-18 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1071,14 +1071,20 @@ OpenRefine image</div>
 </figure><div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
+  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> DockerHub vs GitHub Container Registry </h3>
 </button>
 <div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
-<p><strong>TODO</strong>: Add information about how the
-<code>docker pull</code> command would change if one wanted to grab an
-image from GitHub Container Registry (will need to add
-<code>ghcr.io/</code> in front of namespace/imagename)</p>
+<p>By default, the command <code>docker pull</code> will only look for
+images on DockerHub; if you want to download images from another source,
+such as the GitHub Container Registry (GHCR), you need to indicate this
+in the <code>docker pull</code> command. Specifically, we add the source
+information immediately before the <code>namespace</code> argument. So
+if we wanted to download the Docker image from the official <a href="https://github.com/OpenRefine" class="external-link">OpenRefine project on GitHub</a>,
+we would run</p>
+<pre><code>docker pull ghcr.io/openrefine/containers</code></pre>
+<p>where <code>ghcr.io</code> indicates the source of the image is the
+GHCR.</p>
 </div>
 </div>
 </div>
@@ -1147,15 +1153,17 @@ option (File &gt; New Tab…).</p>
 menu.</p>
 <p>In this new terminal window, type the following and press
 “Enter”:</p>
-<pre><code>$ docker ps</code></pre>
+<pre><code>docker ps</code></pre>
 <p>You should see a table print out in the terminal window. Note that if
 your windows are narrow, the output will wrap around the screen and be a
 little difficult (although not impossible) to read. If you find this is
 the case, you can make your terminal (and possibly your virtual machine)
 windows wider, then run the <code>docker ps</code> command again. The
 output should look something like:</p>
-<pre><code>CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                       NAMES
-e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   9 seconds ago   Up 8 seconds   0.0.0.0:3333-&gt;3333/tcp, :::3333-&gt;3333/tcp   epic_nobel</code></pre>
+<pre><code>$ docker ps
+CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   9 seconds ago   Up 8 seconds   0.0.0.0:3333-&gt;3333/tcp, :::3333-&gt;3333/tcp   epic_nobel
+$</code></pre>
 <p>Although the value in the first and last columns (CONTAINER ID and
 NAMES, respectively) will likely be different for everyone. The
 important columns to note are:</p>
@@ -1181,13 +1189,62 @@ actually use the OpenRefine program.</p>
 <h4 id="using-the-container">Using the container<a class="anchor" aria-label="anchor" href="#using-the-container"></a>
 </h4>
 <p><strong>TODO</strong> Do something in OpenRefine</p>
+<ul>
+<li>Open the file.</li>
+<li>Do some wrangling.</li>
+<li>Export a new file.</li>
+<li>Get new file from VM to local.</li>
+</ul>
 </div>
 <div class="section level4">
 <h4 id="stopping-the-container">Stopping the container<a class="anchor" aria-label="anchor" href="#stopping-the-container"></a>
 </h4>
-<p><strong>TODO</strong> docker stop (after docker ps)</p>
-<pre><code>$ docker ps</code></pre>
-<pre><code>$ docker stop &lt;container ID&gt;</code></pre>
+<p>Now that we are finished working with OpenRefine and our file is on
+our local machine, we can stop the container. Stopping the container is
+equivalent to turning off a computer, and we will use the command
+<code>docker stop</code> to shut the container down. Before we do,
+though, we need to find the ID of the container that is running
+OpenRefine. This is because the <code>docker stop</code> requires that
+ID so it knows <em>which</em> container to stop. To find the container
+ID, we again use <code>docker ps</code> to provide us with a table of
+all the running containers. When you run <code>docker ps</code>, you
+should see a familiar table, with most information identical to what we
+saw before, but with the time information updated in the
+<code>CREATED</code> and <code>STATUS</code> columns:</p>
+<pre><code>$ docker ps
+CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   9 minutes ago   Up 9 minutes   0.0.0.0:3333-&gt;3333/tcp, :::3333-&gt;3333/tcp   epic_nobel
+$</code></pre>
+<p>The first column, <code>CONTAINER ID</code> has the information we
+need in order to stop the container from running.</p>
+<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
+  <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
+</button>
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div class="accordion-body">
+<p>What if the table is empty? That is, what if after running
+<code>docker ps</code>, you see</p>
+<pre><code>$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+$</code></pre>
+<p>This means you have no containers currently running. You will not
+need to use the <code>docker stop</code> command because the container
+has already been shut down.</p>
+</div>
+</div>
+</div>
+</div>
+<p>The syntax for <code>docker stop</code> is:</p>
+<pre><code>docker stop &lt;CONTAINER ID&gt;</code></pre>
+<p>where we replace <code>&lt;CONTAINER ID&gt;</code> with the actual
+string of letters and numbers that identify the container. So on my
+machine, to stop the container, I will run</p>
+<pre><code>docker stop e1e174015296</code></pre>
+<p>The container ID on your machine will almost certainly be different
+from the one on my machine. If they are the same, I suggest you go buy a
+lottery ticket now.</p>
 <div id="challenge-2-checking-the-status-of-containers" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1226,8 +1283,7 @@ that we stopped earlier.</li>
 </ul>
 <pre><code>$ docker ps -a
 CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS                       PORTS     NAMES
-906072ff88f6   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   2 days ago      Exited (143) 2 days ago                determined_torvalds
-
+e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   20 minutes ago      Exited (143) 2 minutes ago                determined_torvalds
 $</code></pre>
 <p>Note the date information (in the <code>CREATED</code> and
 <code>STATUS</code> fields) and the container name (the
@@ -1391,7 +1447,7 @@ version 3.12 (instead of Python version 3.9)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Update the Dockerfile </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>To change the base image, update the information passed to the
 <code>FROM</code> command. That is, open the Dockerfile and change this
@@ -1454,7 +1510,7 @@ python script) you want to include</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 
 </div>
@@ -1511,7 +1567,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.8" class="external-link">sandpaper (0.16.8)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.4" class="external-link">varnish (1.0.4)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.9" class="external-link">sandpaper (0.16.9)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.4" class="external-link">varnish (1.0.4)</a></p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -1533,9 +1589,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/aio.html",
-  "dateCreated": "2024-10-14",
-  "dateModified": "2024-10-15",
-  "datePublished": "2024-10-15"
+  "dateCreated": "2024-10-18",
+  "dateModified": "2024-10-18",
+  "datePublished": "2024-10-18"
 }
 
   </script><script>
