@@ -186,9 +186,21 @@ from DockerHub. You should see output that tracks the progress of the download.
 
 ::::::::::::::::::::::::::::::::::::: spoiler
 
-**TODO**: Add information about how the `docker pull` command would change if 
-one wanted to grab an image from GitHub Container Registry (will need to add 
-`ghcr.io/` in front of namespace/imagename)
+##### DockerHub vs GitHub Container Registry
+
+By default, the command `docker pull` will only look for images on DockerHub; 
+if you want to download images from another source, such as the GitHub 
+Container Registry (GHCR), you need to indicate this in the `docker pull` 
+command. Specifically, we add the source information immediately before the 
+`namespace` argument. So if we wanted to download the Docker image from the 
+official [OpenRefine project on GitHub](https://github.com/OpenRefine), we 
+would run
+
+```
+docker pull ghcr.io/openrefine/containers
+```
+
+where `ghcr.io` indicates the source of the image is the GHCR.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -250,7 +262,7 @@ Tab... option (File > New Tab...).
 In this new terminal window, type the following and press "Enter":
 
 ```
-$ docker ps
+docker ps
 ```
 
 You should see a table print out in the terminal window. Note that if your 
@@ -260,8 +272,10 @@ can make your terminal (and possibly your virtual machine) windows wider, then
 run the `docker ps` command again. The output should look something like:
 
 ```
+$ docker ps
 CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                       NAMES
 e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   9 seconds ago   Up 8 seconds   0.0.0.0:3333->3333/tcp, :::3333->3333/tcp   epic_nobel
+$
 ```
 
 Although the value in the first and last columns (CONTAINER ID and NAMES, 
@@ -283,17 +297,66 @@ the OpenRefine program.
 
 **TODO** Do something in OpenRefine
 
+- Open the file. 
+- Do some wrangling.
+- Export a new file.
+- Get new file from VM to local.
+
 #### Stopping the container
 
-**TODO** docker stop (after docker ps)
+Now that we are finished working with OpenRefine and our file is on our local 
+machine, we can stop the container. Stopping the container is equivalent to 
+turning off a computer, and we will use the command `docker stop` to shut the 
+container down. Before we do, though, we need to find the ID of the container 
+that is running OpenRefine. This is because the `docker stop` requires that ID 
+so it knows *which* container to stop. To find the container ID, we again use 
+`docker ps` to provide us with a table of all the running containers. When you 
+run `docker ps`, you should see a familiar table, with most information 
+identical to what we saw before, but with the time information updated in the 
+`CREATED` and `STATUS` columns:
 
 ```
 $ docker ps
+CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   9 minutes ago   Up 9 minutes   0.0.0.0:3333->3333/tcp, :::3333->3333/tcp   epic_nobel
+$
 ```
 
+The first column, `CONTAINER ID` has the information we need in order to stop 
+the container from running. 
+
+::::::::::::::::::::::::::::::::::::: spoiler
+
+What if the table is empty? That is, what if after running `docker ps`, you see 
+
 ```
-$ docker stop <container ID>
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+$
 ```
+
+This means you have no containers currently running. You will not need to use 
+the `docker stop` command because the container has already been shut down. 
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+The syntax for `docker stop` is:
+
+```
+docker stop <CONTAINER ID>
+```
+
+where we replace `<CONTAINER ID>` with the actual string of letters and numbers 
+that identify the container. So on my machine, to stop the container, I will 
+run
+
+```
+docker stop e1e174015296
+```
+
+The container ID on your machine will almost certainly be different from the 
+one on my machine. If they are the same, I suggest you go buy a lottery ticket 
+now.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -318,8 +381,7 @@ on the machine. This includes the container that we stopped earlier.
 ```
 $ docker ps -a
 CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS                       PORTS     NAMES
-906072ff88f6   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   2 days ago      Exited (143) 2 days ago                determined_torvalds
-
+e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   20 minutes ago      Exited (143) 2 minutes ago                determined_torvalds
 $
 ```
 Note the date information (in the `CREATED` and `STATUS` fields) and the 
@@ -352,8 +414,6 @@ docker stop <container ID>
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-
 
 ::::::::::::::::::::::::::::::::::::: callout
 
