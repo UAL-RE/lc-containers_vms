@@ -308,7 +308,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Basics of Containers with Docker</h1>
-        <p>Last updated on 2024-10-18 |
+        <p>Last updated on 2024-11-04 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -350,11 +350,17 @@ container</li>
 </div>
 </div>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a></h2>
-<hr class="half-width"><p><strong>TODO</strong> Flavor text introducing containers. Why we use
-them. Include at least a couple use cases. If necessary, provide high
-level distinction from Virtual Machines.</p>
-
-<div class="section level3">
+<hr class="half-width"><p>Containers, like virtual machines, allow us to effectively simulate
+running <em>another</em> computer within our own machine. Why would we
+want to go through this process of running one computer within another.
+A few situations where containers are especially useful are:</p>
+<ol style="list-style-type: decimal"><li>You want to use software that is incompatible with the operating
+system on your machine.</li>
+<li>You want to use a program that has lots of dependencies, which you
+do not want to manage.</li>
+<li>You want to run analyses on a new set of data with identical
+settings as a prior study.</li>
+</ol><div class="section level3">
 <h3 id="images-versus-containers">Images versus containers<a class="anchor" aria-label="anchor" href="#images-versus-containers"></a></h3>
 <p>There are two big pieces of the container world: images and
 containers. They are related to one another, but they are not
@@ -406,7 +412,7 @@ explain images and containers?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Several analogies exist, and here are a few:</p>
 <ul><li>An image is a recipe, say, for your favorite curry, while the
@@ -485,12 +491,29 @@ Refine</a>.</p>
 </div>
 </div>
 </div>
-<p><strong>TODO</strong> A screenshot of opening a terminal in the VM
-would be useful here.</p>
 <p>To run this command (and all subsequent Docker commands), we will be
 using the command-line interface (CLI) in our virtual machines. Open the
-terminal window by (<strong>TODO</strong> instructions here)… and enter
-the command to retrieve the OpenRefine image:</p>
+terminal window by clicking the computer screen icon in the lower-left
+corner of the virtual machine window.</p>
+<div id="callout3" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
+<p>If you are not using a virtual machine, or if you are using a
+different virtual machine than the one introduced in previous episodes,
+you may need to open a command line terminal a different way. Searching
+for an application called “terminal” on most systems will tell you what
+the name of the program is to run a command line terminal.</p>
+</div>
+</div>
+</div>
+<figure><img src="fig/terminal-new-window.png" alt="screenshot showing command line terminal icon location" class="figure mx-auto d-block"><div class="figcaption">The command line terminal can be opened by
+clicking the computer screen icon</div>
+</figure><p>Once the command line terminal is open, type the command to retrieve
+the OpenRefine image:</p>
 <pre><code>docker pull felixlohmeier/openrefine</code></pre>
 <p>After typing in the command, press “Enter” and Docker will download
 the image from DockerHub. You should see output that tracks the progress
@@ -502,7 +525,7 @@ OpenRefine image</div>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> DockerHub vs GitHub Container Registry </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>By default, the command <code>docker pull</code> will only look for
 images on DockerHub; if you want to download images from another source,
@@ -549,7 +572,7 @@ lesson, so we will ignore them for now.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>The three warning messages you are likely to see are:</p>
 <pre><code>log4j:WARN No appenders could be found for logger (org.eclipse.jetty.util.log).
@@ -574,9 +597,9 @@ started is running in the terminal window where we issued the
 <code>docker run</code> command, we will need to open a new terminal
 tab. We can do this in the terminal File menu, selecting the New Tab…
 option (File &gt; New Tab…).</p>
-<p><strong>TODO</strong> Screenshot of opening new tab via File
-menu.</p>
-<p>In this new terminal window, type the following and press
+<figure><img src="fig/terminal-new-tab.png" alt="screenshot showing new tab option in terminal File menu" class="figure mx-auto d-block"><div class="figcaption">A new tab can be opened through the File
+menu</div>
+</figure><p>In this new terminal window, type the following and press
 “Enter”:</p>
 <pre><code>docker ps</code></pre>
 <p>You should see a table print out in the terminal window. Note that if
@@ -615,7 +638,16 @@ actually use the OpenRefine program.</p>
 <li>Do some wrangling.</li>
 <li>Export a new file.</li>
 <li>Get new file from VM to local.</li>
-</ul></div>
+</ul><p>Same as in Transform lesson of Library Carpentry:</p>
+<ol style="list-style-type: decimal"><li>Create a text facet on the Publisher column</li>
+<li>Note that in the values there are two that look almost identical -
+why do these two values appear separately rather than as a single
+value?</li>
+<li>On the publisher column use the dropdown menu to select Edit
+cells-&gt;Common transforms-&gt;Collapse consecutive whitespace</li>
+<li>Look at the publisher facet now - has it changed? (if it hasn’t
+changed try clicking the Refresh option to make sure it updates)</li>
+</ol></div>
 <div class="section level4">
 <h4 id="stopping-the-container">Stopping the container<a class="anchor" aria-label="anchor" href="#stopping-the-container"></a></h4>
 <p>Now that we are finished working with OpenRefine and our file is on
@@ -641,7 +673,7 @@ need in order to stop the container from running.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
   <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <p>What if the table is empty? That is, what if after running
 <code>docker ps</code>, you see</p>
@@ -683,7 +715,7 @@ same command now? What about when you run the same command with the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ul><li>
 <code>docker ps</code> will show the status of all running
@@ -729,7 +761,7 @@ docker ps</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <pre><code>docker run -p 3333:3333 felixlohmeier/openrefine
 docker ps
@@ -738,7 +770,7 @@ docker stop &lt;container ID&gt;</code></pre>
 </div>
 </div>
 </div>
-<div id="callout3" class="callout">
+<div id="callout4" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -830,9 +862,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/containers-part1.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/containers-part1.html",
-  "dateCreated": "2024-10-18",
-  "dateModified": "2024-10-18",
-  "datePublished": "2024-10-29"
+  "dateCreated": "2024-11-04",
+  "dateModified": "2024-11-04",
+  "datePublished": "2024-11-04"
 }
 
   </script><script>
