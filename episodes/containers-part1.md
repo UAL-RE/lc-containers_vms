@@ -25,9 +25,17 @@ exercises: 10
 
 ## Introduction
 
-**TODO** Flavor text introducing containers. Why we use them. Include at least 
-a couple use cases. If necessary, provide high level distinction from Virtual 
-Machines. 
+Containers, like virtual machines, allow us to effectively simulate running 
+*another* computer within our own machine. Why would we want to go through this 
+process of running one computer within another. A few situations where 
+containers are especially useful are:
+
+1. You want to use software that is incompatible with the operating system on 
+your machine.
+2. You want to use a program that has lots of dependencies, which you do not 
+want to manage.
+3. You want to run analyses on a new set of data with identical settings as a 
+prior study.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
@@ -168,11 +176,24 @@ Want to learn more about OpenRefine? Check out the Library Carpentry
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-**TODO** A screenshot of opening a terminal in the VM would be useful here.
-
 To run this command (and all subsequent Docker commands), we will be using the 
 command-line interface (CLI) in our virtual machines. Open the terminal window 
-by (**TODO** instructions here)... and enter the command to retrieve the 
+by clicking the computer screen icon in the lower-left corner of the virtual 
+machine window. 
+
+::::::::::::::::::::::::::::::::::::: callout
+
+If you are not using a virtual machine, or if you are using a different virtual 
+machine than the one introduced in previous episodes, you may need to open a 
+command line terminal a different way. Searching for an application called 
+"terminal" on most systems will tell you what the name of the program is to run 
+a command line terminal.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+![The command line terminal can be opened by clicking the computer screen icon](fig/terminal-new-window.png){alt='screenshot showing command line terminal icon location'}
+
+Once the command line terminal is open, type the command to retrieve the 
 OpenRefine image:
 
 ```
@@ -257,7 +278,7 @@ window where we issued the `docker run` command, we will need to open a new
 terminal tab. We can do this in the terminal File menu, selecting the New 
 Tab... option (File > New Tab...).
 
-**TODO** Screenshot of opening new tab via File menu.
+![A new tab can be opened through the File menu](fig/terminal-new-tab.png){alt='screenshot showing new tab option in terminal File menu'}
 
 In this new terminal window, type the following and press "Enter":
 
@@ -301,6 +322,17 @@ the OpenRefine program.
 - Do some wrangling.
 - Export a new file.
 - Get new file from VM to local.
+
+Same as in Transform lesson of Library Carpentry:
+
+1. Create a text facet on the Publisher column
+2. Note that in the values there are two that look almost identical - why do 
+these two values appear separately rather than as a single value?
+3. On the publisher column use the dropdown menu to select Edit cells->Common 
+transforms->Collapse consecutive whitespace
+4. Look at the publisher facet now - has it changed? (if it hasn’t changed try 
+clicking the Refresh option to make sure it updates)
+
 
 #### Stopping the container
 
