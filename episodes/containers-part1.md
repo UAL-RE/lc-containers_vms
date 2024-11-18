@@ -353,14 +353,6 @@ docker stop <container ID>
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-
-
-::::::::::::::::::::::::::::::::::::: callout
-
-**TODO** Add any notes that may be relevant, but not necessary for lesson?
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
 - Containers are a way to provide a consistent environment for reproducible 
