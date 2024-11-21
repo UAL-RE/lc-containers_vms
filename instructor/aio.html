@@ -946,7 +946,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-containers-part1"><p>Content from <a href="containers-part1.html">Basics of Containers with Docker</a></p>
 <hr>
-<p>Last updated on 2024-11-04 |
+<p>Last updated on 2024-11-21 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -1341,24 +1341,74 @@ actually use the OpenRefine program.</p>
 <div class="section level4">
 <h4 id="using-the-container">Using the container<a class="anchor" aria-label="anchor" href="#using-the-container"></a>
 </h4>
-<p><strong>TODO</strong> Do something in OpenRefine</p>
-<ul>
-<li>Open the file.</li>
-<li>Do some wrangling.</li>
-<li>Export a new file.</li>
-<li>Get new file from VM to local.</li>
-</ul>
-<p>Same as in Transform lesson of Library Carpentry:</p>
+<p>The first thing we need to do is download the sample data we are
+going to work with in OpenRefine. In a the web browser on the virtual
+machine, enter the URL <a href="https://bit.ly/lc-article-data" class="external-link">https://bit.ly/lc-article-data</a>.
+This should either download a CSV file or present you with a webpage of
+the CSV data. If the latter (you see a webpage of the data), download
+the data as a CSV file. Because you are working in the Virtual Machine,
+this download should happen within the VM. These data are 1,001 records
+of Open Access published articles. Note the following instructions for
+using OpenRefine are adapted from the <a href="https://librarycarpentry.github.io/lc-open-refine/" class="external-link">Library
+Carpentry lesson on OpenRefine</a>.</p>
+<div id="callout4" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
+<p>Note if you are not using a virtual machine, the CSV file will
+install on your local machine.</p>
+</div>
+</div>
+</div>
+<p>We now need to open OpenRefine, so open a new tab in the web browser
+that is running on your Virtual Machine, and enter the following in the
+URL bar: localhost:3333. You should now see the OpenRefine program in
+your web browser.</p>
+<p><strong>TODO</strong> Screenshot of OpenRefine in VM?</p>
+<p>Start by loading file we downloaded into OpenRefine.</p>
 <ol style="list-style-type: decimal">
-<li>Create a text facet on the Publisher column</li>
+<li>Click Create Project from the left hand menu and select “Get data
+from This Computer” (these options may already be selected).</li>
+<li>Click Choose Files (or ‘Browse’, depending on your setup) and locate
+the file which you have downloaded called doaj-article-sample.csv.</li>
+<li>Click Next &gt;&gt; where the next screen gives you options to
+ensure the data is imported into OpenRefine correctly.</li>
+<li>Click in the Character encoding box and set it to UTF-8, if it is
+not already set to UTF-8.</li>
+<li>Leave all other settings to their default values.</li>
+<li>Click the Create project &gt;&gt; button at the top right of the
+screen. This will create the project and open it for you.</li>
+</ol>
+<p>Next we will clean up one part of the data.</p>
+<ol style="list-style-type: decimal">
+<li>Click the dropdown triangle on the Publisher column.</li>
+<li>Select the Facet &gt; menu item.</li>
+<li>Select Text facet in the submenu. <img src="../fig/openrefine-facet.png" alt="OpenRefine menus showing facet options" class="figure">
+</li>
 <li>Note that in the values there are two that look almost identical -
 why do these two values appear separately rather than as a single
 value?</li>
-<li>On the publisher column use the dropdown menu to select Edit
-cells-&gt;Common transforms-&gt;Collapse consecutive whitespace</li>
+<li>On the publisher column use the dropdown menu to select Edit cells
+&gt; Common transforms &gt; Collapse consecutive whitespace. <img src="../fig/openrefine-transform.png" alt="OpenRefine menus showing cell transformation options" class="figure">
+</li>
 <li>Look at the publisher facet now - has it changed? (if it hasn’t
-changed try clicking the Refresh option to make sure it updates)</li>
+changed try clicking the Refresh option to make sure it updates).</li>
 </ol>
+<p>Finally, we can export this cleaned version of the data to a new
+file.</p>
+<ol style="list-style-type: decimal">
+<li>In the top-right corner of OpenRefine, click the Export dropdown
+menu.</li>
+<li>Select Comma-separated value.</li>
+<li>Note an updated version of the file, called
+doaj-article-sample-csv.csv has been saved on the Virtual Machine.</li>
+</ol>
+<p>From this point, the easiest way to move the file somewhere else
+(like onto your computer), is to move the file to the cloud (e.g. Google
+Drive, Box, etc.) and download it from there.</p>
 </div>
 <div class="section level4">
 <h4 id="stopping-the-container">Stopping the container<a class="anchor" aria-label="anchor" href="#stopping-the-container"></a>
@@ -1487,7 +1537,7 @@ docker stop &lt;container ID&gt;</code></pre>
 </div>
 </div>
 </div>
-<div id="callout4" class="callout">
+<div id="callout5" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -1573,7 +1623,7 @@ episode 1?</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p><strong>TODO</strong> Anything instructors should be aware of for
 this episode?</p>
@@ -1624,7 +1674,7 @@ version 3.12 (instead of Python version 3.9)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Update the Dockerfile </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>To change the base image, update the information passed to the
 <code>FROM</code> command. That is, open the Dockerfile and change this
@@ -1687,7 +1737,7 @@ python script) you want to include</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 
 </div>
@@ -1766,9 +1816,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/instructor/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/aio.html",
-  "dateCreated": "2024-11-04",
-  "dateModified": "2024-11-19",
-  "datePublished": "2024-11-19"
+  "dateCreated": "2024-11-21",
+  "dateModified": "2024-11-21",
+  "datePublished": "2024-11-21"
 }
 
   </script><script>
