@@ -316,23 +316,68 @@ the OpenRefine program.
 
 #### Using the container
 
-**TODO** Do something in OpenRefine
+The first thing we need to do is download the sample data we are going to work 
+with in OpenRefine. In a the web browser on the virtual machine, enter the URL 
+[https://bit.ly/lc-article-data](https://bit.ly/lc-article-data). This should 
+either download a CSV file or present you with a webpage of the CSV data. If 
+the latter (you see a webpage of the data), download the data as a CSV file. 
+Because you are working in the Virtual Machine, this download should happen 
+within the VM. These data are 1,001 records of Open Access published articles.
+Note the following instructions for using OpenRefine are adapted from the 
+[Library Carpentry lesson on OpenRefine](https://librarycarpentry.github.io/lc-open-refine/).
 
-- Open the file. 
-- Do some wrangling.
-- Export a new file.
-- Get new file from VM to local.
 
-Same as in Transform lesson of Library Carpentry:
+::::::::::::::::::::::::::::::::::::: callout
 
-1. Create a text facet on the Publisher column
-2. Note that in the values there are two that look almost identical - why do 
+Note if you are not using a virtual machine, the CSV file will install on your 
+local machine.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+We now need to open OpenRefine, so open a new tab in the web browser that is 
+running on your Virtual Machine, and enter the following in the URL bar: 
+localhost:3333. You should now see the OpenRefine program in your web browser.
+
+**TODO** Screenshot of OpenRefine in VM?
+
+Start by loading file we downloaded into OpenRefine. 
+
+1. Click Create Project from the left hand menu and select "Get data from This 
+Computer" (these options may already be selected).
+2. Click Choose Files (or ‘Browse’, depending on your setup) and locate the 
+file which you have downloaded called doaj-article-sample.csv.
+3. Click Next >> where the next screen gives you options to ensure the data is 
+imported into OpenRefine correctly.
+4. Click in the Character encoding box and set it to UTF-8, if it is not 
+already set to UTF-8. 
+5. Leave all other settings to their default values.
+6. Click the Create project >> button at the top right of the screen. This 
+will create the project and open it for you. 
+
+Next we will clean up one part of the data.
+
+1. Click the dropdown triangle on the Publisher column.
+2. Select the Facet > menu item.
+3. Select Text facet in the submenu.
+![The facet menu in OpenRefine](fig/openrefine-facet.png){alt='OpenRefine menus showing facet options'}
+4. Note that in the values there are two that look almost identical - why do 
 these two values appear separately rather than as a single value?
-3. On the publisher column use the dropdown menu to select Edit cells->Common 
-transforms->Collapse consecutive whitespace
-4. Look at the publisher facet now - has it changed? (if it hasn’t changed try 
-clicking the Refresh option to make sure it updates)
+5. On the publisher column use the dropdown menu to select Edit cells > Common 
+transforms > Collapse consecutive whitespace.
+![The cell edit menu in OpenRefine](fig/openrefine-transform.png){alt='OpenRefine menus showing cell transformation options'}
+6. Look at the publisher facet now - has it changed? (if it hasn’t changed try 
+clicking the Refresh option to make sure it updates).
 
+Finally, we can export this cleaned version of the data to a new file.
+
+1. In the top-right corner of OpenRefine, click the Export dropdown menu.
+2. Select Comma-separated value.
+3. Note an updated version of the file, called doaj-article-sample-csv.csv has 
+been saved on the Virtual Machine.
+
+From this point, the easiest way to move the file somewhere else (like onto 
+your computer), is to move the file to the cloud (e.g. Google Drive, Box, 
+etc.) and download it from there.
 
 #### Stopping the container
 
