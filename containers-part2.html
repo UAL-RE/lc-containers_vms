@@ -309,7 +309,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Creating Containers with Docker</h1>
-        <p>Last updated on 2024-11-26 |
+        <p>Last updated on 2024-12-04 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part2.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -417,8 +417,10 @@ editor. We will add those two lines, as well as a comment for each line.
 Comments are useful for anyone who will need to look at the Dockerfile
 in the future (this usually means you!). The comment character,
 <code>#</code>, tells the computer to ignore any text that comes to the
-right of the <code>#</code>, as it is for human eyes only. In the nano
-text editor, add the following:</p>
+right of the <code>#</code>, as it is for human eyes only. These
+comments are not necessary to build the image, but they are a
+<em>very</em> good practice to get into. In the nano text editor, add
+the following:</p>
 <pre><code>FROM python:3.9  # use the python base image, version 3.9
 CMD ["python", "--version"]  # on container start, print the version of python</code></pre>
 <p>Which should look something like this in your terminal:</p>
@@ -441,7 +443,7 @@ necessary to make the Docker image from that Dockerfile. To make the
 Docker image, we use the <code>docker build</code> command and provide
 it with the name of the image. In the terminal command line, run the
 following command:</p>
-<pre><code>docker build -t vboxuser/python-text .</code></pre>
+<pre><code>docker build -t vboxuser/python-test .</code></pre>
 <p>Breaking down the command into the component parts:</p>
 <ul><li>
 <code>docker build</code> is the base command telling our computer
@@ -461,18 +463,40 @@ are referring to.</li>
 <li>
 <code>.</code> is just a dot telling your computer where the
 Dockerfile is located. In the command line interface, the dot is
-directory where you are running the command. <strong>TODO</strong>:
-Might be a good spot to link the LC Shell lesson here. If the Dockerfile
-was somewhere other than the folder your command line terminal is
-currently running in, you would replace the dot with that location. For
-example, if the Dockerfile was located on the Desktop, we would update
-our command to
+directory where you are running the command. (<strong>TODO</strong>:
+Might be a good spot to link the LC Shell lesson here.) If the
+Dockerfile was somewhere other than the folder your command line
+terminal is currently running in, you would replace the dot with that
+location. For example, if the Dockerfile was located on the Desktop, we
+would update our command to
 <code>docker build -t vboxuser/python-text ~/Desktop</code> (where the
 dot <code>.</code> is replaced with <code>~/Desktop</code>).</li>
-</ul><p><strong>TODO</strong> Explain commands. Note how no new <em>file</em>
-is created in our directory, it gets created…somewhere, though?</p>
-<p><code>docker build -t ...</code></p>
-<p><code>docker image ls</code></p>
+</ul><div id="callout2" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
+<p>If you are doing these steps on your local machine, rather than on a
+Virtual Machine, you would replace the name of the repository
+(<code>vboxuser</code>) with your username for the machine you are
+using.</p>
+</div>
+</div>
+</div>
+<p>When you run the <code>docker build</code> command, it will create a
+new image for use on the machine.</p>
+<p><strong>TODO</strong>: Add screenshot of what the command line output
+looks like when running <code>docker build</code>.</p>
+<p>You can see all the images you have available for use by running the
+following in the command line terminal:</p>
+<pre><code>docker image ls</code></pre>
+<p>Note we see the image for OpenRefine that we downloaded in the
+previous episode, along with the new image we just created,
+python-test.</p>
+<p><strong>TODO</strong>: Add image of what the output of
+<code>docker image ls</code> would look like.</p>
 <div id="challenge-1-updating-our-analogy" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -492,21 +516,25 @@ include the Dockerfile.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p><strong>TODO</strong>: Update these analogies with Dockerfiles.</p>
-<ul><li>To use an analogy from architecture, images are the blueprints and
+<ul><li>To use an analogy from architecture, Dockerfiles are a file with
+blueprints, images are the <em>rendered or printed</em> blueprints, and
 containers are the actual building.</li>
 <li>An image is a recipe, say, for your favorite curry, while the
-container is the actual curry dish you can eat.</li>
+container is the actual curry dish you can eat. In this analogy, a
+Dockerfile might just be a list of ingredients and the general concept
+of a curry. Granted, some of these analogies can only go so far.</li>
 <li>“Think of a container as a shipping container for software - it
 holds important content like files and programs so that an application
 can be delivered efficiently from producer to consumer. An image is more
 like a read-only manifest or schematic of what will be inside the
 container.” (from <a href="https://circleci.com/blog/docker-image-vs-container/" class="external-link">Jacob
-Schmitt</a>)</li>
+Schmitt</a>). In this case, the Dockerfile could be a template that one
+uses to create the manifest or schematic.</li>
 <li>If you are familiar with object-oriented programming, you can think
-of an image as a class, and a container an object of that class.</li>
+of a Dockerfile as an abstract superclass, an image as a class, and a
+container an object of that class.</li>
 </ul></div>
 </div>
 </div>
@@ -514,10 +542,47 @@ of an image as a class, and a container an object of that class.</li>
 </div>
 <div class="section level3">
 <h3 id="starting-containers">Starting containers<a class="anchor" aria-label="anchor" href="#starting-containers"></a></h3>
-<p><strong>TODO</strong> This is review.</p>
-<p><code>docker run ...</code></p>
-<p>Confirm it ran and quit</p>
-<p><code>docker ps -a</code></p>
+<p>Now that we have built the image, we want to use it! We are going to
+use the same commands to start a container as we did in the previous
+episode. We start by using the image to run a container with the
+<code>docker run</code> command, passing also the name of the image to
+use. Run the following into the command line terminal:</p>
+<pre><code>docker run vboxuser/python-test</code></pre>
+<p>Make sure the last part (<code>vboxuser/python-test</code>) matches
+the same repository/ image combination you used when you ran the
+<code>docker build</code> command.</p>
+<div id="callout3" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
+<p>You may notice something missing from the last time we ran
+<code>docker run</code>. Recall that to start the OpenRefine container,
+we ran:</p>
+<pre><code>docker run -p 3333:3333 felixlohmeier/openrefine</code></pre>
+<p>This time, we omitted the information about ports (the
+<code>-p 3333:3333</code> part) because the python-test image does not
+need a way to exchange information between the container and the
+computer that is running the container (in this case, the Virtual
+Machine).</p>
+</div>
+</div>
+</div>
+<p>Our container is not designed to do a lot - it should only start up,
+run the command to print the version of Python that is installed on the
+container, and then stop the container. After issuing the
+<code>docker run</code> command, we should see</p>
+<p><strong>TODO</strong> Screenshot of output of <code>docker run</code>
+for python-test.</p>
+<p>We can now check the status of our images with the
+<code>docker ps</code> command. Since we want to list both running
+containers and stopped containers, we need to also use the “all” option.
+Run the following in the terminal command line:</p>
+<pre><code>docker ps -a</code></pre>
+<p><strong>TODO</strong> Screenshot of output of
+<code>docker ps</code></p>
 <div id="challenge-2-update-base-image" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -537,7 +602,7 @@ version 3.12 (instead of Python version 3.9)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Update the Dockerfile </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>To change the base image, update the information passed to the
 <code>FROM</code> command. That is, open the Dockerfile and change this
@@ -545,15 +610,16 @@ line:</p>
 <p><code>FROM python:3.9</code></p>
 <p>to</p>
 <p><code>FROM python:3.12</code></p>
+<p>Remember to open the file in a text editor, you can type the
+following in the terminal command line:</p>
+<pre><code>nano Dockerfile</code></pre>
+<p>To save your changes, hold down the control key and press the letter
+“O” key (^O). To exit the nano text editor, use ^X (Control-X).</p>
 <div class="section level3">
 <h3 id="buid-the-image">Buid the image<a class="anchor" aria-label="anchor" href="#buid-the-image"></a></h3>
 <p>In the terminal, use <code>docker build</code> to create a new
 version of the image.</p>
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>/python-container</span></code></pre>
-</div>
+<pre><code>docker build -t vboxuser/python-test</code></pre>
 <p>This command will over-write the previous version of the image.
 <strong>TODO</strong> Need to test this statement.</p>
 </div>
@@ -561,11 +627,11 @@ version of the image.</p>
 <h3 id="verify-image-was-updated">Verify image was updated<a class="anchor" aria-label="anchor" href="#verify-image-was-updated"></a></h3>
 <p>In the terminal, use <code>docker run</code> to start a container
 based on the updated image.</p>
-<div class="codewrapper sourceCode" id="cb6">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="op">&lt;</span>username<span class="op">&gt;</span>/python-container</span></code></pre>
-</div>
+<pre><code>docker run vboxuser/python-test</code></pre>
+<p>You can confirm that the container has stopped running by printing
+the status of all containers with the <code>docker ps</code>
+command:</p>
+<pre><code>docker ps -a</code></pre>
 </div>
 </div>
 </div>
@@ -597,7 +663,7 @@ python script) you want to include</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p><strong>TODO</strong>: Insert solution</p>
 </div>
@@ -684,9 +750,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/containers-part2.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/containers-part2.html",
-  "dateCreated": "2024-11-26",
-  "dateModified": "2024-11-26",
-  "datePublished": "2024-12-03"
+  "dateCreated": "2024-12-04",
+  "dateModified": "2024-12-04",
+  "datePublished": "2024-12-04"
 }
 
   </script><script>
