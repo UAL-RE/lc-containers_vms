@@ -101,8 +101,9 @@ This command will do two things: first, it creates an empty text file called
 add those two lines, as well as a comment for each line. Comments are useful 
 for anyone who will need to look at the Dockerfile in the future (this usually 
 means you!). The comment character, `#`, tells the computer to ignore any text 
-that comes to the right of the `#`, as it is for human eyes only. In the nano 
-text editor, add the following:
+that comes to the right of the `#`, as it is for human eyes only. These 
+comments are not necessary to build the image, but they are a *very* good 
+practice to get into. In the nano text editor, add the following:
 
 ```
 FROM python:3.9  # use the python base image, version 3.9
@@ -129,7 +130,7 @@ the `docker build` command and provide it with the name of the image. In the
 terminal command line, run the following command:
 
 ```
-docker build -t vboxuser/python-text .
+docker build -t vboxuser/python-test .
 ```
 
 Breaking down the command into the component parts:
@@ -145,19 +146,38 @@ alone, without a repository name, would be like referring to "Mohamed" or
 "Maria" and expecting other people to know exactly who you are referring to.
 - `.` is just a dot telling your computer where the Dockerfile is located. In 
 the command line interface, the dot is directory where you are running the 
-command. **TODO**: Might be a good spot to link the LC Shell lesson here. If 
+command. (**TODO**: Might be a good spot to link the LC Shell lesson here.) If 
 the Dockerfile was somewhere other than the folder your command line terminal 
 is currently running in, you would replace the dot with that location. For 
 example, if the Dockerfile was located on the Desktop, we would update our 
 command to `docker build -t vboxuser/python-text ~/Desktop` (where the dot `.` 
 is replaced with `~/Desktop`).
 
-**TODO** Explain commands. Note how no new _file_ is created in our directory, 
-it gets created...somewhere, though?
+::::::::::::::::::::::::::::::::::::: callout
 
-`docker build -t ...`
+If you are doing these steps on your local machine, rather than on a Virtual 
+Machine, you would replace the name of the repository (`vboxuser`) with your 
+username for the machine you are using.
 
-`docker image ls`
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+When you run the `docker build` command, it will create a new image for use on 
+the machine. 
+
+**TODO**: Add screenshot of what the command line output looks like when 
+running `docker build`.
+
+You can see all the images you have available for use by running 
+the following in the command line terminal:
+
+```
+docker image ls
+```
+
+Note we see the image for OpenRefine that we downloaded in the previous 
+episode, along with the new image we just created, python-test.
+
+**TODO**: Add image of what the output of `docker image ls` would look like.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -169,33 +189,74 @@ one of those analogies and update it to also include the Dockerfile.
 
 :::::::::::::::::::::::: solution 
 
-**TODO**: Update these analogies with Dockerfiles.
-
-- To use an analogy from architecture, images are the blueprints and 
-containers are the actual building.
+- To use an analogy from architecture, Dockerfiles are a file with blueprints,
+images are the *rendered or printed* blueprints, and containers are the actual 
+building.
 - An image is a recipe, say, for your favorite curry, while the container is 
-the actual curry dish you can eat.
+the actual curry dish you can eat. In this analogy, a Dockerfile might just be 
+a list of ingredients and the general concept of a curry. Granted, some of 
+these analogies can only go so far.
 - "Think of a container as a shipping container for software - it holds 
 important content like files and programs so that an application can be 
 delivered efficiently from producer to consumer. An image is more like a 
 read-only manifest or schematic of what will be inside the container."
-(from [Jacob Schmitt](https://circleci.com/blog/docker-image-vs-container/))
-- If you are familiar with object-oriented programming, you can think of an 
-image as a class, and a container an object of that class. 
+(from [Jacob Schmitt](https://circleci.com/blog/docker-image-vs-container/)). 
+In this case, the Dockerfile could be a template that one uses to create the 
+manifest or schematic.
+- If you are familiar with object-oriented programming, you can think of a 
+Dockerfile as an abstract superclass, an image as a class, and a container an 
+object of that class. 
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-
 ### Starting containers
 
-**TODO** This is review.
+Now that we have built the image, we want to use it! We are going to use the 
+same commands to start a container as we did in the previous episode. We start 
+by using the image to run a container with the `docker run` command, passing 
+also the name of the image to use. Run the following into the command line 
+terminal:
 
-`docker run ...`
+```
+docker run vboxuser/python-test
+```
 
-Confirm it ran and quit
+Make sure the last part (`vboxuser/python-test`) matches the same repository/
+image combination you used when you ran the `docker build` command. 
 
-`docker ps -a`
+::::::::::::::::::::::::::::::::::::: callout
+
+You may notice something missing from the last time we ran `docker run`. Recall 
+that to start the OpenRefine container, we ran:
+
+```
+docker run -p 3333:3333 felixlohmeier/openrefine
+```
+
+This time, we omitted the information about ports (the `-p 3333:3333` part) 
+because the python-test image does not need a way to exchange information 
+between the container and the computer that is running the container (in this 
+case, the Virtual Machine).
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+Our container is not designed to do a lot - it should only start up, run the 
+command to print the version of Python that is installed on the container, and 
+then stop the container. After issuing the `docker run` command, we should see 
+
+**TODO** Screenshot of output of `docker run` for python-test.
+
+We can now check the status of our images with the `docker ps` command. Since 
+we want to list both running containers and stopped containers, we need to also 
+use the "all" option. Run the following in the terminal command line:
+
+```
+docker ps -a
+```
+
+**TODO** Screenshot of output of `docker ps`
+
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -218,13 +279,23 @@ That is, open the Dockerfile and change this line:
 to 
 
 `FROM python:3.12`
- 
+
+Remember to open the file in a text editor, you can type the following in the 
+terminal command line:
+
+```
+nano Dockerfile
+```
+
+To save your changes, hold down the control key and press the letter "O" key 
+(^O). To exit the nano text editor, use ^X (Control-X).
+
 ### Buid the image
 
 In the terminal, use `docker build` to create a new version of the image. 
 
-```bash
-docker build -t <username>/python-container
+```
+docker build -t vboxuser/python-test
 ```
 
 This command will over-write the previous version of the image. **TODO** Need 
@@ -235,9 +306,17 @@ to test this statement.
 In the terminal, use `docker run` to start a container based on the updated 
 image.
 
-```bash
-docker run <username>/python-container
 ```
+docker run vboxuser/python-test
+```
+
+You can confirm that the container has stopped running by printing the status 
+of all containers with the `docker ps` command:
+
+```
+docker ps -a
+```
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
