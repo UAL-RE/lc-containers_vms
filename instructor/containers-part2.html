@@ -309,7 +309,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Creating Containers with Docker</h1>
-        <p>Last updated on 2024-12-04 |
+        <p>Last updated on 2024-12-09 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part2.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -352,7 +352,7 @@
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p><strong>TODO</strong> Anything instructors should be aware of for
 this episode?</p>
@@ -530,7 +530,7 @@ include the Dockerfile.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ul><li>To use an analogy from architecture, Dockerfiles are a file with
 blueprints, images are the <em>rendered or printed</em> blueprints, and
@@ -616,7 +616,7 @@ version 3.12 (instead of Python version 3.9)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Update the Dockerfile </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>To change the base image, update the information passed to the
 <code>FROM</code> command. That is, open the Dockerfile and change this
@@ -654,8 +654,69 @@ command:</p>
 </div>
 <div class="section level3">
 <h3 id="copying-files-into-the-image">Copying files into the image<a class="anchor" aria-label="anchor" href="#copying-files-into-the-image"></a></h3>
-<p><strong>TODO</strong> Add flavor text about why we might do this.</p>
-<p><code>COPY ...</code></p>
+<p>The example above does not do much - it prints the version of python
+installed on the container and then stops the container. We usually want
+our containers to do more than this! For example, we may want to use the
+container to run an analysis based on a script we have on our machine.
+In this case, we would start by creating an image that <em>copied</em>
+that script from our computer into the image and executing that script
+when the container is run. We can do all of this by first creating that
+script on the machine that will build the image (the Virtual Machine in
+this case) and then updating the Dockerfile.</p>
+<div class="section level4">
+<h4 id="write-a-python-script">Write a python script<a class="anchor" aria-label="anchor" href="#write-a-python-script"></a></h4>
+<p>Start by opening the nano text editor through the command line
+terminal with the command <code>nano intro.py</code>. This creates a
+blank python script called “intro.py” and opens the nano software for us
+to edit the file. In that file, we are going to just add one line, to
+print something when the container runs. I am going to go with the
+classic “hello world”:</p>
+<pre><code><span><span class="fu">print</span><span class="op">(</span><span class="st">"Hello World!"</span><span class="op">)</span></span></code></pre>
+<p>Save this file with Ctrl-O and exit the nano program with Ctrl-X.</p>
+</div>
+<div class="section level4">
+<h4 id="update-the-dockerfile-1">Update the Dockerfile<a class="anchor" aria-label="anchor" href="#update-the-dockerfile-1"></a></h4>
+<p>As mentioned above, we now need to update our Dockerfile to (1) copy
+that script to the image and (2) run the script when the container
+starts. Once again, you can edit the Dockerfile with the nano software
+by typing <code>nano Dockerfile</code> into the command line terminal.
+For the first part (copying), we will use the <code>COPY</code> command
+in the Dockerfile.</p>
+<p>On the line right below the <code>FROM</code> command, add the copy
+instructions:</p>
+<pre><code>FROM python:3.12
+COPY intro.py .    # &lt;---- This is the new line for copying
+CMD ["python", "--version"]</code></pre>
+<p>The <code>COPY</code> command needs two pieces of information:</p>
+<ul><li>
+<code>intro.py</code> this is the name of the script to copy</li>
+<li>
+<code>.</code> the dot tells Docker to copy the script to the home
+directory on the image <em>and</em> to use the same name for the file
+(“intro.py”)</li>
+</ul><p>We also need to update the Dockerfile so the script actually runs! To
+do this, we change our <code>CMD</code> command so that instead of
+asking for the version of python, it will run the script we copied to
+the image. Update the <code>CMD</code> line so instead of “–version”, it
+has the name of the script in quotation marks:</p>
+<pre><code>FROM python:3.12
+COPY intro.py .
+CMD ["python", "intro.py"] # &lt;---- Here we replace "--version" with "intro.py"</code></pre>
+<p>Finally, save and exit the nano editor with Ctrl-O and Ctrl-X,
+respectively.</p>
+</div>
+<div class="section level4">
+<h4 id="build-and-run-the-new-image">Build and run the new image<a class="anchor" aria-label="anchor" href="#build-and-run-the-new-image"></a></h4>
+<p>And one more time we will build and run our image. Using commands
+that we saw previously, on the terminal command line, first run</p>
+<pre><code>docker build -t vboxuser/python-test</code></pre>
+<p>to create a new version of the image. Next run</p>
+<pre><code>docker run vboxuser/python-test</code></pre>
+<p>to run the image. When you run the container this time, it should not
+print the version of python, but rather the message “Hello World!”</p>
+<p><strong>TODO</strong>: Need to update challenge so learners update
+the intro.py script with a new message, the go through build &amp; run
+process again.</p>
 <p>See <a href="https://stackoverflow.com/questions/32727594/how-to-pass-arguments-to-shell-script-through-docker-run" class="external-link uri">https://stackoverflow.com/questions/32727594/how-to-pass-arguments-to-shell-script-through-docker-run</a>
 and <a href="https://www.tutorialspoint.com/how-to-pass-command-line-arguments-to-a-python-docker-container" class="external-link uri">https://www.tutorialspoint.com/how-to-pass-command-line-arguments-to-a-python-docker-container</a></p>
 <p>for example of passing arguments to a script. Passing arguments might
@@ -677,7 +738,7 @@ python script) you want to include</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p><strong>TODO</strong>: Insert solution</p>
 </div>
@@ -706,6 +767,7 @@ container is running</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
@@ -764,9 +826,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/instructor/containers-part2.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/containers-part2.html",
-  "dateCreated": "2024-12-04",
-  "dateModified": "2024-12-04",
-  "datePublished": "2024-12-04"
+  "dateCreated": "2024-12-09",
+  "dateModified": "2024-12-09",
+  "datePublished": "2024-12-09"
 }
 
   </script><script>
