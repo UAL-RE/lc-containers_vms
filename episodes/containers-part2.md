@@ -322,9 +322,84 @@ docker ps -a
 
 ### Copying files into the image
 
-**TODO** Add flavor text about why we might do this.
+The example above does not do much - it prints the version of python installed 
+on the container and then stops the container. We usually want our containers 
+to do more than this! For example, we may want to use the container to run an 
+analysis based on a script we have on our machine. In this case, we would start 
+by creating an image that _copied_ that script from our computer into the image 
+and executing that script when the container is run. We can do all of this by 
+first creating that script on the machine that will build the image (the 
+Virtual Machine in this case) and then updating the Dockerfile.
 
-`COPY ...`
+#### Write a python script
+
+Start by opening the nano text editor through the command line terminal with 
+the command `nano intro.py`. This creates a blank python script called 
+"intro.py" and opens the nano software for us to edit the file. In that file, 
+we are going to just add one line, to print something when the container runs. 
+I am going to go with the classic "hello world":
+
+```
+print("Hello World!")
+```
+
+Save this file with Ctrl-O and exit the nano program with Ctrl-X. 
+
+#### Update the Dockerfile
+
+As mentioned above, we now need to update our Dockerfile to (1) copy that 
+script to the image and (2) run the script when the container starts. Once 
+again, you can edit the Dockerfile with the nano software by typing 
+`nano Dockerfile` into the command line terminal. For the first part (copying), 
+we will use the `COPY` command in the Dockerfile. 
+
+On the line right below the `FROM` command, add the copy instructions:
+
+```
+FROM python:3.12
+COPY intro.py .    # <---- This is the new line for copying
+CMD ["python", "--version"]
+```
+
+The `COPY` command needs two pieces of information:
+
+- `intro.py` this is the name of the script to copy
+- `.` the dot tells Docker to copy the script to the home directory on the 
+image _and_ to use the same name for the file ("intro.py")
+
+We also need to update the Dockerfile so the script actually runs! To do this, 
+we change our `CMD` command so that instead of asking for the version of 
+python, it will run the script we copied to the image. Update the `CMD` line so 
+instead of "--version", it has the name of the script in quotation marks:
+
+```
+FROM python:3.12
+COPY intro.py .
+CMD ["python", "intro.py"] # <---- Here we replace "--version" with "intro.py"
+```
+
+Finally, save and exit the nano editor with Ctrl-O and Ctrl-X, respectively.
+
+#### Build and run the new image
+
+And one more time we will build and run our image. Using commands that we saw 
+previously, on the terminal command line, first run
+
+```
+docker build -t vboxuser/python-test
+```
+
+to create a new version of the image. Next run 
+
+```
+docker run vboxuser/python-test
+```
+
+to run the image. When you run the container this time, it should not print the 
+version of python, but rather the message "Hello World!"
+
+**TODO**: Need to update challenge so learners update the intro.py script with 
+a new message, the go through build & run process again.
 
 See 
 https://stackoverflow.com/questions/32727594/how-to-pass-arguments-to-shell-script-through-docker-run
