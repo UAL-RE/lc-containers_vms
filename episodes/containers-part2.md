@@ -357,7 +357,7 @@ On the line right below the `FROM` command, add the copy instructions:
 
 ```
 FROM python:3.12
-COPY intro.py .    # <---- This is the new line for copying
+COPY intro.py .    # <---- This is the new line that copies the script
 CMD ["python", "--version"]
 ```
 
@@ -395,33 +395,56 @@ to create a new version of the image. Next run
 docker run vboxuser/python-test
 ```
 
-to run the image. When you run the container this time, it should not print the 
-version of python, but rather the message "Hello World!"
-
-**TODO**: Need to update challenge so learners update the intro.py script with 
-a new message, the go through build & run process again.
-
-See 
-https://stackoverflow.com/questions/32727594/how-to-pass-arguments-to-shell-script-through-docker-run
-and
-https://www.tutorialspoint.com/how-to-pass-command-line-arguments-to-a-python-docker-container
-
-for example of passing arguments to a script. Passing arguments might be too 
-much.
+to run the container. When you run the container this time, it should not print 
+the version of python, but rather the message "Hello World!"
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Challenge 3: Copy a script to run in the container
+## Challenge 3: One more container
 
-There is a script (make this a `print("Hello World!")` python script) you want 
-to include 
+For the last exercise, update your the Dockerfile to use Python version 3.13 
+and change the message to something other than "Hello World!" (you can have it 
+print your name or today's date). Once the Dockerfile is updated, build the 
+image, and run the container to ensure your changes were updated.
 
 :::::::::::::::::::::::: solution 
 
-**TODO**: Insert solution
+#### Update the Dockerfile to use Python 3.13
+
+- Open the Dockerfile in a text editor (we have been using nano, so you can run, 
+in the command line terminal, `nano Dockerfile` to open the file for editing).
+- Change the `FROM` line to read `FROM python:3.12`
+- Save the file (Ctrl-O in nano) and exit the text editor (Ctrl-X).
+
+#### Update the Python script with a new message
+
+- Open the script titled "intro.py" in a text editor (we have been using nano, 
+so you can run, in the command line terminal, `nano intro.py` to open the file 
+for editing).
+- Change the message in the `print` command to something else. If you want to 
+print a specific date, you could update the print command to `print("Today's 
+date is December 16, 2024")`.
+- Save the file (Ctrl-O in nano) and exit the text editor (Ctrl-X).
+
+#### Build and run the new image
+
+- Build the image with the same `docker build` command we used previously: 
+
+```
+docker build -t vboxuser/python-test
+```
+
+- Start the container with the `docker run` command:
+
+```
+docker run vboxuser/python-test
+```
+
+to run the image. Now instead of "Hello World!", the container should print 
+your updated message.
+
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
