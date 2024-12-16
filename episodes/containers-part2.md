@@ -146,12 +146,13 @@ alone, without a repository name, would be like referring to "Mohamed" or
 "Maria" and expecting other people to know exactly who you are referring to.
 - `.` is just a dot telling your computer where the Dockerfile is located. In 
 the command line interface, the dot is directory where you are running the 
-command. (**TODO**: Might be a good spot to link the LC Shell lesson here.) If 
-the Dockerfile was somewhere other than the folder your command line terminal 
-is currently running in, you would replace the dot with that location. For 
-example, if the Dockerfile was located on the Desktop, we would update our 
-command to `docker build -t vboxuser/python-text ~/Desktop` (where the dot `.` 
-is replaced with `~/Desktop`).
+command. If the Dockerfile was somewhere other than the folder your command 
+line terminal is currently running in, you would replace the dot with that 
+location. For example, if the Dockerfile was located on the Desktop, we would 
+update our command to `docker build -t vboxuser/python-text ~/Desktop` (where 
+the dot `.` is replaced with `~/Desktop`). If you want to find out more about 
+the command line interface, be sure to check out Library Carpentry's 
+[Introduction to the UNIX Shell Lesson](https://librarycarpentry.github.io/lc-shell/).
 
 ::::::::::::::::::::::::::::::::::::: callout
 
