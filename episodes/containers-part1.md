@@ -4,6 +4,8 @@ teaching: 10
 exercises: 10
 ---
 
+**TODO**: Update time estimates
+
 :::::::::::::::::::::::::::::::::::::: questions 
 
 - What is a Docker image?
