@@ -4,6 +4,8 @@ teaching: 10
 exercises: 2
 ---
 
+**TODO**: Update time estimates
+
 :::::::::::::::::::::::::::::::::::::: questions 
 
 - How do you create new Docker images?
@@ -163,10 +165,16 @@ username for the machine you are using.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 When you run the `docker build` command, it will create a new image for use on 
-the machine. 
+the machine. The command will likely produce quite a bit of output to the 
+command line terminal as it works, and it should end with a couple of lines 
+that look like:
 
-**TODO**: Add screenshot of what the command line output looks like when 
-running `docker build`.
+```
+ => => writing image sha256:48e8a6dc6b14b79b26ec6e5c7a5f3c48989b7f57a819262d2c26023c645cc9a6                                         0.0s
+ => => naming to docker.io/vboxuser/python-test                                                                                      0.0s
+```
+
+(note the values after `sha256` will be different on your machine.)
 
 You can see all the images you have available for use by running 
 the following in the command line terminal:
@@ -175,10 +183,16 @@ the following in the command line terminal:
 docker image ls
 ```
 
+Which should produce the following output:
+
+```
+REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
+vboxuser/python-test       latest    48e8a6dc6b14   2 minutes ago   999MB
+felixlohmeier/openrefine   latest    3ee6bb3d8cfa   3 years ago     243MB
+```
+
 Note we see the image for OpenRefine that we downloaded in the previous 
 episode, along with the new image we just created, python-test.
-
-**TODO**: Add image of what the output of `docker image ls` would look like.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -246,18 +260,29 @@ Our container is not designed to do a lot - it should only start up, run the
 command to print the version of Python that is installed on the container, and 
 then stop the container. After issuing the `docker run` command, we should see 
 
-**TODO** Screenshot of output of `docker run` for python-test.
+```
+Python 3.9.21
+```
+
+in the command line terminal (it is possible the exact version of Python may be 
+different on your machine, e.g. 3.9.23).
 
 We can now check the status of our images with the `docker ps` command. Since 
 we want to list both running containers and stopped containers, we need to also 
-use the "all" option. Run the following in the terminal command line:
+use the "all" option (by adding `-a` to our command). Run the following in the 
+terminal command line:
 
 ```
 docker ps -a
 ```
 
-**TODO** Screenshot of output of `docker ps`
+And the two containers we ran so far will be displayed in the output table:
 
+```
+CONTAINER ID   IMAGE                      COMMAND                  CREATED              STATUS                          PORTS     NAMES
+fa10d154754d   jcoliver/python-test       "python --version"       About a minute ago   Exited (0) About a minute ago             charming_meitner
+3ece25d51a80   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   5 minutes ago        Exited (129) 5 minutes ago                kind_ardinghelli
+```
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 

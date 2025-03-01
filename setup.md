@@ -4,61 +4,75 @@ title: Setup
 
 ## Data Sets
 
-We will be using a prebuilt virtual machine that already contains most things needed to get started.  Download the [.ova file](#) to your system but do not do anything else with it at the moment. We will import it as part of the [virtual machines](virtualmachines.html) episode.
+We will be using a prebuilt virtual machine that already contains most things needed to get started.  Download the correct Zip file to your system but do not do anything else with it at the moment. We will import it as part of the [virtual machines](virtualmachines.html) episode.
+
+* [Download](#) if you have a Windows or Intel-based Mac
+* [Download](#) if you have an ARM-based Mac
 
 ::::::::::::::::::::::::::::: instructor
 
+This lesson will use a virtual machine for both the virtual machine AND container episodes. Instructors will be responsible for creating these virtual machine images and distributing them to students.
+
 ### Building
-This lesson will use a single virtual machine for both the virtual machine AND container episodes. Instructors will be responsible for creating this virtual machine image and distributing it to students. The image should be based on a lightweight Linux distribution that has a graphical desktop environment and is able to run Docker. The Debian-based DietPi distribution is one recommendation as it is light on resources and is easily configurable. 
+For compatibility with both x86-64 and ARM architectures, we will use the standard Debian distribution to base our virutal machine images on. 
 
-Virtual machine image creation instructions for the Debian Bookworm-based DietPi.
+Two VirtualBox images need to be built one for x86-64 (i.e., Windows and Intel-based Mac) and one for ARM64 (Apple M1, M2). 
 
-- Follow steps 1-3 of the DietPi VirtualBox installation guide. Ignore the Wifi and Virtualbox extension pack instructions in step 3.  https://dietpi.com/docs/install/#__tabbed_1_2. At the end, you should see the DietPi login prompt. ![DietPi login prompt](instructors/fig/dietpi-login-prompt.png)
-- Log in as `root` using the given password. 
+First, decide which image you want to build
 
-  - The DietPi configuration wizard will launch. Use Tab or the arrow keys on your keyboard to change the selection, Enter to confirm a selection.
-  - If your keyboard is captured by VirtualBox, you will not be able to use your keyboard/mouse on your main operating system. Press the right `CTRL` key (on Windows) to return the keyboard/mouse to your main operating system.
+- x86-64 architecture (labeled as [x64])
+- ARM64 architecture (labeled as [arm])
 
-- In the configuration wizard
-  - Opt out of the DietPi survey. Upon selecting `Ok`, the VM will reboot. Let it reboot and the wizard will continue
-  - Select the `Generic 105-Key PC` for the keyboard configuration. Select `Ok`
-  - Select the `English (US) keyboard layout` (under Other). Select `Ok`
-  - Select `No Alt-Gr` and `No compose key` in the next two dialogs.
-  - In the dialog that asks to change the global software password, select `Cancel`
-  - In the dialog that asks to change the password of the `root` and `dietpi` users, select `Cancel`
-  - After completing these steps, you should see the software installation wizard ![DietPi setup menu window](instructors/fig/dietpi-software-menu.png)
+**You will need a machine with the appropriate architecture to build the corresponding image, and an internet connection** 
 
-- In the software installation wizard
-  - Select Browse Software from the menu. Then from the list that appears, select (use the arrow keys to navigate, spacebar to select):
-    - `23 LXDE ultra lightweight desktop`
-    - `134 Docker compose`
-    - `162 Docker`
-    - `67 Firefox`
-  - Select `Confirm` to return to the main menu
-  - From the main menu, select `Install`, then click `Ok` to begin ![DietPi software installation confirmation window](instructors/fig/dietpi-software-install-confirmation.png)
-  - Wait for the software to install. On success, the system will return you to a command prompt with the root user already logged in. 
-  - Type `dietpi-config` to launch the configuration
-  - Select `Autostart` from the menu
-  - Select `2: Automatic Login` ![DietPi autologin setup window](instructors/fig/dietpi-autologin-setup.png)
-  - Then select `root`, and select `Ok` to confirm
-  - Exit out of the menus and exit out of the configuration tool. You should see a command prompt at the bottom of the window. 
-  - At the prompt, type `reboot` to reboot the VM.
-  - If successful, the system should reboot and you should see a graphical desktop with a green DietPi wallpaper. You may optionally remove this wallpaper via the Desktop Preferences.
-  - At this point, the size of the Virtualbox image should be just over 2.5 GB in size.
+Then proceed with the steps below, following specific instructions for your specific architecture ([x64] or [arm]).
 
-- Set up Docker according to the lesson
-
-  - TODO
-
-- Shut down the VM via the menus inside the graphical desktop or from the terminal
-- Export the image as a VirtualBox appliance (.ova file)
-
+1. [Download](https://www.virtualbox.org/wiki/Linux_Downloads) and install VirtualBox 7.1 or greater for your operating system (pick one below)
+    - Windows: download the distribution for Windows Hosts [x64]
+    - Intel Mac: download the distribution for macOS / Intel Hosts [x64]
+    - Linux: download the Linux distribution (or install from your package manager)[x64]
+    - M1, M2, etc Mac: download the distribution for macOS / Apple Silicon Hosts [arm]
+1. [Download](https://www.debian.org/distrib/netinst) the appropriate Debian base distribution from the Small CDs or USB Sticks section (pick one below)
+    - [AMD64](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.9.0-amd64-netinst.iso) [x64]
+    - [ARM64](https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-12.9.0-arm64-netinst.iso) [arm]
+1. Launch VirtualBox, accept all messages, and create a new virtual machine ![VirtualBox Create New Virtual Machine menu](instructors/fig/vbox-newvm.png)
+1. Select the downloaded file in the Create Virtual Machine wizard. The wizard should detect the distribution inside and enable the option for unattended install.
+1. Leave all the options at their defaults and follow the wizard to do an unattended install. 
+1. Once the installation finishes, you should see a terminal prompt. 
+    - Log in with username `vboxuser` and password `changeme`
+1. Install XFCE (the graphical user interface we will use) and Docker. Type the following on the command prompt
+    - `su root` (when prompted, enter the password from above)
+    - `apt update`
+    - `apt install git curl`
+    - `git clone https://github.com/coonrad/Debian-Xfce4-Minimal-Install.git`
+    - `cd Debian-Xfce4-Minimal-Install`
+    - `./xfce-install.sh`
+    - `curl -fsSL https://get.docker.com -o get-docker.sh`
+    - `sh get-docker.sh`
+    - `systemctl reboot`
+1. After the virtual machine reboots, a graphical login window should appear.
+1. Log in with the same username and password as above
+1. Test Docker installation. From the graphical desktop, open a terminal window and type
+    - `sudo docker ps` (type in the same password from before if prompted)
+1. You should see output that starts with `CONTAINER ID...`
+1. If Firefox is not installed (check by typing `firefox` at the command prompt).
+    - `sudo apt install firefox-esr`
+1. Turn off the virtual machine
+    - Click the 'x' at the top right of the VirtualBox window
+    - Select the option 'Send the shutdown signal'
+    - ![VirtualBox shut down virtual machine](instructors/fig/vbox-shutdownvm.png)
+1. Package up the virtual machine for distribution
+    - Open the virtual machine files on your file system by selecting Show in Explorer. Note that the text may appear differently depending on your host operating system. E.g. on Mac, it will say Show in Finder.
+    - ![Show in Explorer](instructors/fig/vbox-showinexplorer.png)
+    - Select the .vbox file, the .vdi file (and for [arm] only, the .nvram file) and copy them to another folder on your system.
+    - [arm] only: open the .vbox file in a text editor and look for the line that starts with `<NVRAM path=`.
+    - [arm] only: ensure that the path to the NVRAM file is set to the file name of the NVRAM file you copied, without any path. Save the file.
+    - Create a Zip file with the files.
+1. Repeat this entire process to create a virtual machine for the other architecture. 
 
 
 ### Hosting
-Instructors are responsible for creating the prebuilt virtual machine and hosting it somewhere accessible to students. 
-
-The .ova file can be hosted on any online file sharing service with sufficient space like Box, Google Drive, DropBox, etc. 
+The files can be hosted on any online file sharing service with sufficient space like Box, Google Drive, DropBox, etc. 
 
 If there are many learners, remain mindful of any bandwidth limits. For example, Google Drive may cut off access to publicly shared files that exceed a certain amount of transferred data within a certain time period. Therefore, you may wish to host the file on two different services or accounts.
 
@@ -106,11 +120,11 @@ There are different download packages depending if you have an Intel Mac or an
 If you have a Mac with an Intel CPU or an Apple Arm CPU (M1, M2, or M3).
 
 - Intel Macs: On the [downloads page](https://www.virtualbox.org/wiki/Downloads) under the VirtualBox Platform Packages section, select MacOS / Intel hosts
-- Apple M1, M2, or M3: On the [Test builds](https://www.virtualbox.org/wiki/Testbuilds) page, download the MacOS / ARM64 Dev Preview file. This version of VirtualBox is experimental and may or may not work for you.
+- Apple M1, M2, or M3: [downloads page](https://www.virtualbox.org/wiki/Downloads) under the VirtualBox Platform Packages section, select MacOS / Apple Silicon hosts. This version is new and may not work for you.
 
 Install the downloaded package. Upon first run, you will need to grant the various system permissions it asks you for.
 
-If VirtualBox crashes on startup, even after granting permissions (may happen for the Test Builds), you may not be able to follow the virtual machines portion of the lesson. You may wish to install Docker [directly on your machine](https://www.cprime.com/resources/blog/docker-for-mac-with-homebrew-a-step-by-step-tutorial/) if you would still like to follow the containers portion of the lesson. 
+If VirtualBox crashes on startup, even after granting permissions (may happen for Apple Silicon hosts), you may not be able to follow the virtual machines portion of the lesson. You may wish to install Docker [directly on your machine](https://www.cprime.com/resources/blog/docker-for-mac-with-homebrew-a-step-by-step-tutorial/) if you would still like to follow the containers portion of the lesson. 
 
 ::::::::::::::::::::::::
 
