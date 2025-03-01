@@ -366,103 +366,131 @@ any links that you are not going to use.
       </p>
       </section><section id="setup"><section><h2 class="section-heading" id="data-sets">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a></h2>
 <hr class="half-width"><p>We will be using a prebuilt virtual machine that already contains
-most things needed to get started. Download the <a href="#">.ova
-file</a> to your system but do not do anything else with it at the
-moment. We will import it as part of the <a href="virtualmachines.html">virtual machines</a> episode.</p>
-<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+most things needed to get started. Download the correct Zip file to your
+system but do not do anything else with it at the moment. We will import
+it as part of the <a href="virtualmachines.html">virtual machines</a>
+episode.</p>
+<ul><li>
+<a href="#">Download</a> if you have a Windows or Intel-based
+Mac</li>
+<li>
+<a href="#">Download</a> if you have an ARM-based Mac</li>
+</ul><div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
-  Building
-  </h3>
+  <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
 <div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
-<p>This lesson will use a single virtual machine for both the virtual
-machine AND container episodes. Instructors will be responsible for
-creating this virtual machine image and distributing it to students. The
-image should be based on a lightweight Linux distribution that has a
-graphical desktop environment and is able to run Docker. The
-Debian-based DietPi distribution is one recommendation as it is light on
-resources and is easily configurable.</p>
-<p>Virtual machine image creation instructions for the Debian
-Bookworm-based DietPi.</p>
-<ul><li><p>Follow steps 1-3 of the DietPi VirtualBox installation guide.
-Ignore the Wifi and Virtualbox extension pack instructions in step 3. <a href="https://dietpi.com/docs/install/#__tabbed_1_2" class="external-link uri">https://dietpi.com/docs/install/#__tabbed_1_2</a>. At the
-end, you should see the DietPi login prompt. <img src="../fig/dietpi-login-prompt.png" alt="DietPi login prompt" class="figure"></p></li>
-<li>
-<p>Log in as <code>root</code> using the given password.</p>
-<ul><li>The DietPi configuration wizard will launch. Use Tab or the arrow
-keys on your keyboard to change the selection, Enter to confirm a
-selection.</li>
-<li>If your keyboard is captured by VirtualBox, you will not be able to
-use your keyboard/mouse on your main operating system. Press the right
-<code>CTRL</code> key (on Windows) to return the keyboard/mouse to your
-main operating system.</li>
+<p>This lesson will use a virtual machine for both the virtual machine
+AND container episodes. Instructors will be responsible for creating
+these virtual machine images and distributing them to students.</p>
+<div class="section level3">
+<h3 id="building">Building<a class="anchor" aria-label="anchor" href="#building"></a></h3>
+<p>For compatibility with both x86-64 and ARM architectures, we will use
+the standard Debian distribution to base our virutal machine images
+on.</p>
+<p>Two VirtualBox images need to be built one for x86-64 (i.e., Windows
+and Intel-based Mac) and one for ARM64 (Apple M1, M2).</p>
+<p>First, decide which image you want to build</p>
+<ul><li>x86-64 architecture (labeled as [x64])</li>
+<li>ARM64 architecture (labeled as [arm])</li>
+</ul><p><strong>You will need a machine with the appropriate architecture to
+build the corresponding image, and an internet connection</strong></p>
+<p>Then proceed with the steps below, following specific instructions
+for your specific architecture ([x64] or [arm]).</p>
+<ol style="list-style-type: decimal"><li>
+<a href="https://www.virtualbox.org/wiki/Linux_Downloads" class="external-link">Download</a> and
+install VirtualBox 7.1 or greater for your operating system (pick one
+below)
+<ul><li>Windows: download the distribution for Windows Hosts [x64]</li>
+<li>Intel Mac: download the distribution for macOS / Intel Hosts
+[x64]</li>
+<li>Linux: download the Linux distribution (or install from your package
+manager)[x64]</li>
+<li>M1, M2, etc Mac: download the distribution for macOS / Apple Silicon
+Hosts [arm]</li>
 </ul></li>
 <li>
-<p>In the configuration wizard</p>
-<ul><li>Opt out of the DietPi survey. Upon selecting <code>Ok</code>, the VM
-will reboot. Let it reboot and the wizard will continue</li>
-<li>Select the <code>Generic 105-Key PC</code> for the keyboard
-configuration. Select <code>Ok</code>
-</li>
-<li>Select the <code>English (US) keyboard layout</code> (under Other).
-Select <code>Ok</code>
-</li>
-<li>Select <code>No Alt-Gr</code> and <code>No compose key</code> in the
-next two dialogs.</li>
-<li>In the dialog that asks to change the global software password,
-select <code>Cancel</code>
-</li>
-<li>In the dialog that asks to change the password of the
-<code>root</code> and <code>dietpi</code> users, select
-<code>Cancel</code>
-</li>
-<li>After completing these steps, you should see the software
-installation wizard <img src="../fig/dietpi-software-menu.png" alt="DietPi setup menu window" class="figure"></li>
-</ul></li>
+<a href="https://www.debian.org/distrib/netinst" class="external-link">Download</a> the
+appropriate Debian base distribution from the Small CDs or USB Sticks
+section (pick one below)
+<ul><li>
+<a href="https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.9.0-amd64-netinst.iso" class="external-link">AMD64</a>
+[x64]</li>
 <li>
-<p>In the software installation wizard</p>
-<ul><li>Select Browse Software from the menu. Then from the list that
-appears, select (use the arrow keys to navigate, spacebar to select):
-<ul><li><code>23 LXDE ultra lightweight desktop</code></li>
-<li><code>134 Docker compose</code></li>
-<li><code>162 Docker</code></li>
-<li><code>67 Firefox</code></li>
+<a href="https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-12.9.0-arm64-netinst.iso" class="external-link">ARM64</a>
+[arm]</li>
 </ul></li>
-<li>Select <code>Confirm</code> to return to the main menu</li>
-<li>From the main menu, select <code>Install</code>, then click
-<code>Ok</code> to begin <img src="../fig/dietpi-software-install-confirmation.png" alt="DietPi software installation confirmation window" class="figure"></li>
-<li>Wait for the software to install. On success, the system will return
-you to a command prompt with the root user already logged in.</li>
-<li>Type <code>dietpi-config</code> to launch the configuration</li>
-<li>Select <code>Autostart</code> from the menu</li>
-<li>Select <code>2: Automatic Login</code> <img src="../fig/dietpi-autologin-setup.png" alt="DietPi autologin setup window" class="figure"></li>
-<li>Then select <code>root</code>, and select <code>Ok</code> to
-confirm</li>
-<li>Exit out of the menus and exit out of the configuration tool. You
-should see a command prompt at the bottom of the window.</li>
-<li>At the prompt, type <code>reboot</code> to reboot the VM.</li>
-<li>If successful, the system should reboot and you should see a
-graphical desktop with a green DietPi wallpaper. You may optionally
-remove this wallpaper via the Desktop Preferences.</li>
-<li>At this point, the size of the Virtualbox image should be just over
-2.5 GB in size.</li>
+<li>Launch VirtualBox, accept all messages, and create a new virtual
+machine <img src="../fig/vbox-newvm.png" alt="VirtualBox Create New Virtual Machine menu" class="figure"></li>
+<li>Select the downloaded file in the Create Virtual Machine wizard. The
+wizard should detect the distribution inside and enable the option for
+unattended install.</li>
+<li>Leave all the options at their defaults and follow the wizard to do
+an unattended install.</li>
+<li>Once the installation finishes, you should see a terminal prompt.
+<ul><li>Log in with username <code>vboxuser</code> and password
+<code>changeme</code>
+</li>
 </ul></li>
-<li>
-<p>Set up Docker according to the lesson</p>
-<ul><li>TODO</li>
+<li>Install XFCE (the graphical user interface we will use) and Docker.
+Type the following on the command prompt
+<ul><li>
+<code>su root</code> (when prompted, enter the password from
+above)</li>
+<li><code>apt update</code></li>
+<li><code>apt install git curl</code></li>
+<li><code>git clone https://github.com/coonrad/Debian-Xfce4-Minimal-Install.git</code></li>
+<li><code>cd Debian-Xfce4-Minimal-Install</code></li>
+<li><code>./xfce-install.sh</code></li>
+<li><code>curl -fsSL https://get.docker.com -o get-docker.sh</code></li>
+<li><code>sh get-docker.sh</code></li>
+<li><code>systemctl reboot</code></li>
 </ul></li>
-<li><p>Shut down the VM via the menus inside the graphical desktop or
-from the terminal</p></li>
-<li><p>Export the image as a VirtualBox appliance (.ova file)</p></li>
-</ul><div class="section level3">
+<li>After the virtual machine reboots, a graphical login window should
+appear.</li>
+<li>Log in with the same username and password as above</li>
+<li>Test Docker installation. From the graphical desktop, open a
+terminal window and type
+<ul><li>
+<code>sudo docker ps</code> (type in the same password from before
+if prompted)</li>
+</ul></li>
+<li>You should see output that starts with
+<code>CONTAINER ID...</code>
+</li>
+<li>If Firefox is not installed (check by typing <code>firefox</code> at
+the command prompt).
+<ul><li><code>sudo apt install firefox-esr</code></li>
+</ul></li>
+<li>Turn off the virtual machine
+<ul><li>Click the ‘x’ at the top right of the VirtualBox window</li>
+<li>Select the option ‘Send the shutdown signal’</li>
+<li><figure><img src="../fig/vbox-shutdownvm.png" alt="VirtualBox shut down virtual machine" class="figure mx-auto d-block"><div class="figcaption">VirtualBox shut down virtual machine</div>
+</figure></li>
+</ul></li>
+<li>Package up the virtual machine for distribution
+<ul><li>Open the virtual machine files on your file system by selecting Show
+in Explorer. Note that the text may appear differently depending on your
+host operating system. E.g. on Mac, it will say Show in Finder.</li>
+<li><figure><img src="../fig/vbox-showinexplorer.png" alt="Show in Explorer" class="figure mx-auto d-block"><div class="figcaption">Show in Explorer</div>
+</figure></li>
+<li>Select the .vbox file, the .vdi file (and for [arm] only, the .nvram
+file) and copy them to another folder on your system.</li>
+<li>[arm] only: open the .vbox file in a text editor and look for the
+line that starts with <code>&lt;NVRAM path=</code>.</li>
+<li>[arm] only: ensure that the path to the NVRAM file is set to the
+file name of the NVRAM file you copied, without any path. Save the
+file.</li>
+<li>Create a Zip file with the files.</li>
+</ul></li>
+<li>Repeat this entire process to create a virtual machine for the other
+architecture.</li>
+</ol></div>
+<div class="section level3">
 <h3 id="hosting">Hosting<a class="anchor" aria-label="anchor" href="#hosting"></a></h3>
-<p>Instructors are responsible for creating the prebuilt virtual machine
-and hosting it somewhere accessible to students.</p>
-<p>The .ova file can be hosted on any online file sharing service with
+<p>The files can be hosted on any online file sharing service with
 sufficient space like Box, Google Drive, DropBox, etc.</p>
 <p>If there are many learners, remain mindful of any bandwidth limits.
 For example, Google Drive may cut off access to publicly shared files
@@ -500,10 +528,7 @@ containers portion of the lesson.</p>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Windows
-  </h3>
+  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Windows </h3>
 </button>
 <div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
@@ -525,10 +550,7 @@ to scripting VirtuaBox with Python which we will not be doing.</p>
 <div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
-  <h3 class="accordion-header" id="headingSpoiler2">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  MacOS
-  </h3>
+  <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> MacOS </h3>
 </button>
 <div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
@@ -538,13 +560,13 @@ M2, or M3).</p>
 <ul><li>Intel Macs: On the <a href="https://www.virtualbox.org/wiki/Downloads" class="external-link">downloads page</a>
 under the VirtualBox Platform Packages section, select MacOS / Intel
 hosts</li>
-<li>Apple M1, M2, or M3: On the <a href="https://www.virtualbox.org/wiki/Testbuilds" class="external-link">Test builds</a> page,
-download the MacOS / ARM64 Dev Preview file. This version of VirtualBox
-is experimental and may or may not work for you.</li>
+<li>Apple M1, M2, or M3: <a href="https://www.virtualbox.org/wiki/Downloads" class="external-link">downloads page</a>
+under the VirtualBox Platform Packages section, select MacOS / Apple
+Silicon hosts. This version is new and may not work for you.</li>
 </ul><p>Install the downloaded package. Upon first run, you will need to
 grant the various system permissions it asks you for.</p>
 <p>If VirtualBox crashes on startup, even after granting permissions
-(may happen for the Test Builds), you may not be able to follow the
+(may happen for Apple Silicon hosts), you may not be able to follow the
 virtual machines portion of the lesson. You may wish to install Docker
 <a href="https://www.cprime.com/resources/blog/docker-for-mac-with-homebrew-a-step-by-step-tutorial/" class="external-link">directly
 on your machine</a> if you would still like to follow the containers
@@ -556,10 +578,7 @@ portion of the lesson.</p>
 <div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
-  <h3 class="accordion-header" id="headingSpoiler3">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Linux
-  </h3>
+  <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Linux </h3>
 </button>
 <div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
@@ -603,7 +622,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.10" class="external-link">sandpaper (0.16.10)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.7" class="external-link">pegboard (0.7.7)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.5" class="external-link">varnish (1.0.5)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.11" class="external-link">sandpaper (0.16.11)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.5" class="external-link">varnish (1.0.5)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -624,9 +643,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/instructor/index.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/index.html",
-  "dateCreated": "2024-12-16",
-  "dateModified": "2024-12-31",
-  "datePublished": "2024-12-31"
+  "dateCreated": "2025-03-01",
+  "dateModified": "2025-03-01",
+  "datePublished": "2025-03-01"
 }
 
   </script><script>
