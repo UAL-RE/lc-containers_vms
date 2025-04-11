@@ -791,7 +791,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-virtualmachines"><p>Content from <a href="virtualmachines.html">Virtual machines using VirtualBox</a></p>
 <hr>
-<p>Last updated on 2024-10-14 |
+<p>Last updated on 2025-04-11 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/virtualmachines.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -832,8 +832,7 @@ any links that you are not going to use.
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <hr class="half-width">
-<p>Let’s now turn to exploring how to use virtual machines (VMs). There
-are <a href="https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software" class="external-link">many
+<p>Let’s now turn to exploring how to use VMs. There are <a href="https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software" class="external-link">many
 choices</a> for running virtual machines, each with their own strengths
 and weaknesses. The ones you may encounter more often are the VMWare
 family of products, Hyper-V which is included with Windows, Parallels
@@ -859,16 +858,87 @@ screen</p>
 </div>
 </div>
 </div>
-<p>Exploring the UI - Run VirtualBox - import the VM - run it - see a
-desktop - proper way to stop the VM</p>
-</section><section><h2 class="section-heading" id="common-tasks">Common tasks?<a class="anchor" aria-label="anchor" href="#common-tasks"></a>
+<p>First, run VirtualBox. Depending on your operating system and exact
+system configuration, you may get different popups asking for certain
+permissions or showing you some notifications. Grant all the permissions
+it asks for and close any popups (if the popup shows an error, ask the
+instructor for help). You may also get a question asking whether you
+want to use the “basic” or “expert” interface (choose basic).</p>
+<p>You should see a window that resembles this: <img src="../fig/vbox-gui-win.png" alt="VirtualBox UI on Windows" class="figure"></p>
+<p>Now, let’s import the VM you downloaded previously</p>
+<ul>
+<li>Extract the Zip file you downloaded into a folder somewhere on your
+system.</li>
+<li>In VirtualBox, click the big green ‘+ Add’ button</li>
+<li>In the popup, locate the extracted folder and open the .vbox file
+(on Windows, this file has a blue icon).</li>
+<li>After doing so, a new entry will appear in VirtualBox underneath the
+Tools row in the left-hand sidebar.</li>
+</ul>
+<p>Start the VM</p>
+<ul>
+<li>Select the imported VM if it isn’t selected already</li>
+<li>Click the green “-&gt; Start” button</li>
+<li>Accept any additional dialogs that pop up (if any)</li>
+<li>A new window will appear that shows some commands being run,
+followed by a graphical desktop.</li>
+</ul>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout</h3>
+<div class="callout-content">
+<p>Look for and open the Firefox browser in the VM. What do you notice
+about interacting with stuff inside the VM? How is it different or the
+same than your normal computer?</p>
+</div>
+</div>
+</div>
+<div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
+  <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
+</button>
+<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div class="accordion-body">
+<p>If students get an error opening VirtualBox or importing the VM,
+there may be something you can do (reinstalling, rebooting, checking
+there is enough disk space, making sure they are importing the right
+file).</p>
+<p>If they have an error trying to run the VM, there is less you can do.
+Some things to try would be tinkering with the VM settings under the
+System or Display categories</p>
+<ul>
+<li>Making sure they downloaded the right VM for their system</li>
+<li>Reducing the base memory</li>
+<li>Playing with the Paravirtualization Interface choice under the
+Acceleration tab (expert mode must be selected at the top of the
+settings for the tab to appear).</li>
+<li>Increasing the video memory</li>
+</ul>
+<p>If none of that works, there is nothing else you can do and they will
+have to pair up with someone that has it working.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="common-tasks">Common tasks<a class="anchor" aria-label="anchor" href="#common-tasks"></a>
 </h2>
 <hr class="half-width">
-<ul>
-<li>Suspend, resume</li>
-<li>Snapshots</li>
-<li>Mapping folders and hardware resources (?)</li>
-</ul>
+<div class="section level3">
+<h3 id="shutting-down-the-vm">Shutting down the VM<a class="anchor" aria-label="anchor" href="#shutting-down-the-vm"></a>
+</h3>
+<p>To properly turn off the VM, use the functionality built into the
+guest OS. In our case, go to Applications in the top right corner and
+look for the power off icon at the bottom of the popup menu.</p>
+<p>Another way to to turn off the VM is to close the window the VM is
+running in. On Windows, click the ‘X’ at the top right corner of the VM
+window. You should see a popup that’s similar to this. <img src="../fig/vbox-close-vm.png" alt="Closing the VM" class="figure"></p>
+<p>There are three options, two that look like they can turn off the
+machine. Select the option to “send the shutdown signal”. The VM should
+power off. Not all VMs can be cleanly shut down this way.</p>
 <div id="challenge-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -876,9 +946,9 @@ desktop - proper way to stop the VM</p>
 <div id="challenge-1" class="callout-inner">
 <h3 class="callout-title">Challenge 1:</h3>
 <div class="callout-content">
-<p>Take a snapshot of the VM. Start the VM and suspend it. Now Delete
-the parent snapshot. What will be the result if you boot up the VM
-again?</p>
+<p>Boot up the VM again and close it using the dialog with the three
+options. What do you think the difference is between the “send the
+shutdown signal option” and the “power off the machine” option?</p>
 </div>
 </div>
 </div>
@@ -889,7 +959,43 @@ again?</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
+<p>The “power off the machine option” is the equivalent of ripping out
+the power cable from the wall. It will immediately terminate the VM
+without trying to gracefully allow the guest OS to shut down. This might
+result in data loss or even render the machine unbootable.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="saving-execution-states">Saving execution states<a class="anchor" aria-label="anchor" href="#saving-execution-states"></a>
+</h3>
+<ul>
+<li>Snapshots</li>
+</ul>
+<div id="challenge-1-1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-1-1" class="callout-inner">
+<h3 class="callout-title">Challenge 1:</h3>
+<div class="callout-content">
+<p>Take a snapshot of the VM. Start the VM and suspend it. Now Delete
+the parent snapshot. What will be the result if you boot up the VM
+again?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
 <p>Todo</p>
+</div>
 </div>
 </div>
 </div>
@@ -912,12 +1018,12 @@ performance?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>You should see <code>2014504 kB</code>. Performance should increase,
 especially when applications are loading a lot of data into memory. Web
@@ -1617,7 +1723,7 @@ any links that you are not going to use.
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p><strong>TODO</strong> Anything instructors should be aware of for
 this episode?</p>
@@ -1815,7 +1921,7 @@ include the Dockerfile.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ul>
 <li>To use an analogy from architecture, Dockerfiles are a file with
@@ -1911,7 +2017,7 @@ version 3.12 (instead of Python version 3.9)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Update the Dockerfile </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>To change the base image, update the information passed to the
 <code>FROM</code> command. That is, open the Dockerfile and change this
@@ -2038,7 +2144,7 @@ your changes were updated.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Update the Dockerfile to use Python 3.13 </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <ul>
 <li>Open the Dockerfile in a text editor (we have been using nano, so
@@ -2157,9 +2263,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/instructor/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/aio.html",
-  "dateCreated": "2025-03-01",
-  "dateModified": "2025-04-08",
-  "datePublished": "2025-04-08"
+  "dateCreated": "2025-04-11",
+  "dateModified": "2025-04-11",
+  "datePublished": "2025-04-11"
 }
 
   </script><script>

@@ -371,10 +371,11 @@ system but do not do anything else with it at the moment. We will import
 it as part of the <a href="virtualmachines.html">virtual machines</a>
 episode.</p>
 <ul><li>
-<a href="#">Download</a> if you have a Windows or Intel-based
-Mac</li>
+<a href="https://github.com/UAL-RE/lc-containers_vms/releases/download/v1.0-alpha/LC-ContVM-Debian-x64.zip" class="external-link">Download</a>
+if you have a Windows or Intel-based Mac.</li>
 <li>
-<a href="#">Download</a> if you have an ARM-based Mac</li>
+<a href="https://github.com/UAL-RE/lc-containers_vms/releases/download/v1.0-alpha/LC-ContVM-Debian-ARM64.zip" class="external-link">Download</a>
+if you have an ARM-based Mac.</li>
 </ul><div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
@@ -385,6 +386,8 @@ Mac</li>
 <p>This lesson will use a virtual machine for both the virtual machine
 AND container episodes. Instructors will be responsible for creating
 these virtual machine images and distributing them to students.</p>
+<p><strong>Due to their size, it is critical that students download the
+VM images prior to the workshop</strong></p>
 <div class="section level3">
 <h3 id="building">Building<a class="anchor" aria-label="anchor" href="#building"></a></h3>
 <p>For compatibility with both x86-64 and ARM architectures, we will use
@@ -401,7 +404,7 @@ build the corresponding image, and an internet connection</strong></p>
 for your specific architecture ([x64] or [arm]).</p>
 <ol style="list-style-type: decimal"><li>
 <a href="https://www.virtualbox.org/wiki/Linux_Downloads" class="external-link">Download</a> and
-install VirtualBox 7.1 or greater for your operating system (pick one
+install VirtualBox 7 or greater for your operating system (pick one
 below)
 <ul><li>Windows: download the distribution for Windows Hosts [x64]</li>
 <li>Intel Mac: download the distribution for macOS / Intel Hosts
@@ -416,31 +419,35 @@ Hosts [arm]</li>
 appropriate Debian base distribution from the Small CDs or USB Sticks
 section (pick one below)
 <ul><li>
-<a href="https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.9.0-amd64-netinst.iso" class="external-link">AMD64</a>
-[x64]</li>
+<a href="https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/" class="external-link">AMD64
+plain netinst ISO</a> [x64]</li>
 <li>
-<a href="https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-12.9.0-arm64-netinst.iso" class="external-link">ARM64</a>
+<a href="https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/" class="external-link">ARM64</a>
 [arm]</li>
 </ul></li>
 <li>Launch VirtualBox, accept all messages, and create a new virtual
 machine <img src="../fig/vbox-newvm.png" alt="VirtualBox Create New Virtual Machine menu" class="figure"></li>
-<li>Select the downloaded file in the Create Virtual Machine wizard. The
-wizard should detect the distribution inside and enable the option for
-unattended install.</li>
-<li>Leave all the options at their defaults and follow the wizard to do
-an unattended install.</li>
-<li>Once the installation finishes, you should see a terminal prompt.
-<ul><li>Log in with username <code>vboxuser</code> and password
-<code>changeme</code>
-</li>
-</ul></li>
+<li>Select the downloaded file in the Create Virtual Machine
+wizard.</li>
+<li>Leave all the options at their defaults but check the box to skip
+unattended installation. The unattended installation installs a heavier
+graphical interface and more packages that bloat the size of the image.
+Reduce the memory to 1 or 1.5 GB <strong>In earlier versions of
+VirtualBox 7, the unattended installation could be done as it did not
+install a graphical interface for you</strong>.</li>
+<li>When prompted, set the root password to <code>changeme</code> and
+create a new user <code>vboxuser</code> with the password
+<code>changeme</code>.</li>
+<li>When prompted, do not install a graphical desktop.</li>
+<li>Once the installation finishes and the system reboots, you should
+see a terminal prompt.</li>
 <li>Install XFCE (the graphical user interface we will use) and Docker.
 Type the following on the command prompt
 <ul><li>
 <code>su root</code> (when prompted, enter the password from
 above)</li>
 <li><code>apt update</code></li>
-<li><code>apt install git curl</code></li>
+<li><code>apt install git curl sudo firefox-esr</code></li>
 <li><code>git clone https://github.com/coonrad/Debian-Xfce4-Minimal-Install.git</code></li>
 <li><code>cd Debian-Xfce4-Minimal-Install</code></li>
 <li><code>./xfce-install.sh</code></li>
@@ -539,10 +546,11 @@ Hyper-V).</p>
 <ul><li>On the <a href="https://www.virtualbox.org/wiki/Downloads" class="external-link">downloads
 page</a> under the VirtualBox Platform Packages section, select Windows
 hosts.</li>
-<li>Install the downloaded package.</li>
+<li>Install the downloaded package, leaving all the options at their
+defaults.</li>
 </ul><p>During installation, you may get warnings about missing Python core /
 win32api dependencies. You may safely ignore this warning as it relates
-to scripting VirtuaBox with Python which we will not be doing.</p>
+to scripting VirtualBox with Python which we will not be doing.</p>
 </div>
 </div>
 </div>
@@ -563,8 +571,9 @@ hosts</li>
 <li>Apple M1, M2, or M3: <a href="https://www.virtualbox.org/wiki/Downloads" class="external-link">downloads page</a>
 under the VirtualBox Platform Packages section, select MacOS / Apple
 Silicon hosts. This version is new and may not work for you.</li>
-</ul><p>Install the downloaded package. Upon first run, you will need to
-grant the various system permissions it asks you for.</p>
+</ul><p>Install the downloaded package, leaving all the options at their
+defaults. Upon first run, you will need to grant the various system
+permissions it asks you for.</p>
 <p>If VirtualBox crashes on startup, even after granting permissions
 (may happen for Apple Silicon hosts), you may not be able to follow the
 virtual machines portion of the lesson. You may wish to install Docker
@@ -643,9 +652,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/instructor/index.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/index.html",
-  "dateCreated": "2025-03-01",
-  "dateModified": "2025-04-08",
-  "datePublished": "2025-04-08"
+  "dateCreated": "2025-04-11",
+  "dateModified": "2025-04-11",
+  "datePublished": "2025-04-11"
 }
 
   </script><script>
