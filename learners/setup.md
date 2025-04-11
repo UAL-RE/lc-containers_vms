@@ -6,12 +6,14 @@ title: Setup
 
 We will be using a prebuilt virtual machine that already contains most things needed to get started.  Download the correct Zip file to your system but do not do anything else with it at the moment. We will import it as part of the [virtual machines](virtualmachines.html) episode.
 
-* [Download](#) if you have a Windows or Intel-based Mac
-* [Download](#) if you have an ARM-based Mac
+* [Download](https://github.com/UAL-RE/lc-containers_vms/releases/download/v1.0-alpha/LC-ContVM-Debian-x64.zip) if you have a Windows or Intel-based Mac.
+* [Download](https://github.com/UAL-RE/lc-containers_vms/releases/download/v1.0-alpha/LC-ContVM-Debian-ARM64.zip) if you have an ARM-based Mac.
 
 ::::::::::::::::::::::::::::: instructor
 
 This lesson will use a virtual machine for both the virtual machine AND container episodes. Instructors will be responsible for creating these virtual machine images and distributing them to students.
+
+**Due to their size, it is critical that students download the VM images prior to the workshop**
 
 ### Building
 For compatibility with both x86-64 and ARM architectures, we will use the standard Debian distribution to base our virutal machine images on. 
@@ -27,23 +29,24 @@ First, decide which image you want to build
 
 Then proceed with the steps below, following specific instructions for your specific architecture ([x64] or [arm]).
 
-1. [Download](https://www.virtualbox.org/wiki/Linux_Downloads) and install VirtualBox 7.1 or greater for your operating system (pick one below)
+1. [Download](https://www.virtualbox.org/wiki/Linux_Downloads) and install VirtualBox 7 or greater for your operating system (pick one below)
     - Windows: download the distribution for Windows Hosts [x64]
     - Intel Mac: download the distribution for macOS / Intel Hosts [x64]
     - Linux: download the Linux distribution (or install from your package manager)[x64]
     - M1, M2, etc Mac: download the distribution for macOS / Apple Silicon Hosts [arm]
 1. [Download](https://www.debian.org/distrib/netinst) the appropriate Debian base distribution from the Small CDs or USB Sticks section (pick one below)
-    - [AMD64](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.9.0-amd64-netinst.iso) [x64]
-    - [ARM64](https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-12.9.0-arm64-netinst.iso) [arm]
+    - [AMD64 plain netinst ISO](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) [x64]
+    - [ARM64](https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/) [arm]
 1. Launch VirtualBox, accept all messages, and create a new virtual machine ![VirtualBox Create New Virtual Machine menu](instructors/fig/vbox-newvm.png)
-1. Select the downloaded file in the Create Virtual Machine wizard. The wizard should detect the distribution inside and enable the option for unattended install.
-1. Leave all the options at their defaults and follow the wizard to do an unattended install. 
-1. Once the installation finishes, you should see a terminal prompt. 
-    - Log in with username `vboxuser` and password `changeme`
+1. Select the downloaded file in the Create Virtual Machine wizard. 
+1. Leave all the options at their defaults but check the box to skip unattended installation. The unattended installation installs a heavier graphical interface and more packages that bloat the size of the image. Reduce the memory to 1 or 1.5 GB **In earlier versions of VirtualBox 7, the unattended installation could be done as it did not install a graphical interface for you**.
+1. When prompted, set the root password to `changeme` and create a new user `vboxuser` with the password `changeme`.
+1. When prompted, do not install a graphical desktop.
+1. Once the installation finishes and the system reboots, you should see a terminal prompt. 
 1. Install XFCE (the graphical user interface we will use) and Docker. Type the following on the command prompt
     - `su root` (when prompted, enter the password from above)
     - `apt update`
-    - `apt install git curl`
+    - `apt install git curl sudo firefox-esr`
     - `git clone https://github.com/coonrad/Debian-Xfce4-Minimal-Install.git`
     - `cd Debian-Xfce4-Minimal-Install`
     - `./xfce-install.sh`
@@ -106,9 +109,9 @@ The prebuilt virtual machine image you downloaded previously contains a preconfi
 Although VirtualBox runs under older version of Windows, at least **Windows 10 v1803** is needed to minimize the chance for conflicts if there is other virtualization software installed (e.g., Hyper-V). 
 
 - On the [downloads page](https://www.virtualbox.org/wiki/Downloads) under the VirtualBox Platform Packages section, select Windows hosts.
-- Install the downloaded package.
+- Install the downloaded package, leaving all the options at their defaults.
 
-During installation, you may get warnings about missing Python core / win32api dependencies. You may safely ignore this warning as it relates to scripting VirtuaBox with Python which we will not be doing. 
+During installation, you may get warnings about missing Python core / win32api dependencies. You may safely ignore this warning as it relates to scripting VirtualBox with Python which we will not be doing. 
 
 ::::::::::::::::::::::::
 
@@ -122,7 +125,7 @@ If you have a Mac with an Intel CPU or an Apple Arm CPU (M1, M2, or M3).
 - Intel Macs: On the [downloads page](https://www.virtualbox.org/wiki/Downloads) under the VirtualBox Platform Packages section, select MacOS / Intel hosts
 - Apple M1, M2, or M3: [downloads page](https://www.virtualbox.org/wiki/Downloads) under the VirtualBox Platform Packages section, select MacOS / Apple Silicon hosts. This version is new and may not work for you.
 
-Install the downloaded package. Upon first run, you will need to grant the various system permissions it asks you for.
+Install the downloaded package, leaving all the options at their defaults. Upon first run, you will need to grant the various system permissions it asks you for.
 
 If VirtualBox crashes on startup, even after granting permissions (may happen for Apple Silicon hosts), you may not be able to follow the virtual machines portion of the lesson. You may wish to install Docker [directly on your machine](https://www.cprime.com/resources/blog/docker-for-mac-with-homebrew-a-step-by-step-tutorial/) if you would still like to follow the containers portion of the lesson. 
 
