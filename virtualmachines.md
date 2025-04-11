@@ -82,7 +82,7 @@ If none of that works, there is nothing else you can do and they will have to pa
 ## Common tasks
 
 ### Shutting down the VM
-To properly turn off the VM, use the functionality built into the guest OS. In our case, go to Applications in the top right corner and look for the power off icon at the bottom of the popup menu.
+To properly turn off the VM, use the functionality built into the guest OS. In our case, go to Applications in the top right corner and look for the log out icon at the bottom of the popup menu.
 
 Another way to to turn off the VM is to close the window the VM is running in. On Windows, click the 'X' at the top right corner of the VM window. You should see a popup that's similar to this. 
 ![Closing the VM](fig/vbox-close-vm.png)
