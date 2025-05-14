@@ -21,20 +21,12 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
-**TODO** Anything instructors should be aware of for this episode?
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 ## Introduction
 
 In the previous episode, we used a Docker image to run a Docker container. We 
 briefly covered how images are used to make a container, but where does the 
 Docker image come from? In this episode, we will create and use Dockerfiles to 
 make a new _image_, and use that image to start a Docker container.
-
-**TODO** Might be a good spot for a visual.
 
 ## Dockerfiles
 
@@ -83,8 +75,6 @@ commands:
 FROM python:3.9
 CMD ["python", "--version"]
 ```
-
-**TODO**: Where do we want to be making this file? Is the home directory OK?
 
 ### Creating Dockerfiles
 
