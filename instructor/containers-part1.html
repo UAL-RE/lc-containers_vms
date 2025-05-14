@@ -118,11 +118,11 @@
   A gentle, hands-on introduction to containers and virtual machines
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 58%" class="percentage">
-    58%
+<aside class="col-md-12 lesson-progress"><div style="width: 51%" class="percentage">
+    51%
   </div>
   <div class="progress library">
-    <div class="progress-bar library" role="progressbar" style="width: 58%" aria-valuenow="58" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar library" role="progressbar" style="width: 51%" aria-valuenow="51" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -308,13 +308,13 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Basics of Containers with Docker</h1>
-        <p>Last updated on 2025-03-01 |
+        <p>Last updated on 2025-05-14 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
 
 
-        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
+        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
 
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -322,7 +322,6 @@
 
         
 
-<p><strong>TODO</strong>: Update time estimates</p>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -368,7 +367,7 @@ settings as a prior study.</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Instructors should feel free to add their own examples in the
 introduction, to help your learners appreciate the utility of
@@ -412,20 +411,7 @@ about Dockerfiles later in the lesson)</li>
 <ol style="list-style-type: decimal"><li>Modifiable (while running)</li>
 <li>Can include files and programs (like your computer!)</li>
 <li>Can run analyses or web applications (and more)</li>
-</ol><div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
-  <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
-</button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
-<div class="accordion-body">
-<p><strong>TODO</strong>: Anything the instructor should be aware of.
-Maybe here’s a point for an image of some sorts.</p>
-</div>
-</div>
-</div>
-</div>
-<div id="challenge-1-images-versus-containers" class="callout challenge">
+</ol><div id="challenge-1-images-versus-containers" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -443,7 +429,7 @@ explain images and containers?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Several analogies exist, and here are a few:</p>
 <ul><li>An image is a recipe, say, for your favorite curry, while the
@@ -493,12 +479,12 @@ command:</p>
 </li>
 <li>Stop container: <code>docker stop</code>
 </li>
-</ol><div id="accordionInstructor3" class="accordion instructor-note accordion-flush">
+</ol><div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor3" aria-expanded="false" aria-controls="collapseInstructor3">
-  <h3 class="accordion-header" id="headingInstructor3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
+  <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor3" class="accordion-collapse collapse" aria-labelledby="headingInstructor3" data-bs-parent="#accordionInstructor3">
+<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
 <div class="accordion-body">
 <p>The instructions included in the two episodes on containers assume
 that learners are using the virtual machines described in prior
@@ -573,7 +559,7 @@ OpenRefine image</div>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> DockerHub vs GitHub Container Registry </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>By default, the command <code>docker pull</code> will only look for
 images on DockerHub; if you want to download images from another source,
@@ -620,7 +606,7 @@ lesson, so we will ignore them for now.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>The three warning messages you are likely to see are:</p>
 <pre><code>log4j:WARN No appenders could be found for logger (org.eclipse.jetty.util.log).
@@ -707,7 +693,6 @@ install on your local machine.</p>
 that is running on your Virtual Machine, and enter the following in the
 URL bar: localhost:3333. You should now see the OpenRefine program in
 your web browser.</p>
-<p><strong>TODO</strong> Screenshot of OpenRefine in VM?</p>
 <p>Start by loading file we downloaded into OpenRefine.</p>
 <ol style="list-style-type: decimal"><li>Click Create Project from the left hand menu and select “Get data
 from This Computer” (these options may already be selected).</li>
@@ -767,7 +752,7 @@ need in order to stop the container from running.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
   <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <p>What if the table is empty? That is, what if after running
 <code>docker ps</code>, you see</p>
@@ -809,7 +794,7 @@ same command now? What about when you run the same command with the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ul><li>
 <code>docker ps</code> will show the status of all running
@@ -855,24 +840,12 @@ docker ps</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <pre><code>docker run -p 3333:3333 felixlohmeier/openrefine
 docker ps
 docker stop &lt;container ID&gt;</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div id="callout5" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout</h3>
-<div class="callout-content">
-<p><strong>TODO</strong> Add any notes that may be relevant, but not
-necessary for lesson?</p>
 </div>
 </div>
 </div>
@@ -956,9 +929,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/instructor/containers-part1.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/containers-part1.html",
-  "dateCreated": "2025-04-17",
-  "dateModified": "2025-03-01",
-  "datePublished": "2025-05-13"
+  "dateCreated": "2025-05-14",
+  "dateModified": "2025-05-14",
+  "datePublished": "2025-05-14"
 }
 
   </script><script>

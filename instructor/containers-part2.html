@@ -118,11 +118,11 @@
   A gentle, hands-on introduction to containers and virtual machines
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 84%" class="percentage">
-    84%
+<aside class="col-md-12 lesson-progress"><div style="width: 86%" class="percentage">
+    86%
   </div>
   <div class="progress library">
-    <div class="progress-bar library" role="progressbar" style="width: 84%" aria-valuenow="84" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar library" role="progressbar" style="width: 86%" aria-valuenow="86" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -309,7 +309,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Creating Containers with Docker</h1>
-        <p>Last updated on 2025-03-01 |
+        <p>Last updated on 2025-05-14 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part2.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -348,26 +348,12 @@
 </div>
 </div>
 </div>
-<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
-</button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
-<div class="accordion-body">
-<p><strong>TODO</strong> Anything instructors should be aware of for
-this episode?</p>
-</div>
-</div>
-</div>
-</div>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a></h2>
 <hr class="half-width"><p>In the previous episode, we used a Docker image to run a Docker
 container. We briefly covered how images are used to make a container,
 but where does the Docker image come from? In this episode, we will
 create and use Dockerfiles to make a new <em>image</em>, and use that
 image to start a Docker container.</p>
-<p><strong>TODO</strong> Might be a good spot for a visual.</p>
 </section><section><h2 class="section-heading" id="dockerfiles">Dockerfiles<a class="anchor" aria-label="anchor" href="#dockerfiles"></a></h2>
 <hr class="half-width"><p>A Dockerfile is a plain text file that includes instructions for
 making a Docker image. Dockerfiles can be very short or very long,
@@ -414,8 +400,6 @@ container.</li>
 these two commands:</p>
 <pre><code>FROM python:3.9
 CMD ["python", "--version"]</code></pre>
-<p><strong>TODO</strong>: Where do we want to be making this file? Is
-the home directory OK?</p>
 </div>
 <div class="section level3">
 <h3 id="creating-dockerfiles">Creating Dockerfiles<a class="anchor" aria-label="anchor" href="#creating-dockerfiles"></a></h3>
@@ -538,7 +522,7 @@ include the Dockerfile.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ul><li>To use an analogy from architecture, Dockerfiles are a file with
 blueprints, images are the <em>rendered or printed</em> blueprints, and
@@ -629,7 +613,7 @@ version 3.12 (instead of Python version 3.9)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Update the Dockerfile </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>To change the base image, update the information passed to the
 <code>FROM</code> command. That is, open the Dockerfile and change this
@@ -748,7 +732,7 @@ your changes were updated.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Update the Dockerfile to use Python 3.13 </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ul><li>Open the Dockerfile in a text editor (we have been using nano, so
 you can run, in the command line terminal, <code>nano Dockerfile</code>
@@ -865,9 +849,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/instructor/containers-part2.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/containers-part2.html",
-  "dateCreated": "2025-04-17",
-  "dateModified": "2025-03-01",
-  "datePublished": "2025-05-13"
+  "dateCreated": "2025-05-14",
+  "dateModified": "2025-05-14",
+  "datePublished": "2025-05-14"
 }
 
   </script><script>
