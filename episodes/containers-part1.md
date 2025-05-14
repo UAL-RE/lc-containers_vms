@@ -1,10 +1,8 @@
 ---
 title: "Basics of Containers with Docker"
-teaching: 10
+teaching: 20
 exercises: 10
 ---
-
-**TODO**: Update time estimates
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
@@ -77,13 +75,6 @@ Dockerfiles later in the lesson)
 1. Modifiable (while running)
 2. Can include files and programs (like your computer!)
 3. Can run analyses or web applications (and more)
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
-**TODO**: Anything the instructor should be aware of. Maybe here's a point for 
-an image of some sorts.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -340,8 +331,6 @@ We now need to open OpenRefine, so open a new tab in the web browser that is
 running on your Virtual Machine, and enter the following in the URL bar: 
 localhost:3333. You should now see the OpenRefine program in your web browser.
 
-**TODO** Screenshot of OpenRefine in VM?
-
 Start by loading file we downloaded into OpenRefine. 
 
 1. Click Create Project from the left hand menu and select "Get data from This 
@@ -492,12 +481,6 @@ docker stop <container ID>
 ```
 
 :::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: callout
-
-**TODO** Add any notes that may be relevant, but not necessary for lesson?
-
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
