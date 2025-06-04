@@ -118,11 +118,11 @@
   A gentle, hands-on introduction to containers and virtual machines
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 21%" class="percentage">
-    21%
+<aside class="col-md-12 lesson-progress"><div style="width: 20%" class="percentage">
+    20%
   </div>
   <div class="progress library">
-    <div class="progress-bar library" role="progressbar" style="width: 21%" aria-valuenow="21" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar library" role="progressbar" style="width: 20%" aria-valuenow="20" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -228,7 +228,7 @@
         <ul><li><a href="#introduction">Introduction</a></li>
 <li><a href="#running-the-example-vm">Running the example VM</a></li>
 <li><a href="#common-tasks">Common tasks</a></li>
-<li><a href="#managing-vms">Managing VMs</a></li>
+<li><a href="#managing-vm-resources">Managing VM Resources</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -311,7 +311,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Virtual machines using VirtualBox</h1>
-        <p>Last updated on 2025-04-11 |
+        <p>Last updated on 2025-06-04 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/virtualmachines.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -342,9 +342,8 @@
 <h3 class="card-title">Objectives</h3>
 <ul><li>Explain how to navigate the VirtualBox interface</li>
 <li>Demonstrate how to run a VM</li>
-<li>Show how to manage resources</li>
+<li>Explore managing resources</li>
 <li>Show how to take advantage of snapshots</li>
-<li>Explore changing resource allocations</li>
 </ul></div>
 </div>
 </div>
@@ -381,7 +380,8 @@ Tools row in the left-hand sidebar.</li>
 <li>Click the green “-&gt; Start” button</li>
 <li>Accept any additional dialogs that pop up (if any)</li>
 <li>A new window will appear that shows some commands being run,
-followed by a graphical desktop.</li>
+followed by a graphical desktop. If you get prompted for a login, enter
+<code>vboxuser</code> and <code>changeme</code>.</li>
 </ul><div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -389,9 +389,9 @@ followed by a graphical desktop.</li>
 <div class="callout-inner">
 <h3 class="callout-title">Callout</h3>
 <div class="callout-content">
-<p>Look for and open the Firefox browser in the VM. What do you notice
-about interacting with stuff inside the VM? How is it different or the
-same than your normal computer?</p>
+<p>Look for and open the web browser in the VM. What do you notice about
+interacting with stuff inside the VM? How is it different or the same
+than your normal computer?</p>
 </div>
 </div>
 </div>
@@ -401,13 +401,9 @@ same than your normal computer?</p>
 <h3 id="shutting-down-the-vm">Shutting down the VM<a class="anchor" aria-label="anchor" href="#shutting-down-the-vm"></a></h3>
 <p>To properly turn off the VM, use the functionality built into the
 guest OS. In our case, go to Applications in the top right corner and
-look for the log out icon at the bottom of the popup menu.</p>
-<p>Another way to to turn off the VM is to close the window the VM is
-running in. On Windows, click the ‘X’ at the top right corner of the VM
-window. You should see a popup that’s similar to this. <img src="fig/vbox-close-vm.png" alt="Closing the VM" class="figure"></p>
-<p>There are three options, two that look like they can turn off the
-machine. Select the option to “send the shutdown signal”. The VM should
-power off. Not all VMs can be cleanly shut down this way.</p>
+look for the log out icon at the bottom of the popup menu. Click it and
+see the red Shut Down button.</p>
+<p>(Don’t actually shut down the OS)</p>
 <div id="challenge-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -415,9 +411,13 @@ power off. Not all VMs can be cleanly shut down this way.</p>
 <div id="challenge-1" class="callout-inner">
 <h3 class="callout-title">Challenge 1:</h3>
 <div class="callout-content">
-<p>Boot up the VM again and close it using the dialog with the three
-options. What do you think the difference is between the “send the
-shutdown signal option” and the “power off the machine” option?</p>
+<p>Another way to to turn off the VM is to close the window the VM is
+running in. On Windows, click the ‘X’ at the top right corner of the VM
+window. You should see a popup that’s similar to this.</p>
+<figure><img src="fig/vbox-close-vm.png" alt="Screenshot of the Close Virtual Machine dialog" class="figure mx-auto d-block"><div class="figcaption">Screenshot of the Close Virtual Machine
+dialog</div>
+</figure><p>What do you think the difference is between the “send the shutdown
+signal option” and the “power off the machine” option?</p>
 </div>
 </div>
 </div>
@@ -431,7 +431,10 @@ shutdown signal option” and the “power off the machine” option?</p>
 <p>The “power off the machine option” is the equivalent of ripping out
 the power cable from the wall. It will immediately terminate the VM
 without trying to gracefully allow the guest OS to shut down. This might
-result in data loss or even render the machine unbootable.</p>
+result in data loss or even render the machine unbootable. “Send the
+shutdown signal” will try to indicate to the guest OS that it is time to
+shut down (equivalent clicking Shut Down in the guest OS) . Not all
+guests can be cleanly shut down this way.</p>
 </div>
 </div>
 </div>
@@ -439,17 +442,36 @@ result in data loss or even render the machine unbootable.</p>
 </div>
 <div class="section level3">
 <h3 id="saving-execution-states">Saving execution states<a class="anchor" aria-label="anchor" href="#saving-execution-states"></a></h3>
-<ul><li>Snapshots</li>
-</ul><div id="challenge-1-1" class="callout challenge">
+<p>A very useful feature of VMs is the ability to save snapshots of the
+current state of the VM at any point. This can be used to</p>
+<ul><li>Turn off the VM and go back to it later with everything still open
+and running. Equivalent to walking away from your computer and coming
+back later</li>
+<li>Preserve the state of the OS or an application before doing system
+updates</li>
+<li>If you’re experimenting, to be able to easily return to a ‘clean’
+state</li>
+</ul><p>Let’s see snapshots in action.</p>
+<ul><li>In your VM, open up a few windows and applications.</li>
+<li>Click the button to close the VM as shown in Challenge 1.</li>
+<li>Select the “Save the machine state” option.</li>
+</ul><p>The VM will close. In VirtualBox, start the VM again. You should see
+the same windows you opened before.</p>
+<p>You can also take more than one snapshot. To do so, go to VirtuaBox,
+select the VM, and click the Take button. These snapshots act like
+checkpoints and you can go back to any of them at any time.</p>
+<figure><img src="fig/vbox-snapshots.png" alt="Screenshot of managing VM snapshots" class="figure mx-auto d-block"><div class="figcaption">Screenshot of managing VM snapshots</div>
+</figure><p>To restore a snapshot, right-click on it and select “Restore”.</p>
+<div id="challenge-2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-1-1" class="callout-inner">
-<h3 class="callout-title">Challenge 1:</h3>
+<div id="challenge-2" class="callout-inner">
+<h3 class="callout-title">Challenge 2:</h3>
 <div class="callout-content">
-<p>Take a snapshot of the VM. Start the VM and suspend it. Now Delete
-the parent snapshot. What will be the result if you boot up the VM
-again?</p>
+<p>What if we’re done with a snapshot and don’t want it anymore? Delete
+the snapshot we created, Snapshot 1. What is the result if you boot up
+the VM again?</p>
 </div>
 </div>
 </div>
@@ -460,25 +482,37 @@ again?</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>Todo</p>
+<p>The VM should look exactly the same as before you deleted the
+snapshot. The difference is that you will no longer be able to go back
+to the state that was stored in the snapshot.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="managing-vms">Managing VMs<a class="anchor" aria-label="anchor" href="#managing-vms"></a></h2>
-<hr class="half-width"><div id="challenge-2" class="callout challenge">
+</section><section><h2 class="section-heading" id="managing-vm-resources">Managing VM Resources<a class="anchor" aria-label="anchor" href="#managing-vm-resources"></a></h2>
+<hr class="half-width"><p>Recall that VMs share the resources of the host OS. These resources
+can be managed on a per-VM basis.</p>
+<p>Right-click the VM and select Settings. You should see a window that
+looks like this: <img src="fig/vbox-vmsettings.png" alt="Manage a VMs resources using the Settings window" class="figure"></p>
+<p>There are various sections that can be modified. Note that changing
+some of these after a guest OS is installed may break it. However, some
+are safe to change. The ones that are safe generally correspond to
+things that can be upgraded in a normal computer (e.g., memory, number
+of monitors).</p>
+<div id="challenge-3" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-2" class="callout-inner">
-<h3 class="callout-title">Challenge 2:</h3>
+<div id="challenge-3" class="callout-inner">
+<h3 class="callout-title">Challenge 3:</h3>
 <div class="callout-content">
 <p>Increase the RAM available to the VM to 2 GB (2048 MB). Verify it by
 running this command inside a terminal window</p>
 <pre><code>cat /proc/meminfo | grep MemTotal</code></pre>
-<p>What number do you see? What should be the effect on the VM’s
-performance?</p>
+<p>What is the output of that command? What should be the effect on the
+VM’s performance? Can you find a way to see the memory using the
+graphical desktop in the VM?</p>
 </div>
 </div>
 </div>
@@ -492,6 +526,10 @@ performance?</p>
 <p>You should see <code>2014504 kB</code>. Performance should increase,
 especially when applications are loading a lot of data into memory. Web
 browsers are especially heavy memory users.</p>
+<p>To see the memory usage within the graphical interface of the guest
+OS, click Applications -&gt; About Xfce. The memory is shown on the
+System tab. Note this is specific to this installation of the guest
+OS.</p>
 </div>
 </div>
 </div>
@@ -503,7 +541,12 @@ browsers are especially heavy memory users.</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>VM point 1</li>
+<ul><li>The same VM can be copied and run on different computers</li>
+<li>The execution state of VMs can be saved and restored at any
+time.</li>
+<li>VM resources (e.g., CPUs, memory) can be changed, even after the VM
+is created. This allows controlling how much resources the VM can
+consume.</li>
 </ul></div>
 </div>
 </div>
@@ -569,7 +612,7 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-md/virtualmachines.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/virtualmachines.html",
   "dateCreated": "2025-06-04",
-  "dateModified": "2025-04-11",
+  "dateModified": "2025-06-04",
   "datePublished": "2025-06-04"
 }
 
