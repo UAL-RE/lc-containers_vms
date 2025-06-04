@@ -351,11 +351,11 @@
 </div>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a></h2>
 <hr class="half-width"><p>Let’s now turn to exploring how to use VMs. There are <a href="https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software" class="external-link">many
-choices</a> for running virtual machines, each with their own strengths
-and weaknesses. The ones you may encounter more often are the VMWare
-family of products, Hyper-V which is included with Windows, Parallels
-which is a product for MacOS, and VirtualBox which is owned by Oracle
-Corporation and is cross-platform and open-source.</p>
+choices</a> for running VMs, each with their own strengths and
+weaknesses. The ones you may encounter more often are the VMWare family
+of products, Hyper-V which is included with Windows, Parallels which is
+a product for MacOS, and VirtualBox which is owned by Oracle Corporation
+and is cross-platform and open-source.</p>
 <p>As part of the <a href="index.html">setup</a>, you should have
 already have VirtualBox installed and running on your system before
 continuing.</p>
@@ -380,7 +380,7 @@ Tools row in the left-hand sidebar.</li>
 <li>Click the green “-&gt; Start” button</li>
 <li>Accept any additional dialogs that pop up (if any)</li>
 <li>A new window will appear that shows some commands being run,
-followed by a graphical desktop. If you get prompted for a login, enter
+followed by a graphical desktop. If prompted for a login, enter
 <code>vboxuser</code> and <code>changeme</code>.</li>
 </ul><div id="callout1" class="callout">
 <div class="callout-square">
@@ -403,7 +403,7 @@ than your normal computer?</p>
 guest OS. In our case, go to Applications in the top right corner and
 look for the log out icon at the bottom of the popup menu. Click it and
 see the red Shut Down button.</p>
-<p>(Don’t actually shut down the OS)</p>
+<p>(Don’t actually shut down the system)</p>
 <div id="challenge-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -411,13 +411,13 @@ see the red Shut Down button.</p>
 <div id="challenge-1" class="callout-inner">
 <h3 class="callout-title">Challenge 1:</h3>
 <div class="callout-content">
-<p>Another way to to turn off the VM is to close the window the VM is
+<p>Another way to turn off the VM is to close the window the VM is
 running in. On Windows, click the ‘X’ at the top right corner of the VM
 window. You should see a popup that’s similar to this.</p>
 <figure><img src="fig/vbox-close-vm.png" alt="Screenshot of the Close Virtual Machine dialog" class="figure mx-auto d-block"><div class="figcaption">Screenshot of the Close Virtual Machine
 dialog</div>
-</figure><p>What do you think the difference is between the “send the shutdown
-signal option” and the “power off the machine” option?</p>
+</figure><p>What do you think the difference is between the “Send the shutdown
+signal” option and the “Power off the machine” option?</p>
 </div>
 </div>
 </div>
@@ -426,7 +426,7 @@ signal option” and the “power off the machine” option?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The “power off the machine option” is the equivalent of ripping out
 the power cable from the wall. It will immediately terminate the VM
@@ -480,7 +480,7 @@ the VM again?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The VM should look exactly the same as before you deleted the
 snapshot. The difference is that you will no longer be able to go back
@@ -511,8 +511,7 @@ of monitors).</p>
 running this command inside a terminal window</p>
 <pre><code>cat /proc/meminfo | grep MemTotal</code></pre>
 <p>What is the output of that command? What should be the effect on the
-VM’s performance? Can you find a way to see the memory using the
-graphical desktop in the VM?</p>
+VM’s performance?</p>
 </div>
 </div>
 </div>
@@ -521,7 +520,7 @@ graphical desktop in the VM?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>You should see <code>2014504 kB</code>. Performance should increase,
 especially when applications are loading a lot of data into memory. Web
