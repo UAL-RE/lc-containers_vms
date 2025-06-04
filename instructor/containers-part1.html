@@ -118,11 +118,11 @@
   A gentle, hands-on introduction to containers and virtual machines
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 51%" class="percentage">
-    51%
+<aside class="col-md-12 lesson-progress"><div style="width: 29%" class="percentage">
+    29%
   </div>
   <div class="progress library">
-    <div class="progress-bar library" role="progressbar" style="width: 51%" aria-valuenow="51" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar library" role="progressbar" style="width: 29%" aria-valuenow="29" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -308,7 +308,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Basics of Containers with Docker</h1>
-        <p>Last updated on 2025-05-14 |
+        <p>Last updated on 2025-06-04 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -554,7 +554,38 @@ the image from DockerHub. You should see output that tracks the progress
 of the download.</p>
 <figure><img src="../fig/docker-pull-progress.png" alt="terminal window showing downloading progress" class="figure mx-auto d-block"><div class="figcaption">The progress display when downloading the
 OpenRefine image</div>
-</figure><div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+</figure><div id="caution1" class="callout caution">
+<div class="callout-square">
+<i class="callout-icon" data-feather="alert-triangle"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Caution</h3>
+<div class="callout-content">
+<p>Uh oh. If you tried to run the command above, you might have
+encountered an error like:</p>
+<pre><code>permission denied while trying to connect to the Docker daemon socket at unix://
+/var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.47/containers/js
+on": dial unix /var/run/docker.sock: connect: permission denied</code></pre>
+<p>The reason this happens is that the docker program requires
+Administrator-level authorization to run. If the user does not have that
+level of access by default, the command above will be denied. We can get
+around this by adding the command <code>sudo</code> right before each
+call to <code>docker</code>. So, if you received the “permission denied”
+error, update the command to</p>
+<pre><code>sudo docker pull felixlohmeier/openrefine</code></pre>
+<p>And press “Enter” to run the command. You will likely be asked for
+the user password. If you are running this in a virtual machine, it will
+be the same password you used to log in to the virtual machine. If you
+are running this on your own machine, you would use the password for
+your user account. Note for the remainder of this lesson, note you will
+<em>always</em> need to add the <code>sudo</code> part whenever you call
+the <code>docker</code> command. There is another way to allow access to
+Docker commands without requiring the use of <code>sudo</code> and you
+can read about them at <a href="https://docs.docker.com/engine/install/linux-postinstall/" class="external-link">https://docs.docker.com/engine/install/linux-postinstall/</a>.</p>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> DockerHub vs GitHub Container Registry </h3>
@@ -600,7 +631,9 @@ container</li>
 which to build the container</li>
 </ol><p>There is a good chance you will see a variety of messages, including
 some warnings. However, these are not going to interfere with our
-lesson, so we will ignore them for now.</p>
+lesson, so we will ignore them for now. Remember, if (and only if) you
+receive the “permission denied” error message, you need to add
+<code>sudo</code> at the very beginning of the line.</p>
 <div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
@@ -929,9 +962,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/instructor/containers-part1.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/containers-part1.html",
-  "dateCreated": "2025-05-31",
-  "dateModified": "2025-05-14",
-  "datePublished": "2025-06-03"
+  "dateCreated": "2025-06-04",
+  "dateModified": "2025-06-04",
+  "datePublished": "2025-06-04"
 }
 
   </script><script>

@@ -683,7 +683,7 @@ application is connecting to?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>In both cases, the host can (in principle) see what sites or IP
 addresses the guest OS or container is connecting to. In the VM case,
@@ -848,7 +848,7 @@ shutdown signal option” and the “power off the machine” option?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The “power off the machine option” is the equivalent of ripping out
 the power cable from the wall. It will immediately terminate the VM
@@ -883,7 +883,7 @@ again?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Todo</p>
 </div>
@@ -914,7 +914,7 @@ performance?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>You should see <code>2014504 kB</code>. Performance should increase,
 especially when applications are loading a lot of data into memory. Web
@@ -942,7 +942,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-containers-part1"><p>Content from <a href="containers-part1.html">Basics of Containers with Docker</a></p>
 <hr>
-<p>Last updated on 2025-05-14 |
+<p>Last updated on 2025-06-04 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1171,7 +1171,38 @@ the image from DockerHub. You should see output that tracks the progress
 of the download.</p>
 <figure><img src="fig/docker-pull-progress.png" alt="terminal window showing downloading progress" class="figure mx-auto d-block"><div class="figcaption">The progress display when downloading the
 OpenRefine image</div>
-</figure><div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+</figure><div id="caution1" class="callout caution">
+<div class="callout-square">
+<i class="callout-icon" data-feather="alert-triangle"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Caution</h3>
+<div class="callout-content">
+<p>Uh oh. If you tried to run the command above, you might have
+encountered an error like:</p>
+<pre><code>permission denied while trying to connect to the Docker daemon socket at unix://
+/var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.47/containers/js
+on": dial unix /var/run/docker.sock: connect: permission denied</code></pre>
+<p>The reason this happens is that the docker program requires
+Administrator-level authorization to run. If the user does not have that
+level of access by default, the command above will be denied. We can get
+around this by adding the command <code>sudo</code> right before each
+call to <code>docker</code>. So, if you received the “permission denied”
+error, update the command to</p>
+<pre><code>sudo docker pull felixlohmeier/openrefine</code></pre>
+<p>And press “Enter” to run the command. You will likely be asked for
+the user password. If you are running this in a virtual machine, it will
+be the same password you used to log in to the virtual machine. If you
+are running this on your own machine, you would use the password for
+your user account. Note for the remainder of this lesson, note you will
+<em>always</em> need to add the <code>sudo</code> part whenever you call
+the <code>docker</code> command. There is another way to allow access to
+Docker commands without requiring the use of <code>sudo</code> and you
+can read about them at <a href="https://docs.docker.com/engine/install/linux-postinstall/" class="external-link">https://docs.docker.com/engine/install/linux-postinstall/</a>.</p>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> DockerHub vs GitHub Container Registry </h3>
@@ -1220,7 +1251,9 @@ which to build the container</li>
 </ol>
 <p>There is a good chance you will see a variety of messages, including
 some warnings. However, these are not going to interfere with our
-lesson, so we will ignore them for now.</p>
+lesson, so we will ignore them for now. Remember, if (and only if) you
+receive the “permission denied” error message, you need to add
+<code>sudo</code> at the very beginning of the line.</p>
 <div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
@@ -1513,13 +1546,12 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-containers-part2"><p>Content from <a href="containers-part2.html">Creating Containers with Docker</a></p>
 <hr>
-<p>Last updated on 2025-05-14 |
+<p>Last updated on 2025-06-04 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part2.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
-<p><strong>TODO</strong>: Update time estimates</p>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -1735,7 +1767,7 @@ include the Dockerfile.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ul>
 <li>To use an analogy from architecture, Dockerfiles are a file with
@@ -1831,7 +1863,7 @@ version 3.12 (instead of Python version 3.9)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Update the Dockerfile </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>To change the base image, update the information passed to the
 <code>FROM</code> command. That is, open the Dockerfile and change this
@@ -1850,8 +1882,7 @@ following in the terminal command line:</p>
 <p>In the terminal, use <code>docker build</code> to create a new
 version of the image.</p>
 <pre><code>docker build -t vboxuser/python-test</code></pre>
-<p>This command will over-write the previous version of the image.
-<strong>TODO</strong> Need to test this statement.</p>
+<p>This command will over-write the previous version of the image.</p>
 </div>
 <div class="section level3">
 <h3 id="verify-image-was-updated">Verify image was updated<a class="anchor" aria-label="anchor" href="#verify-image-was-updated"></a>
@@ -1958,7 +1989,7 @@ your changes were updated.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Update the Dockerfile to use Python 3.13 </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <ul>
 <li>Open the Dockerfile in a text editor (we have been using nano, so
@@ -2077,9 +2108,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/aio.html",
-  "dateCreated": "2025-05-31",
-  "dateModified": "2025-06-03",
-  "datePublished": "2025-06-03"
+  "dateCreated": "2025-06-04",
+  "dateModified": "2025-06-04",
+  "datePublished": "2025-06-04"
 }
 
   </script><script>
