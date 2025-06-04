@@ -23,7 +23,7 @@ exercises: 3
 
 ## Introduction
 
-Let's now turn to exploring how to use VMs. There are [many choices](https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software) for running virtual machines, each with their own strengths and weaknesses. The ones you may encounter more often are the VMWare family of products, Hyper-V which is included with Windows, Parallels which is a product for MacOS, and VirtualBox which is owned by Oracle Corporation and is cross-platform and open-source.
+Let's now turn to exploring how to use VMs. There are [many choices](https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software) for running VMs, each with their own strengths and weaknesses. The ones you may encounter more often are the VMWare family of products, Hyper-V which is included with Windows, Parallels which is a product for MacOS, and VirtualBox which is owned by Oracle Corporation and is cross-platform and open-source.
 
 As part of the [setup](index.html), you should have already have VirtualBox installed and running on your system before continuing.
 
@@ -53,7 +53,7 @@ Start the VM
 - Select the imported VM if it isn't selected already
 - Click the green "-> Start" button
 - Accept any additional dialogs that pop up (if any)
-- A new window will appear that shows some commands being run, followed by a graphical desktop. If you get prompted for a login, enter `vboxuser` and `changeme`.
+- A new window will appear that shows some commands being run, followed by a graphical desktop. If prompted for a login, enter `vboxuser` and `changeme`.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -64,7 +64,7 @@ Look for and open the web browser in the VM. What do you notice about interactin
 
 ::::::::::::::::::::::: instructor
 
-If students get an error opening VirtualBox or importing the VM, there may be something you can do (reinstalling, rebooting, checking there is enough disk space, making sure they are importing the right file). 
+If students get an error opening VirtualBox or importing the VM, there may be something you can do (reinstalling, rebooting, checking there is enough disk space, making sure they are not trying to import directly from inside the Zip). 
 
 If they have an error trying to run the VM, there is less you can do. Some things to try would be tinkering with the VM settings under the System or Display categories
 
@@ -84,17 +84,17 @@ If none of that works, there is nothing else you can do and they will have to pa
 
 To properly turn off the VM, use the functionality built into the guest OS. In our case, go to Applications in the top right corner and look for the log out icon at the bottom of the popup menu. Click it and see the red Shut Down button.
 
-(Don't actually shut down the OS)
+(Don't actually shut down the system)
 
 
 ::::::::::::::::::::::::::::::::: challenge
 ## Challenge 1: 
 
-Another way to to turn off the VM is to close the window the VM is running in. On Windows, click the 'X' at the top right corner of the VM window. You should see a popup that's similar to this.
+Another way to turn off the VM is to close the window the VM is running in. On Windows, click the 'X' at the top right corner of the VM window. You should see a popup that's similar to this.
 
 ![Screenshot of the Close Virtual Machine dialog](fig/vbox-close-vm.png)
 
-What do you think the difference is between the "send the shutdown signal option" and the "power off the machine" option?
+What do you think the difference is between the "Send the shutdown signal" option and the "Power off the machine" option?
 
 
 :::::::::::::::::::::::: solution 
@@ -158,7 +158,7 @@ Increase the RAM available to the VM to 2 GB (2048 MB). Verify it by running thi
 cat /proc/meminfo | grep MemTotal
 ```
 
-What is the output of that command? What should be the effect on the VM's performance? Can you find a way to see the memory using the graphical desktop in the VM?
+What is the output of that command? What should be the effect on the VM's performance?
 
 
 :::::::::::::::::::::::: solution 
