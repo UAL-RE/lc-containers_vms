@@ -1,7 +1,7 @@
 ---
 title: "Virtual machines using VirtualBox"
-teaching: 10
-exercises: 2
+teaching: 15
+exercises: 3
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -16,9 +16,8 @@ exercises: 2
 
 - Explain how to navigate the VirtualBox interface
 - Demonstrate how to run a VM
-- Show how to manage resources
+- Explore managing resources
 - Show how to take advantage of snapshots
-- Explore changing resource allocations
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -54,11 +53,11 @@ Start the VM
 - Select the imported VM if it isn't selected already
 - Click the green "-> Start" button
 - Accept any additional dialogs that pop up (if any)
-- A new window will appear that shows some commands being run, followed by a graphical desktop.
+- A new window will appear that shows some commands being run, followed by a graphical desktop. If you get prompted for a login, enter `vboxuser` and `changeme`.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-Look for and open the Firefox browser in the VM. What do you notice about interacting with stuff inside the VM? How is it different or the same than your normal computer?
+Look for and open the web browser in the VM. What do you notice about interacting with stuff inside the VM? How is it different or the same than your normal computer?
 
 ::::::::::::::::::::::::::::::::::::
 
@@ -82,67 +81,103 @@ If none of that works, there is nothing else you can do and they will have to pa
 ## Common tasks
 
 ### Shutting down the VM
-To properly turn off the VM, use the functionality built into the guest OS. In our case, go to Applications in the top right corner and look for the log out icon at the bottom of the popup menu.
 
-Another way to to turn off the VM is to close the window the VM is running in. On Windows, click the 'X' at the top right corner of the VM window. You should see a popup that's similar to this. 
-![Closing the VM](fig/vbox-close-vm.png)
+To properly turn off the VM, use the functionality built into the guest OS. In our case, go to Applications in the top right corner and look for the log out icon at the bottom of the popup menu. Click it and see the red Shut Down button.
 
-There are three options, two that look like they can turn off the machine. Select the option to "send the shutdown signal". The VM should power off. Not all VMs can be cleanly shut down this way.
+(Don't actually shut down the OS)
+
 
 ::::::::::::::::::::::::::::::::: challenge
 ## Challenge 1: 
 
-Boot up the VM again and close it using the dialog with the three options. What do you think the difference is between the "send the shutdown signal option" and the "power off the machine" option?
+Another way to to turn off the VM is to close the window the VM is running in. On Windows, click the 'X' at the top right corner of the VM window. You should see a popup that's similar to this.
+
+![Screenshot of the Close Virtual Machine dialog](fig/vbox-close-vm.png)
+
+What do you think the difference is between the "send the shutdown signal option" and the "power off the machine" option?
 
 
 :::::::::::::::::::::::: solution 
 
-The "power off the machine option" is the equivalent of ripping out the power cable from the wall. It will immediately terminate the VM without trying to gracefully allow the guest OS to shut down. This might result in data loss or even render the machine unbootable.
+The "power off the machine option" is the equivalent of ripping out the power cable from the wall. It will immediately terminate the VM without trying to gracefully allow the guest OS to shut down. This might result in data loss or even render the machine unbootable. "Send the shutdown signal" will try to indicate to the guest OS that it is time to shut down (equivalent clicking Shut Down in the guest OS) . Not all guests can be cleanly shut down this way.
 
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::
 
 ### Saving execution states
-- Snapshots
 
+A very useful feature of VMs is the ability to save snapshots of the current state of the VM at any point. This can be used to
+
+- Turn off the VM and go back to it later with everything still open and running. Equivalent to walking away from your computer and coming back later
+- Preserve the state of the OS or an application before doing system updates
+- If you're experimenting, to be able to easily return to a 'clean' state
+
+Let's see snapshots in action. 
+
+- In your VM, open up a few windows and applications. 
+- Click the button to close the VM as shown in Challenge 1. 
+- Select the "Save the machine state" option.
+
+The VM will close. In VirtualBox, start the VM again. You should see the same windows you opened before.
+
+You can also take more than one snapshot. To do so, go to VirtuaBox, select the VM, and click the Take button. These snapshots act like checkpoints and you can go back to any of them at any time.
+
+![Screenshot of managing VM snapshots](fig/vbox-snapshots.png)
+
+To restore a snapshot, right-click on it and select "Restore".
 
 ::::::::::::::::::::::::::::::::: challenge
-## Challenge 1: 
+## Challenge 2: 
 
-Take a snapshot of the VM. Start the VM and suspend it. Now Delete the parent snapshot. What will be the result if you boot up the VM again?
+What if we're done with a snapshot and don't want it anymore? Delete the snapshot we created, Snapshot 1. What is the result if you boot up the VM again?
 
 
 :::::::::::::::::::::::: solution 
 
-Todo
+The VM should look exactly the same as before you deleted the snapshot. The difference is that you will no longer be able to go back to the state that was stored in the snapshot.
 
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::
 
 
-## Managing VMs
+## Managing VM Resources
+
+Recall that VMs share the resources of the host OS. These resources can be managed on a per-VM basis.
+
+Right-click the VM and select Settings. You should see a window that looks like this:
+![Manage a VMs resources using the Settings window](fig/vbox-vmsettings.png)
+
+There are various sections that can be modified. Note that changing some of these after a guest OS is installed may break it. However, some are safe to change. The ones that are safe generally correspond to things that can be upgraded in a normal computer (e.g., memory, number of monitors).
 
 ::::::::::::::::::::::::::::::::: challenge
-## Challenge 2: 
+## Challenge 3: 
 
 Increase the RAM available to the VM to 2 GB (2048 MB). Verify it by running this command inside a terminal window
+
 ```
 cat /proc/meminfo | grep MemTotal
 ```
-What number do you see? What should be the effect on the VM's performance?
+
+What is the output of that command? What should be the effect on the VM's performance? Can you find a way to see the memory using the graphical desktop in the VM?
 
 
 :::::::::::::::::::::::: solution 
 
 You should see `2014504 kB`. Performance should increase, especially when applications are loading a lot of data into memory. Web browsers are especially heavy memory users.
 
+To see the memory usage within the graphical interface of the guest OS, click Applications -> About Xfce. The memory is shown on the System tab. Note this is specific to this installation of the guest OS.
+
 :::::::::::::::::::::::::::::::::
+
+
 :::::::::::::::::::::::::::::::::::::
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- VM point 1
+- The same VM can be copied and run on different computers
+- The execution state of VMs can be saved and restored at any time. 
+- VM resources (e.g., CPUs, memory) can be changed, even after the VM is created. This allows controlling how much resources the VM can consume. 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
