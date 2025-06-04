@@ -1,10 +1,8 @@
 ---
 title: "Creating Containers with Docker"
-teaching: 10
-exercises: 2
+teaching: 40
+exercises: 40
 ---
-
-**TODO**: Update time estimates
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
@@ -314,8 +312,7 @@ In the terminal, use `docker build` to create a new version of the image.
 docker build -t vboxuser/python-test
 ```
 
-This command will over-write the previous version of the image. **TODO** Need 
-to test this statement.
+This command will over-write the previous version of the image.
 
 ### Verify image was updated
 

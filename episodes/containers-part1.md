@@ -198,6 +198,38 @@ from DockerHub. You should see output that tracks the progress of the download.
 
 ![The progress display when downloading the OpenRefine image](fig/docker-pull-progress.png){alt='terminal window showing downloading progress'}
 
+:::::::::::::::::::::::::::::::: caution
+
+Uh oh. If you tried to run the command above, you might have encountered an 
+error like:
+
+```
+permission denied while trying to connect to the Docker daemon socket at unix://
+/var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.47/containers/js
+on": dial unix /var/run/docker.sock: connect: permission denied
+```
+
+The reason this happens is that the docker program requires Administrator-level 
+authorization to run. If the user does not have that level of access by 
+default, the command above will be denied. We can get around this by adding the 
+command `sudo` right before each call to `docker`. So, if you received the 
+"permission denied" error, update the command to 
+
+```
+sudo docker pull felixlohmeier/openrefine
+```
+
+And press "Enter" to run the command. You will likely be asked for the user 
+password. If you are running this in a virtual machine, it will be the same 
+password you used to log in to the virtual machine. If you are running this on 
+your own machine, you would use the password for your user account. Note for 
+the remainder of this lesson, note you will _always_ need to add the `sudo` 
+part whenever you call the `docker` command. There is another way to allow 
+access to Docker commands without requiring the use of `sudo` and you can read 
+about them at [https://docs.docker.com/engine/install/linux-postinstall/](https://docs.docker.com/engine/install/linux-postinstall/).
+
+:::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: spoiler
 
 ##### DockerHub vs GitHub Container Registry
@@ -243,7 +275,9 @@ container
 
 There is a good chance you will see a variety of messages, including some 
 warnings. However, these are not going to interfere with our lesson, so we will
-ignore them for now.
+ignore them for now. Remember, if (and only if) you receive the "permission 
+denied" error message, you need to add `sudo` at the very beginning of the 
+line.
 
 ::::::::::::::::::::::::::::::::::::: spoiler
 
