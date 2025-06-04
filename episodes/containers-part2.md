@@ -1,10 +1,8 @@
 ---
 title: "Creating Containers with Docker"
-teaching: 10
-exercises: 2
+teaching: 40
+exercises: 40
 ---
-
-**TODO**: Update time estimates
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
@@ -21,20 +19,12 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
-**TODO** Anything instructors should be aware of for this episode?
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 ## Introduction
 
 In the previous episode, we used a Docker image to run a Docker container. We 
 briefly covered how images are used to make a container, but where does the 
 Docker image come from? In this episode, we will create and use Dockerfiles to 
 make a new _image_, and use that image to start a Docker container.
-
-**TODO** Might be a good spot for a visual.
 
 ## Dockerfiles
 
@@ -83,8 +73,6 @@ commands:
 FROM python:3.9
 CMD ["python", "--version"]
 ```
-
-**TODO**: Where do we want to be making this file? Is the home directory OK?
 
 ### Creating Dockerfiles
 
@@ -324,8 +312,7 @@ In the terminal, use `docker build` to create a new version of the image.
 docker build -t vboxuser/python-test
 ```
 
-This command will over-write the previous version of the image. **TODO** Need 
-to test this statement.
+This command will over-write the previous version of the image.
 
 ### Verify image was updated
 
