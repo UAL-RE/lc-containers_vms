@@ -151,11 +151,11 @@ Benefits of containers
 | Presents virtual versions of real hardware like CPUs, disks, etc | Yes | No |
 | Scaling based on computing needs | More difficult | Easier |
 | Able to run applications from one operating system on another | Yes | Sometimes* |
-| Able to run applications from one CPU architecture | No** | No |
+| Able to run applications from one CPU architecture on another | No** | No |
 
 \* It's possible in some cases. For example, Docker on Windows can run Linux containers because it secretly runs them inside a Linux VM.
 
-** It is possible with some VM software and with some architectures. In the background, the software uses emulation which is different on a technical level than virtualization. Examples of architectures are Intel x86 (32 bit or 64 bit), ARM, RISC and more.
+** It is possible with some software and with some architectures. In the background, the software uses emulation which is different on a technical level than virtualization. Examples of architectures are Intel x86 (32 bit or 64 bit), ARM, RISC and more.
 
 ::::::::::::::::::::::::::::::::: challenge
 
