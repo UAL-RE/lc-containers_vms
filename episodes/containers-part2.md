@@ -91,13 +91,18 @@ This command will do two things: first, it creates an empty text file called
 add those two lines, as well as a comment for each line. Comments are useful 
 for anyone who will need to look at the Dockerfile in the future (this usually 
 means you!). The comment character, `#`, tells the computer to ignore any text 
-that comes to the right of the `#`, as it is for human eyes only. These 
+that comes to the right of the `#`, as it is for human eyes only. Note for 
+Dockerfiles, the `#` must come at the *start of the line*; otherwise the pound 
+sign (and anything to the right of it) will be interpeted as code to run. These 
 comments are not necessary to build the image, but they are a *very* good 
 practice to get into. In the nano text editor, add the following:
 
 ```
-FROM python:3.9  # use the python base image, version 3.9
-CMD ["python", "--version"]  # on container start, print the version of python
+# use the python base image, version 3.9
+FROM python:3.9
+
+# on container start, print the version of python
+CMD ["python", "--version"]
 ```
 
 Which should look something like this in your terminal:
@@ -176,7 +181,7 @@ Which should produce the following output:
 ```
 REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
 vboxuser/python-test       latest    48e8a6dc6b14   2 minutes ago   999MB
-felixlohmeier/openrefine   latest    3ee6bb3d8cfa   3 years ago     243MB
+easypi/openrefine          latest    3ee6bb3d8cfa   3 years ago     243MB
 ```
 
 Note we see the image for OpenRefine that we downloaded in the previous 
@@ -234,7 +239,7 @@ You may notice something missing from the last time we ran `docker run`. Recall
 that to start the OpenRefine container, we ran:
 
 ```
-docker run -p 3333:3333 felixlohmeier/openrefine
+docker run -p 3333:3333 easypi/openrefine
 ```
 
 This time, we omitted the information about ports (the `-p 3333:3333` part) 
@@ -269,7 +274,7 @@ And the two containers we ran so far will be displayed in the output table:
 ```
 CONTAINER ID   IMAGE                      COMMAND                  CREATED              STATUS                          PORTS     NAMES
 fa10d154754d   jcoliver/python-test       "python --version"       About a minute ago   Exited (0) About a minute ago             charming_meitner
-3ece25d51a80   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   5 minutes ago        Exited (129) 5 minutes ago                kind_ardinghelli
+3ece25d51a80   easypi/openrefine          "/app/refine -i 0.0.…"   5 minutes ago        Exited (129) 5 minutes ago                kind_ardinghelli
 ```
 
 ::::::::::::::::::::::::::::::::::::: challenge 
@@ -369,8 +374,13 @@ we will use the `COPY` command in the Dockerfile.
 On the line right below the `FROM` command, add the copy instructions:
 
 ```
+# use the python base image, version 3.12
 FROM python:3.12
-COPY intro.py .    # <---- This is the new line that copies the script
+
+# Copy the intro.py script onto the image
+COPY intro.py .
+
+# on container start, print the version of python
 CMD ["python", "--version"]
 ```
 
@@ -386,9 +396,14 @@ python, it will run the script we copied to the image. Update the `CMD` line so
 instead of "--version", it has the name of the script in quotation marks:
 
 ```
+# use the python base image, version 3.12
 FROM python:3.12
+
+# Copy the intro.py script onto the image
 COPY intro.py .
-CMD ["python", "intro.py"] # <---- Here we replace "--version" with "intro.py"
+
+# on container start, use python to run the python script "intro.py"
+CMD ["python", "intro.py"]
 ```
 
 Finally, save and exit the nano editor with Ctrl-O and Ctrl-X, respectively.
@@ -426,7 +441,7 @@ image, and run the container to ensure your changes were updated.
 
 - Open the Dockerfile in a text editor (we have been using nano, so you can run, 
 in the command line terminal, `nano Dockerfile` to open the file for editing).
-- Change the `FROM` line to read `FROM python:3.12`
+- Change the `FROM` line to read `FROM python:3.13`
 - Save the file (Ctrl-O in nano) and exit the text editor (Ctrl-X).
 
 #### Update the Python script with a new message
