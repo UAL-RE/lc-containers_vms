@@ -683,7 +683,7 @@ application is connecting to?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>In both cases, the host can (in principle) see what sites or IP
 addresses the guest OS or container is connecting to. In the VM case,
@@ -848,7 +848,7 @@ signal” option and the “Power off the machine” option?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The “power off the machine option” is the equivalent of ripping out
 the power cable from the wall. It will immediately terminate the VM
@@ -907,7 +907,7 @@ the VM again?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The VM should look exactly the same as before you deleted the
 snapshot. The difference is that you will no longer be able to go back
@@ -949,7 +949,7 @@ VM’s performance?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>You should see <code>2014504 kB</code>. Performance should increase,
 especially when applications are loading a lot of data into memory. Web
@@ -986,7 +986,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-containers-part1"><p>Content from <a href="containers-part1.html">Basics of Containers with Docker</a></p>
 <hr>
-<p>Last updated on 2025-06-04 |
+<p>Last updated on 2025-06-24 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part1.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1099,7 +1099,7 @@ explain images and containers?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Several analogies exist, and here are a few:</p>
 <ul>
@@ -1209,7 +1209,7 @@ the name of the program is to run a command line terminal.</p>
 clicking the computer screen icon</div>
 </figure><p>Once the command line terminal is open, type the command to retrieve
 the OpenRefine image:</p>
-<pre><code>docker pull felixlohmeier/openrefine</code></pre>
+<pre><code>docker pull easypi/openrefine</code></pre>
 <p>After typing in the command, press “Enter” and Docker will download
 the image from DockerHub. You should see output that tracks the progress
 of the download.</p>
@@ -1233,7 +1233,7 @@ level of access by default, the command above will be denied. We can get
 around this by adding the command <code>sudo</code> right before each
 call to <code>docker</code>. So, if you received the “permission denied”
 error, update the command to</p>
-<pre><code>sudo docker pull felixlohmeier/openrefine</code></pre>
+<pre><code>sudo docker pull easypi/openrefine</code></pre>
 <p>And press “Enter” to run the command. You will likely be asked for
 the user password. If you are running this in a virtual machine, it will
 be the same password you used to log in to the virtual machine. If you
@@ -1251,7 +1251,7 @@ can read about them at <a href="https://docs.docker.com/engine/install/linux-pos
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> DockerHub vs GitHub Container Registry </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>By default, the command <code>docker pull</code> will only look for
 images on DockerHub; if you want to download images from another source,
@@ -1280,7 +1280,7 @@ command, passing the name of the image and any additional information.
 In our case, we will need to provide information on how we can interact
 with the container by setting the ports (we will see later how we use
 this information). In the command-line interface, run:</p>
-<pre><code>docker run -p 3333:3333 felixlohmeier/openrefine</code></pre>
+<pre><code>docker run -p 3333:3333 easypi/openrefine</code></pre>
 <p>Breaking down this command, there are three key parts:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -1290,8 +1290,8 @@ container</li>
 <code>-p 3333:3333</code>: tells docker we will use the local port
 3333:3333 to communicate with the running container</li>
 <li>
-<code>felixlohmeier/openrefine</code>: is the name of the image from
-which to build the container</li>
+<code>easypi/openrefine</code>: is the name of the image from which
+to build the container</li>
 </ol>
 <p>There is a good chance you will see a variety of messages, including
 some warnings. However, these are not going to interfere with our
@@ -1303,7 +1303,7 @@ receive the “permission denied” error message, you need to add
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>The three warning messages you are likely to see are:</p>
 <pre><code>log4j:WARN No appenders could be found for logger (org.eclipse.jetty.util.log).
@@ -1341,8 +1341,8 @@ the case, you can make your terminal (and possibly your virtual machine)
 windows wider, then run the <code>docker ps</code> command again. The
 output should look something like:</p>
 <pre><code>$ docker ps
-CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                       NAMES
-e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   9 seconds ago   Up 8 seconds   0.0.0.0:3333-&gt;3333/tcp, :::3333-&gt;3333/tcp   epic_nobel
+CONTAINER ID   IMAGE                COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+e1e174015296   easypi/openrefine    "/app/refine -i 0.0.…"   9 seconds ago   Up 8 seconds   0.0.0.0:3333-&gt;3333/tcp, :::3333-&gt;3333/tcp   epic_nobel
 $</code></pre>
 <p>Although the value in the first and last columns (CONTAINER ID and
 NAMES, respectively) will likely be different for everyone. The
@@ -1412,13 +1412,13 @@ screen. This will create the project and open it for you.</li>
 <ol style="list-style-type: decimal">
 <li>Click the dropdown triangle on the Publisher column.</li>
 <li>Select the Facet &gt; menu item.</li>
-<li>Select Text facet in the submenu. <img src="fig/openrefine-facet.png" alt="OpenRefine menus showing facet options" class="figure">
+<li>Select Text facet in the submenu. <br><img src="fig/openrefine-facet.png" alt="OpenRefine menus showing facet options" class="figure">
 </li>
 <li>Note that in the values there are two that look almost identical -
 why do these two values appear separately rather than as a single
 value?</li>
 <li>On the publisher column use the dropdown menu to select Edit cells
-&gt; Common transforms &gt; Collapse consecutive whitespace. <img src="fig/openrefine-transform.png" alt="OpenRefine menus showing cell transformation options" class="figure">
+&gt; Common transforms &gt; Collapse consecutive whitespace. <br><img src="fig/openrefine-transform.png" alt="OpenRefine menus showing cell transformation options" class="figure">
 </li>
 <li>Look at the publisher facet now - has it changed? (if it hasn’t
 changed try clicking the Refresh option to make sure it updates).</li>
@@ -1452,8 +1452,8 @@ should see a familiar table, with most information identical to what we
 saw before, but with the time information updated in the
 <code>CREATED</code> and <code>STATUS</code> columns:</p>
 <pre><code>$ docker ps
-CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                       NAMES
-e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   9 minutes ago   Up 9 minutes   0.0.0.0:3333-&gt;3333/tcp, :::3333-&gt;3333/tcp   epic_nobel
+CONTAINER ID   IMAGE                COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+e1e174015296   easypi/openrefine    "/app/refine -i 0.0.…"   9 minutes ago   Up 9 minutes   0.0.0.0:3333-&gt;3333/tcp, :::3333-&gt;3333/tcp   epic_nobel
 $</code></pre>
 <p>The first column, <code>CONTAINER ID</code> has the information we
 need in order to stop the container from running.</p>
@@ -1462,7 +1462,7 @@ need in order to stop the container from running.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
   <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <p>What if the table is empty? That is, what if after running
 <code>docker ps</code>, you see</p>
@@ -1504,7 +1504,7 @@ same command now? What about when you run the same command with the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ul>
 <li>
@@ -1522,8 +1522,8 @@ or <em>have been</em> run on the machine. This includes the container
 that we stopped earlier.</li>
 </ul>
 <pre><code>$ docker ps -a
-CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS                       PORTS     NAMES
-e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   20 minutes ago      Exited (143) 2 minutes ago                determined_torvalds
+CONTAINER ID   IMAGE                COMMAND                  CREATED         STATUS                       PORTS     NAMES
+e1e174015296   easypi/openrefine    "/app/refine -i 0.0.…"   20 minutes ago      Exited (143) 2 minutes ago                determined_torvalds
 $</code></pre>
 <p>Note the date information (in the <code>CREATED</code> and
 <code>STATUS</code> fields) and the container name (the
@@ -1541,10 +1541,9 @@ $</code></pre>
 <div class="callout-content">
 <p>Rearrange the following commands to (in the following order) (1)
 start the OpenRefine container, (2) find the container image ID of the
-running OpenRefine container, and (3) terminal the OpenRefine
-container.</p>
+running OpenRefine container, and (3) stop the OpenRefine container.</p>
 <pre><code>docker stop &lt;container ID&gt;
-docker run -p 3333:3333 felixlohmeier/openrefine
+docker run -p 3333:3333 easypi/openrefine
 docker ps</code></pre>
 </div>
 </div>
@@ -1554,9 +1553,9 @@ docker ps</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<pre><code>docker run -p 3333:3333 felixlohmeier/openrefine
+<pre><code>docker run -p 3333:3333 easypi/openrefine
 docker ps
 docker stop &lt;container ID&gt;</code></pre>
 </div>
@@ -1590,7 +1589,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-containers-part2"><p>Content from <a href="containers-part2.html">Creating Containers with Docker</a></p>
 <hr>
-<p>Last updated on 2025-06-04 |
+<p>Last updated on 2025-06-24 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/containers-part2.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1702,12 +1701,17 @@ editor. We will add those two lines, as well as a comment for each line.
 Comments are useful for anyone who will need to look at the Dockerfile
 in the future (this usually means you!). The comment character,
 <code>#</code>, tells the computer to ignore any text that comes to the
-right of the <code>#</code>, as it is for human eyes only. These
-comments are not necessary to build the image, but they are a
-<em>very</em> good practice to get into. In the nano text editor, add
-the following:</p>
-<pre><code>FROM python:3.9  # use the python base image, version 3.9
-CMD ["python", "--version"]  # on container start, print the version of python</code></pre>
+right of the <code>#</code>, as it is for human eyes only. Note for
+Dockerfiles, the <code>#</code> must come at the <em>start of the
+line</em>; otherwise the pound sign (and anything to the right of it)
+will be interpeted as code to run. These comments are not necessary to
+build the image, but they are a <em>very</em> good practice to get into.
+In the nano text editor, add the following:</p>
+<pre><code># use the python base image, version 3.9
+FROM python:3.9
+
+# on container start, print the version of python
+CMD ["python", "--version"]</code></pre>
 <p>Which should look something like this in your terminal:</p>
 <figure><img src="fig/terminal-nano.png" alt="terminal window showing contents of Dockerfile in nano editor" class="figure mx-auto d-block"><div class="figcaption">The nano text editor for your first
 Dockerfile</div>
@@ -1788,7 +1792,7 @@ following in the command line terminal:</p>
 <p>Which should produce the following output:</p>
 <pre><code>REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
 vboxuser/python-test       latest    48e8a6dc6b14   2 minutes ago   999MB
-felixlohmeier/openrefine   latest    3ee6bb3d8cfa   3 years ago     243MB</code></pre>
+easypi/openrefine          latest    3ee6bb3d8cfa   3 years ago     243MB</code></pre>
 <p>Note we see the image for OpenRefine that we downloaded in the
 previous episode, along with the new image we just created,
 python-test.</p>
@@ -1859,7 +1863,7 @@ the same repository/ image combination you used when you ran the
 <p>You may notice something missing from the last time we ran
 <code>docker run</code>. Recall that to start the OpenRefine container,
 we ran:</p>
-<pre><code>docker run -p 3333:3333 felixlohmeier/openrefine</code></pre>
+<pre><code>docker run -p 3333:3333 easypi/openrefine</code></pre>
 <p>This time, we omitted the information about ports (the
 <code>-p 3333:3333</code> part) because the python-test image does not
 need a way to exchange information between the container and the
@@ -1885,7 +1889,7 @@ terminal command line:</p>
 table:</p>
 <pre><code>CONTAINER ID   IMAGE                      COMMAND                  CREATED              STATUS                          PORTS     NAMES
 fa10d154754d   jcoliver/python-test       "python --version"       About a minute ago   Exited (0) About a minute ago             charming_meitner
-3ece25d51a80   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   5 minutes ago        Exited (129) 5 minutes ago                kind_ardinghelli</code></pre>
+3ece25d51a80   easypi/openrefine          "/app/refine -i 0.0.…"   5 minutes ago        Exited (129) 5 minutes ago                kind_ardinghelli</code></pre>
 <div id="challenge-2-update-base-image" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1979,8 +1983,13 @@ For the first part (copying), we will use the <code>COPY</code> command
 in the Dockerfile.</p>
 <p>On the line right below the <code>FROM</code> command, add the copy
 instructions:</p>
-<pre><code>FROM python:3.12
-COPY intro.py .    # &lt;---- This is the new line that copies the script
+<pre><code># use the python base image, version 3.12
+FROM python:3.12
+
+# Copy the intro.py script onto the image
+COPY intro.py .
+
+# on container start, print the version of python
 CMD ["python", "--version"]</code></pre>
 <p>The <code>COPY</code> command needs two pieces of information:</p>
 <ul>
@@ -1996,9 +2005,14 @@ do this, we change our <code>CMD</code> command so that instead of
 asking for the version of python, it will run the script we copied to
 the image. Update the <code>CMD</code> line so instead of “–version”, it
 has the name of the script in quotation marks:</p>
-<pre><code>FROM python:3.12
+<pre><code># use the python base image, version 3.12
+FROM python:3.12
+
+# Copy the intro.py script onto the image
 COPY intro.py .
-CMD ["python", "intro.py"] # &lt;---- Here we replace "--version" with "intro.py"</code></pre>
+
+# on container start, use python to run the python script "intro.py"
+CMD ["python", "intro.py"]</code></pre>
 <p>Finally, save and exit the nano editor with Ctrl-O and Ctrl-X,
 respectively.</p>
 </div>
@@ -2040,7 +2054,7 @@ your changes were updated.</p>
 you can run, in the command line terminal, <code>nano Dockerfile</code>
 to open the file for editing).</li>
 <li>Change the <code>FROM</code> line to read
-<code>FROM python:3.12</code>
+<code>FROM python:3.13</code>
 </li>
 <li>Save the file (Ctrl-O in nano) and exit the text editor
 (Ctrl-X).</li>
@@ -2152,9 +2166,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/aio.html",
-  "dateCreated": "2025-06-05",
-  "dateModified": "2025-06-17",
-  "datePublished": "2025-06-17"
+  "dateCreated": "2025-06-17",
+  "dateModified": "2025-06-24",
+  "datePublished": "2025-06-24"
 }
 
   </script><script>
