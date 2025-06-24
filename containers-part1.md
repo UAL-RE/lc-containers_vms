@@ -190,7 +190,7 @@ Once the command line terminal is open, type the command to retrieve the
 OpenRefine image:
 
 ```
-docker pull felixlohmeier/openrefine
+docker pull easypi/openrefine
 ```
 
 After typing in the command, press "Enter" and Docker will download the image 
@@ -216,7 +216,7 @@ command `sudo` right before each call to `docker`. So, if you received the
 "permission denied" error, update the command to 
 
 ```
-sudo docker pull felixlohmeier/openrefine
+sudo docker pull easypi/openrefine
 ```
 
 And press "Enter" to run the command. You will likely be asked for the user 
@@ -262,7 +262,7 @@ we can interact with the container by setting the ports (we will see later how
 we use this information). In the command-line interface, run:
 
 ```
-docker run -p 3333:3333 felixlohmeier/openrefine
+docker run -p 3333:3333 easypi/openrefine
 ```
 
 Breaking down this command, there are three key parts:
@@ -270,7 +270,7 @@ Breaking down this command, there are three key parts:
 1. `docker run`: tells docker to start running a new container
 2. `-p 3333:3333`: tells docker we will use the local port 3333:3333 to 
 communicate with the running container
-3. `felixlohmeier/openrefine`: is the name of the image from which to build the 
+3. `easypi/openrefine`: is the name of the image from which to build the 
 container
 
 There is a good chance you will see a variety of messages, including some 
@@ -321,8 +321,8 @@ run the `docker ps` command again. The output should look something like:
 
 ```
 $ docker ps
-CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                       NAMES
-e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   9 seconds ago   Up 8 seconds   0.0.0.0:3333->3333/tcp, :::3333->3333/tcp   epic_nobel
+CONTAINER ID   IMAGE                COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+e1e174015296   easypi/openrefine    "/app/refine -i 0.0.…"   9 seconds ago   Up 8 seconds   0.0.0.0:3333->3333/tcp, :::3333->3333/tcp   epic_nobel
 $
 ```
 
@@ -383,12 +383,12 @@ Next we will clean up one part of the data.
 
 1. Click the dropdown triangle on the Publisher column.
 2. Select the Facet > menu item.
-3. Select Text facet in the submenu.
+3. Select Text facet in the submenu. <br />
 ![The facet menu in OpenRefine](fig/openrefine-facet.png){alt='OpenRefine menus showing facet options'}
 4. Note that in the values there are two that look almost identical - why do 
 these two values appear separately rather than as a single value?
 5. On the publisher column use the dropdown menu to select Edit cells > Common 
-transforms > Collapse consecutive whitespace.
+transforms > Collapse consecutive whitespace. <br />
 ![The cell edit menu in OpenRefine](fig/openrefine-transform.png){alt='OpenRefine menus showing cell transformation options'}
 6. Look at the publisher facet now - has it changed? (if it hasn’t changed try 
 clicking the Refresh option to make sure it updates).
@@ -419,8 +419,8 @@ identical to what we saw before, but with the time information updated in the
 
 ```
 $ docker ps
-CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                       NAMES
-e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   9 minutes ago   Up 9 minutes   0.0.0.0:3333->3333/tcp, :::3333->3333/tcp   epic_nobel
+CONTAINER ID   IMAGE                COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+e1e174015296   easypi/openrefine    "/app/refine -i 0.0.…"   9 minutes ago   Up 9 minutes   0.0.0.0:3333->3333/tcp, :::3333->3333/tcp   epic_nobel
 $
 ```
 
@@ -482,8 +482,8 @@ $
 on the machine. This includes the container that we stopped earlier.
 ```
 $ docker ps -a
-CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS                       PORTS     NAMES
-e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   20 minutes ago      Exited (143) 2 minutes ago                determined_torvalds
+CONTAINER ID   IMAGE                COMMAND                  CREATED         STATUS                       PORTS     NAMES
+e1e174015296   easypi/openrefine    "/app/refine -i 0.0.…"   20 minutes ago      Exited (143) 2 minutes ago                determined_torvalds
 $
 ```
 Note the date information (in the `CREATED` and `STATUS` fields) and the 
@@ -498,18 +498,18 @@ container name (the `NAMES` field) will likely be different on your machine.
 
 Rearrange the following commands to (in the following order) (1) start the 
 OpenRefine container, (2) find the container image ID of the running OpenRefine 
-container, and (3) terminal the OpenRefine container.
+container, and (3) stop the OpenRefine container.
 
 ```
 docker stop <container ID>
-docker run -p 3333:3333 felixlohmeier/openrefine
+docker run -p 3333:3333 easypi/openrefine
 docker ps
 ```
 
 :::::::::::::::::::::::: solution 
 
 ```
-docker run -p 3333:3333 felixlohmeier/openrefine
+docker run -p 3333:3333 easypi/openrefine
 docker ps
 docker stop <container ID>
 ```
