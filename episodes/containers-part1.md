@@ -1,7 +1,7 @@
 ---
 title: "Basics of Containers with Docker"
-teaching: 20
-exercises: 10
+teaching: 30
+exercises: 15
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -100,6 +100,21 @@ image as a class, and a container an object of that class.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: callout
+
+Wait, are container images the same as virtual machine images?
+
+Well, no and yes. Virtual machine systems and container systems really are two 
+different things. You cannot use a virtual machine image to start up a 
+container, nor can you use a container image to start a virtual machine. But 
+for both containers and VMs, an "image" is a file with a blueprint for creating 
+a separate computer system *within* another computer. In both cases, the image 
+serves as a snapshot of a starting point for a virtual machine or a container. 
+For the rest of the lesson (which focuses on containers), we will use the term 
+"image" to refer to a *container* image.
+
+:::::::::::::::::::::::::::::::::::::::::::::
 
 ### Working with containers
 
