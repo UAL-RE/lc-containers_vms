@@ -283,33 +283,60 @@ docker run -p 3333:3333 easypi/openrefine
 Breaking down this command, there are three key parts:
 
 1. `docker run`: tells docker to start running a new container
-2. `-p 3333:3333`: tells docker we will use the local port 3333:3333 to 
-communicate with the running container
+2. `-p 3333:3333`: tells docker we will use the port 3333 on our local machine 
+to talk with port 3333 on the running docker container
 3. `easypi/openrefine`: is the name of the image from which to build the 
 container
 
 There is a good chance you will see a variety of messages, including some 
-warnings. However, these are not going to interfere with our lesson, so we will
-ignore them for now. Remember, if (and only if) you receive the "permission 
-denied" error message, you need to add `sudo` at the very beginning of the 
-line.
+that look like errors. However, these are not going to interfere with our 
+lesson, so we will ignore them for now. Remember, if (and only if) you receive 
+the "permission denied" error message, you need to add `sudo` at the very 
+beginning of the line.
 
 ::::::::::::::::::::::::::::::::::::: spoiler
 
-The three warning messages you are likely to see are:
+The messages you are likely to see may end with:
 
 ```
-log4j:WARN No appenders could be found for logger (org.eclipse.jetty.util.log).
-log4j:WARN Please initialize the log4j system properly.
-log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+08:07:39.496 [  refine] Sorry, some error prevented us from launching the browser for you.
+
+Point your browser to http://*:3333/ to start using Refine. (11ms)
 ```
 
-These indicate that a logging system in the image is not configured the right 
-way. We are not going to be looking at logs of the container, so we do not need 
-to worry about these messages. If you end up building your own images, logging 
-is likely to be an important part of your development and debugging process.
+This is telling us that the container wanted to open a web browser, but for 
+some reason it was unable to do so. That is OK - we will open the web browser 
+ourselves later in the lesson.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: spoiler
+
+What are these "ports"? Why 3333?
+
+One of the great things about containers (and virtual machines) is that they 
+are isolated from the host computer they are running on. So if something goes 
+really wrong in the container, it will not affect your laptop. However, if we 
+want to interact with a running container, this isolation presents a challenge. 
+To allow the host and the container to interact, we open a line of 
+communication between the two, using specific points of contact (the "ports", 
+in this case). We need to tell docker which port number to use on the host 
+machine and which port number to use on the container. The creators of the 
+container have already specified the second of these (they did this when they 
+created the image); in this case, they opened port 3333 on the container. To 
+make our lives easier, we will use the same number port (3333) on our host 
+machine to connect to the container. To generalize, when we run the 
+`docker run` command, and we want to allow communication between the host and 
+the container, we use the following syntax to connect ports: 
+`-p <host port number>:<container port number>`. In this case, this ends up 
+being `-p 3333:3333`. We *could* use a different port number for the 
+`<host port number>`, but we are constrained to use the same 
+`<container port number>` that the creators of the image chose. That is, we 
+could use `-p 2121:3333`, but not `-p 3333:2121`. You can find more information 
+in the [docker documentation for ports](https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/).
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 #### Status check
 
