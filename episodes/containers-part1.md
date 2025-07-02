@@ -1,7 +1,7 @@
 ---
 title: "Basics of Containers with Docker"
-teaching: 10
-exercises: 10
+teaching: 30
+exercises: 15
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -76,13 +76,6 @@ Dockerfiles later in the lesson)
 2. Can include files and programs (like your computer!)
 3. Can run analyses or web applications (and more)
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
-**TODO**: Anything the instructor should be aware of. Maybe here's a point for 
-an image of some sorts.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 ## Challenge 1: Images versus containers
@@ -107,6 +100,21 @@ image as a class, and a container an object of that class.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: callout
+
+Wait, are container images the same as virtual machine images?
+
+Well, no and yes. Virtual machine systems and container systems really are two 
+different things. You cannot use a virtual machine image to start up a 
+container, nor can you use a container image to start a virtual machine. But 
+for both containers and VMs, an "image" is a file with a blueprint for creating 
+a separate computer system *within* another computer. In both cases, the image 
+serves as a snapshot of a starting point for a virtual machine or a container. 
+For the rest of the lesson (which focuses on containers), we will use the term 
+"image" to refer to a *container* image.
+
+:::::::::::::::::::::::::::::::::::::::::::::
 
 ### Working with containers
 
@@ -197,13 +205,45 @@ Once the command line terminal is open, type the command to retrieve the
 OpenRefine image:
 
 ```
-docker pull felixlohmeier/openrefine
+docker pull easypi/openrefine
 ```
 
 After typing in the command, press "Enter" and Docker will download the image 
 from DockerHub. You should see output that tracks the progress of the download.
 
 ![The progress display when downloading the OpenRefine image](fig/docker-pull-progress.png){alt='terminal window showing downloading progress'}
+
+:::::::::::::::::::::::::::::::: caution
+
+Uh oh. If you tried to run the command above, you might have encountered an 
+error like:
+
+```
+permission denied while trying to connect to the Docker daemon socket at unix://
+/var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.47/containers/js
+on": dial unix /var/run/docker.sock: connect: permission denied
+```
+
+The reason this happens is that the docker program requires Administrator-level 
+authorization to run. If the user does not have that level of access by 
+default, the command above will be denied. We can get around this by adding the 
+command `sudo` right before each call to `docker`. So, if you received the 
+"permission denied" error, update the command to 
+
+```
+sudo docker pull easypi/openrefine
+```
+
+And press "Enter" to run the command. You will likely be asked for the user 
+password. If you are running this in a virtual machine, it will be the same 
+password you used to log in to the virtual machine. If you are running this on 
+your own machine, you would use the password for your user account. Note for 
+the remainder of this lesson, note you will _always_ need to add the `sudo` 
+part whenever you call the `docker` command. There is another way to allow 
+access to Docker commands without requiring the use of `sudo` and you can read 
+about them at [https://docs.docker.com/engine/install/linux-postinstall/](https://docs.docker.com/engine/install/linux-postinstall/).
+
+:::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: spoiler
 
@@ -237,37 +277,66 @@ we can interact with the container by setting the ports (we will see later how
 we use this information). In the command-line interface, run:
 
 ```
-docker run -p 3333:3333 felixlohmeier/openrefine
+docker run -p 3333:3333 easypi/openrefine
 ```
 
 Breaking down this command, there are three key parts:
 
 1. `docker run`: tells docker to start running a new container
-2. `-p 3333:3333`: tells docker we will use the local port 3333:3333 to 
-communicate with the running container
-3. `felixlohmeier/openrefine`: is the name of the image from which to build the 
+2. `-p 3333:3333`: tells docker we will use the port 3333 on our local machine 
+to talk with port 3333 on the running docker container
+3. `easypi/openrefine`: is the name of the image from which to build the 
 container
 
 There is a good chance you will see a variety of messages, including some 
-warnings. However, these are not going to interfere with our lesson, so we will
-ignore them for now.
+that look like errors. However, these are not going to interfere with our 
+lesson, so we will ignore them for now. Remember, if (and only if) you receive 
+the "permission denied" error message, you need to add `sudo` at the very 
+beginning of the line.
 
 ::::::::::::::::::::::::::::::::::::: spoiler
 
-The three warning messages you are likely to see are:
+The messages you are likely to see may end with:
 
 ```
-log4j:WARN No appenders could be found for logger (org.eclipse.jetty.util.log).
-log4j:WARN Please initialize the log4j system properly.
-log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+08:07:39.496 [  refine] Sorry, some error prevented us from launching the browser for you.
+
+Point your browser to http://*:3333/ to start using Refine. (11ms)
 ```
 
-These indicate that a logging system in the image is not configured the right 
-way. We are not going to be looking at logs of the container, so we do not need 
-to worry about these messages. If you end up building your own images, logging 
-is likely to be an important part of your development and debugging process.
+This is telling us that the container wanted to open a web browser, but for 
+some reason it was unable to do so. That is OK - we will open the web browser 
+ourselves later in the lesson.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: spoiler
+
+What are these "ports"? Why 3333?
+
+One of the great things about containers (and virtual machines) is that they 
+are isolated from the host computer they are running on. So if something goes 
+really wrong in the container, it will not affect your laptop. However, if we 
+want to interact with a running container, this isolation presents a challenge. 
+To allow the host and the container to interact, we open a line of 
+communication between the two, using specific points of contact (the "ports", 
+in this case). We need to tell docker which port number to use on the host 
+machine and which port number to use on the container. The creators of the 
+container have already specified the second of these (they did this when they 
+created the image); in this case, they opened port 3333 on the container. To 
+make our lives easier, we will use the same number port (3333) on our host 
+machine to connect to the container. To generalize, when we run the 
+`docker run` command, and we want to allow communication between the host and 
+the container, we use the following syntax to connect ports: 
+`-p <host port number>:<container port number>`. In this case, this ends up 
+being `-p 3333:3333`. We *could* use a different port number for the 
+`<host port number>`, but we are constrained to use the same 
+`<container port number>` that the creators of the image chose. That is, we 
+could use `-p 2121:3333`, but not `-p 3333:2121`. You can find more information 
+in the [docker documentation for ports](https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/).
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 #### Status check
 
@@ -275,8 +344,8 @@ At this point, our container is running. Or at least it should be. How can we
 check? In order to see which containers are running, we will use the `docker 
 ps` command. Because the container we just started is running in the terminal 
 window where we issued the `docker run` command, we will need to open a new 
-terminal tab. We can do this in the terminal File menu, selecting the New 
-Tab... option (File > New Tab...).
+terminal tab. We can do this in the terminal File menu, selecting the Open Tab 
+option (File > Open Tab).
 
 ![A new tab can be opened through the File menu](fig/terminal-new-tab.png){alt='screenshot showing new tab option in terminal File menu'}
 
@@ -294,8 +363,8 @@ run the `docker ps` command again. The output should look something like:
 
 ```
 $ docker ps
-CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                       NAMES
-e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   9 seconds ago   Up 8 seconds   0.0.0.0:3333->3333/tcp, :::3333->3333/tcp   epic_nobel
+CONTAINER ID   IMAGE                COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+e1e174015296   easypi/openrefine    "/app/refine -i 0.0.…"   9 seconds ago   Up 8 seconds   0.0.0.0:3333->3333/tcp, :::3333->3333/tcp   epic_nobel
 $
 ```
 
@@ -316,23 +385,66 @@ the OpenRefine program.
 
 #### Using the container
 
-**TODO** Do something in OpenRefine
+The first thing we need to do is download the sample data we are going to work 
+with in OpenRefine. In a the web browser on the virtual machine, enter the URL 
+[https://bit.ly/lc-article-data](https://bit.ly/lc-article-data). This should 
+either download a CSV file or present you with a webpage of the CSV data. If 
+the latter (you see a webpage of the data), download the data as a CSV file. 
+Because you are working in the Virtual Machine, this download should happen 
+within the VM. These data are 1,001 records of Open Access published articles.
+Note the following instructions for using OpenRefine are adapted from the 
+[Library Carpentry lesson on OpenRefine](https://librarycarpentry.github.io/lc-open-refine/).
 
-- Open the file. 
-- Do some wrangling.
-- Export a new file.
-- Get new file from VM to local.
 
-Same as in Transform lesson of Library Carpentry:
+::::::::::::::::::::::::::::::::::::: callout
 
-1. Create a text facet on the Publisher column
-2. Note that in the values there are two that look almost identical - why do 
+Note if you are not using a virtual machine, the CSV file will install on your 
+local machine.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+We now need to open OpenRefine, so open a new tab in the web browser that is 
+running on your Virtual Machine, and enter the following in the URL bar: 
+localhost:3333. You should now see the OpenRefine program in your web browser.
+
+Start by loading file we downloaded into OpenRefine. 
+
+1. Click Create Project from the left hand menu and select "Get data from This 
+Computer" (these options may already be selected).
+2. Click Choose Files (or ‘Browse’, depending on your setup) and locate the 
+file which you have downloaded called doaj-article-sample.csv.
+3. Click Next >> where the next screen gives you options to ensure the data is 
+imported into OpenRefine correctly.
+4. Click in the Character encoding box and set it to UTF-8, if it is not 
+already set to UTF-8. 
+5. Leave all other settings to their default values.
+6. Click the Create project >> button at the top right of the screen. This 
+will create the project and open it for you. 
+
+Next we will clean up one part of the data.
+
+1. Click the dropdown triangle on the Publisher column.
+2. Select the Facet > menu item.
+3. Select Text facet in the submenu. <br />
+![The facet menu in OpenRefine](fig/openrefine-facet.png){alt='OpenRefine menus showing facet options'}
+4. Note that in the values there are two that look almost identical - why do 
 these two values appear separately rather than as a single value?
-3. On the publisher column use the dropdown menu to select Edit cells->Common 
-transforms->Collapse consecutive whitespace
-4. Look at the publisher facet now - has it changed? (if it hasn’t changed try 
-clicking the Refresh option to make sure it updates)
+5. On the publisher column use the dropdown menu to select Edit cells > Common 
+transforms > Collapse consecutive whitespace. <br />
+![The cell edit menu in OpenRefine](fig/openrefine-transform.png){alt='OpenRefine menus showing cell transformation options'}
+6. Look at the publisher facet now - has it changed? (if it hasn’t changed try 
+clicking the Refresh option to make sure it updates).
 
+Finally, we can export this cleaned version of the data to a new file.
+
+1. In the top-right corner of OpenRefine, click the Export dropdown menu.
+2. Select Comma-separated value.
+3. Note an updated version of the file, called doaj-article-sample-csv.csv has 
+been saved on the Virtual Machine.
+
+From this point, the easiest way to move the file somewhere else (like onto 
+your computer), is to move the file to the cloud (e.g. Google Drive, Box, 
+etc.) and download it from there.
 
 #### Stopping the container
 
@@ -349,8 +461,8 @@ identical to what we saw before, but with the time information updated in the
 
 ```
 $ docker ps
-CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                       NAMES
-e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   9 minutes ago   Up 9 minutes   0.0.0.0:3333->3333/tcp, :::3333->3333/tcp   epic_nobel
+CONTAINER ID   IMAGE                COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+e1e174015296   easypi/openrefine    "/app/refine -i 0.0.…"   9 minutes ago   Up 9 minutes   0.0.0.0:3333->3333/tcp, :::3333->3333/tcp   epic_nobel
 $
 ```
 
@@ -412,8 +524,8 @@ $
 on the machine. This includes the container that we stopped earlier.
 ```
 $ docker ps -a
-CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS                       PORTS     NAMES
-e1e174015296   felixlohmeier/openrefine   "/app/refine -i 0.0.…"   20 minutes ago      Exited (143) 2 minutes ago                determined_torvalds
+CONTAINER ID   IMAGE                COMMAND                  CREATED         STATUS                       PORTS     NAMES
+e1e174015296   easypi/openrefine    "/app/refine -i 0.0.…"   20 minutes ago      Exited (143) 2 minutes ago                determined_torvalds
 $
 ```
 Note the date information (in the `CREATED` and `STATUS` fields) and the 
@@ -428,18 +540,18 @@ container name (the `NAMES` field) will likely be different on your machine.
 
 Rearrange the following commands to (in the following order) (1) start the 
 OpenRefine container, (2) find the container image ID of the running OpenRefine 
-container, and (3) terminal the OpenRefine container.
+container, and (3) stop the OpenRefine container.
 
 ```
 docker stop <container ID>
-docker run -p 3333:3333 felixlohmeier/openrefine
+docker run -p 3333:3333 easypi/openrefine
 docker ps
 ```
 
 :::::::::::::::::::::::: solution 
 
 ```
-docker run -p 3333:3333 felixlohmeier/openrefine
+docker run -p 3333:3333 easypi/openrefine
 docker ps
 docker stop <container ID>
 ```
@@ -447,15 +559,6 @@ docker stop <container ID>
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-<<<<<<< HEAD
-=======
-::::::::::::::::::::::::::::::::::::: callout
-
-**TODO** Add any notes that may be relevant, but not necessary for lesson?
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
->>>>>>> a1f2b6493409f197bc894e7e184b9d8324f9e7af
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
 - Containers are a way to provide a consistent environment for reproducible 

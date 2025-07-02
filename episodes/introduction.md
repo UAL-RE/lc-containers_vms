@@ -85,7 +85,7 @@ Why would we want to run a mini computer inside of our main computer? VMs are co
 - Many cloud computing providers like Amazon allow users to purchase resources on their systems. To maximize their investment on physical hardware, these companies will set up a virtual server for each customer. Functionally, these virtual servers behave as a standalone machine but in reality, there may be dozens of other virtual servers running on the same physical system.
 
 
-VMs are also commonly used in academic research scenarios as well as they can help with the problem of research reproducibility by packaging all data and code together so that others can easily re-run the same analysis while avoiding the issue of having to install and configure the environment in the same way as the original researcher. They also help optimize the usage of the computing resources owned by the institution. You might have interacted with VMs at your institution if you've ever logged into a "remote desktop" or "virtual computing environment" that many institutions use to provide access to licensed software.
+VMs are also commonly used in academic research scenarios as well as they can help with the problem of research reproducibility by packaging all data and code together so that others can easily re-run the same analysis while avoiding the issue of having to install and configure the environment in the same way as the original researcher. They also help optimize the usage of the computing resources owned by the institution. You might have interacted with VMs at your institution if you've ever logged into a "remote desktop" or "virtual computing environment" that many institutions use to provide access to licensed software. [Some Carpentries workshops](https://datacarpentry.org/genomics-workshop/) also use VMs as part of their curriculum.
 
 
 
@@ -151,10 +151,11 @@ Benefits of containers
 | Presents virtual versions of real hardware like CPUs, disks, etc | Yes | No |
 | Scaling based on computing needs | More difficult | Easier |
 | Able to run applications from one operating system on another | Yes | Sometimes* |
-| Able to run applications from one CPU architecture | No** | No |
+| Able to run applications from one CPU architecture on another | No** | No |
 
-* It's possible in some cases. For example, Docker on Windows can run Linux containers because it secretly runs them inside a Linux VM.
-** It is possible with some VM software and with some architectures. In the background, the software uses emulation which is different on a technical level than virtualization. Examples of architectures are Intel x86 (32 bit or 64 bit), ARM, RISC and more.
+\* It's possible in some cases. For example, Docker on Windows can run Linux containers because it secretly runs them inside a Linux VM.
+
+** It is possible with some software and with some architectures. In the background, the software uses emulation which is different on a technical level than virtualization. Examples of architectures are Intel x86 (32 bit or 64 bit), ARM, RISC and more.
 
 ::::::::::::::::::::::::::::::::: challenge
 
