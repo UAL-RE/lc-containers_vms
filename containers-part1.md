@@ -344,8 +344,8 @@ At this point, our container is running. Or at least it should be. How can we
 check? In order to see which containers are running, we will use the `docker 
 ps` command. Because the container we just started is running in the terminal 
 window where we issued the `docker run` command, we will need to open a new 
-terminal tab. We can do this in the terminal File menu, selecting the New 
-Tab... option (File > New Tab...).
+terminal tab. We can do this in the terminal File menu, selecting the Open Tab 
+option (File > Open Tab).
 
 ![A new tab can be opened through the File menu](fig/terminal-new-tab.png){alt='screenshot showing new tab option in terminal File menu'}
 
