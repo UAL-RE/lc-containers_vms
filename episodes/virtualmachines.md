@@ -31,7 +31,9 @@ As part of the [setup](index.html), you should have already have VirtualBox inst
 
 ::::::::::::::::::::::: instructor
 
-Users may be prompted to use the Basic or Expert interface. Make sure students know what they see may not be exactly what is on your screen
+Learners may be prompted to use the Basic or Expert interface when VirutalBox is run for the first time. Learners should select Basic.
+
+If learners already ran VirtualBox and selected Expert, make sure students know what they see may not be exactly what is on your screen. They can switch back to Basic by going to the File menu, selecting Preferences, and clicking the Basic tab in the top left-hand corner of the dialog.
 
 ::::::::::::::::::::::: 
 
