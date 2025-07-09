@@ -126,7 +126,7 @@ The VM will close. In VirtualBox, start the VM again. You should see the same wi
 
 You can also take more than one snapshot. To do so, go to VirtuaBox, select the VM, and click the Take button. These snapshots act like checkpoints and you can go back to any of them at any time.
 
-![Screenshot of managing VM snapshots](fig/vbox-snapshots.png)
+![Screenshot of managing VM snapshots. If your VirtualBox window looks different than this, click the button with the three vertical squares and lines on the left-hand pane (beside the VM name), then select Snapshots from the menu that pops up.](fig/vbox-snapshots.png)
 
 To restore a snapshot, right-click on it and select "Restore".
 
