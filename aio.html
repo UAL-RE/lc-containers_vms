@@ -683,7 +683,7 @@ application is connecting to?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>In both cases, the host can (in principle) see what sites or IP
 addresses the guest OS or container is connecting to. In the VM case,
@@ -887,7 +887,10 @@ the same windows you opened before.</p>
 <p>You can also take more than one snapshot. To do so, go to VirtuaBox,
 select the VM, and click the Take button. These snapshots act like
 checkpoints and you can go back to any of them at any time.</p>
-<figure><img src="fig/vbox-snapshots.png" alt="Screenshot of managing VM snapshots" class="figure mx-auto d-block"><div class="figcaption">Screenshot of managing VM snapshots</div>
+<figure><img src="fig/vbox-snapshots.png" alt="Screenshot of managing VM snapshots. If your VirtualBox window looks different than this, click the button with the three vertical squares and lines on the left-hand pane (beside the VM name), then select Snapshots from the menu that pops up." class="figure mx-auto d-block"><div class="figcaption">Screenshot of managing VM snapshots. If your
+VirtualBox window looks different than this, click the button with the
+three vertical squares and lines on the left-hand pane (beside the VM
+name), then select Snapshots from the menu that pops up.</div>
 </figure><p>To restore a snapshot, right-click on it and select “Restore”.</p>
 <div id="challenge-2" class="callout challenge">
 <div class="callout-square">
