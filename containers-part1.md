@@ -43,6 +43,14 @@ Instructors should feel free to add their own examples in the introduction, to
 help your learners appreciate the utility of containers. Providing your own use 
 case of containers helps lend authenticity to the lesson.
 
+As an example, one of this lesson's creators received regular requests to 
+convert GIS data files from one format to another. There is a program written 
+in C++ that will do this, but he did not know (or want to know) if the program 
+would run on his computer. There is a Docker container that contains this 
+program and all the dependencies needed for it to run. He uses the Docker 
+container to do the file conversions without needing to install (and keep up to 
+date) all of the requirements for this C++ program to run.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Images versus containers
