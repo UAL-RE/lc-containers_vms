@@ -108,10 +108,22 @@ The prebuilt virtual machine image you downloaded previously contains a preconfi
 
 Although VirtualBox runs under older version of Windows, at least **Windows 10 v1803** is needed to minimize the chance for conflicts if there is other virtualization software installed (e.g., Hyper-V). 
 
-- On the [downloads page](https://www.virtualbox.org/wiki/Downloads) under the VirtualBox Platform Packages section, select Windows hosts.
+- On the [downloads page](https://www.virtualbox.org/wiki/Downloads) under the VirtualBox Platform Packages section, select Windows hosts. This lesson was developed with VirtualBox in the v7.1 series. 
 - Install the downloaded package, leaving all the options at their defaults.
 
 During installation, you may get warnings about missing Python core / win32api dependencies. You may safely ignore this warning as it relates to scripting VirtualBox with Python which we will not be doing. 
+
+:::::::::::::::::: instructor
+
+VirtualBox on Windows may or may not work depending on the exact hardware and software of the machine. VirtualBox should work with Hyper-V enabled with the version of VirtualBox and Windows specified using a slower emulated mode (a green turtle icon appears in the lower right corner of a running VM). This is fine for this lesson as we don't need high performance.
+
+To ensure Hyper-V is configured correctly follow [this guide](https://us.informatiweb.net/tutorials/it/virtualization/virtualbox-use-virtualbox-and-hyper-v-at-the-same-time.html). This may not be necessary as recent versions of Windows already have this configured. This configuration is also verified to work with Windows Subsystem for Linux (for those users that use it).
+
+If VMs don't run, make sure virtualization is enabled in the computer's BIOS (look for words like virtualization, VT-X).
+
+Although it shouldn't be necessary as mentioned previously, [disabling Hyper-V](https://learn.microsoft.com/en-us/troubleshoot/windows-client/application-management/virtualization-apps-not-work-with-hyper-v) should allow VirtualBox to run at full speed.
+
+::::::::::::::::::
 
 ::::::::::::::::::::::::
 
@@ -125,7 +137,7 @@ If you have a Mac with an Intel CPU or an Apple Arm CPU (M1, M2, or M3).
 - Intel Macs: On the [downloads page](https://www.virtualbox.org/wiki/Downloads) under the VirtualBox Platform Packages section, select MacOS / Intel hosts
 - Apple M1, M2, or M3: [downloads page](https://www.virtualbox.org/wiki/Downloads) under the VirtualBox Platform Packages section, select MacOS / Apple Silicon hosts. This version is new and may not work for you.
 
-Install the downloaded package, leaving all the options at their defaults. Upon first run, you will need to grant the various system permissions it asks you for.
+This lesson was developed with VirtualBox in the v7.1 series. Install the downloaded package, leaving all the options at their defaults. Upon first run, you will need to grant the various system permissions it asks you for.
 
 If VirtualBox crashes on startup, even after granting permissions (may happen for Apple Silicon hosts), you may not be able to follow the virtual machines portion of the lesson. You may wish to install Docker [directly on your machine](https://www.cprime.com/resources/blog/docker-for-mac-with-homebrew-a-step-by-step-tutorial/) if you would still like to follow the containers portion of the lesson. 
 
@@ -136,7 +148,7 @@ If VirtualBox crashes on startup, even after granting permissions (may happen fo
 
 ### Linux
 
-We recommend installing VirtualBox from your distribution's package manager. If the version that comes with your distribution is different than the version used in this lesson, the screenshots might differ. If you wish to install the latest version, follow the [instructions](https://www.virtualbox.org/wiki/Linux_Downloads) for your distribution.
+We recommend installing VirtualBox from your distribution's package manager. If the version that comes with your distribution is different than the version used in this lesson (this lesson was developed with VirtualBox in the v7.1 series), the screenshots might differ. If you wish to install the latest version, follow the [instructions](https://www.virtualbox.org/wiki/Linux_Downloads) for your distribution.
 
 ::::::::::::::::::::::::
 
