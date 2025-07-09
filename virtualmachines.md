@@ -35,6 +35,8 @@ Learners may be prompted to use the Basic or Expert interface when VirutalBox is
 
 If learners already ran VirtualBox and selected Expert, make sure students know what they see may not be exactly what is on your screen. They can switch back to Basic by going to the File menu, selecting Preferences, and clicking the Basic tab in the top left-hand corner of the dialog.
 
+If there are other issues running the VM on Windows, refer to the [setup](index.html). There is an instructor note under the Windows section.
+
 ::::::::::::::::::::::: 
 
 First, run VirtualBox. Depending on your operating system and exact system configuration, you may get different popups asking for certain permissions or showing you some notifications. Grant all the permissions it asks for and close any popups (if the popup shows an error, ask the instructor for help). You may also get a question asking whether you want to use the "basic" or "expert" interface (choose basic).
