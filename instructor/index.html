@@ -381,7 +381,7 @@ if you have an ARM-based Mac.</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>This lesson will use a virtual machine for both the virtual machine
 AND container episodes. Instructors will be responsible for creating
@@ -537,7 +537,7 @@ containers portion of the lesson.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Windows </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>Although VirtualBox runs under older version of Windows, at least
 <strong>Windows 10 v1803</strong> is needed to minimize the chance for
@@ -545,12 +545,38 @@ conflicts if there is other virtualization software installed (e.g.,
 Hyper-V).</p>
 <ul><li>On the <a href="https://www.virtualbox.org/wiki/Downloads" class="external-link">downloads
 page</a> under the VirtualBox Platform Packages section, select Windows
-hosts.</li>
+hosts. This lesson was developed with VirtualBox in the v7.1
+series.</li>
 <li>Install the downloaded package, leaving all the options at their
 defaults.</li>
 </ul><p>During installation, you may get warnings about missing Python core /
 win32api dependencies. You may safely ignore this warning as it relates
 to scripting VirtualBox with Python which we will not be doing.</p>
+<div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
+  <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
+</button>
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
+<div class="accordion-body">
+<p>VirtualBox on Windows may or may not work depending on the exact
+hardware and software of the machine. VirtualBox should work with
+Hyper-V enabled with the version of VirtualBox and Windows specified
+using a slower emulated mode (a green turtle icon appears in the lower
+right corner of a running VM). This is fine for this lesson as we don’t
+need high performance.</p>
+<p>To ensure Hyper-V is configured correctly follow <a href="https://us.informatiweb.net/tutorials/it/virtualization/virtualbox-use-virtualbox-and-hyper-v-at-the-same-time.html" class="external-link">this
+guide</a>. This may not be necessary as recent versions of Windows
+already have this configured. This configuration is also verified to
+work with Windows Subsystem for Linux (for those users that use it).</p>
+<p>If VMs don’t run, make sure virtualization is enabled in the
+computer’s BIOS (look for words like virtualization, VT-X).</p>
+<p>Although it shouldn’t be necessary as mentioned previously, <a href="https://learn.microsoft.com/en-us/troubleshoot/windows-client/application-management/virtualization-apps-not-work-with-hyper-v" class="external-link">disabling
+Hyper-V</a> should allow VirtualBox to run at full speed.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -560,7 +586,7 @@ to scripting VirtualBox with Python which we will not be doing.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> MacOS </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>There are different download packages depending if you have an Intel
 Mac or an If you have a Mac with an Intel CPU or an Apple Arm CPU (M1,
@@ -571,9 +597,10 @@ hosts</li>
 <li>Apple M1, M2, or M3: <a href="https://www.virtualbox.org/wiki/Downloads" class="external-link">downloads page</a>
 under the VirtualBox Platform Packages section, select MacOS / Apple
 Silicon hosts. This version is new and may not work for you.</li>
-</ul><p>Install the downloaded package, leaving all the options at their
-defaults. Upon first run, you will need to grant the various system
-permissions it asks you for.</p>
+</ul><p>This lesson was developed with VirtualBox in the v7.1 series. Install
+the downloaded package, leaving all the options at their defaults. Upon
+first run, you will need to grant the various system permissions it asks
+you for.</p>
 <p>If VirtualBox crashes on startup, even after granting permissions
 (may happen for Apple Silicon hosts), you may not be able to follow the
 virtual machines portion of the lesson. You may wish to install Docker
@@ -589,12 +616,13 @@ portion of the lesson.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
   <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Linux </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <p>We recommend installing VirtualBox from your distribution’s package
 manager. If the version that comes with your distribution is different
-than the version used in this lesson, the screenshots might differ. If
-you wish to install the latest version, follow the <a href="https://www.virtualbox.org/wiki/Linux_Downloads" class="external-link">instructions</a>
+than the version used in this lesson (this lesson was developed with
+VirtualBox in the v7.1 series), the screenshots might differ. If you
+wish to install the latest version, follow the <a href="https://www.virtualbox.org/wiki/Linux_Downloads" class="external-link">instructions</a>
 for your distribution.</p>
 </div>
 </div>
