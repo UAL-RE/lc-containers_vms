@@ -60,6 +60,7 @@ Start the VM
 - A new window will appear that shows some commands being run, followed by a graphical desktop. If prompted for a login, enter `vboxuser` and `changeme`.
 
 ::::::::::::::::::::::::::::::::::::: callout
+## Interacting with the VM
 
 Look for and open the web browser in the VM. What do you notice about interacting with stuff inside the VM? How is it different or the same than your normal computer?
 
@@ -156,20 +157,22 @@ There are various sections that can be modified. Note that changing some of thes
 ::::::::::::::::::::::::::::::::: challenge
 ## Challenge 3: 
 
-Increase the RAM available to the VM to 2 GB (2048 MB). Verify it by running this command inside a terminal window
+a) Refer to the screenshot above. Generally speaking, what should be the effect on the VM's performance if we increase the amount of base memory?
+
+b) With the VM turned off, increase the base memory to 2048 MB (= 2 GB, = 2,097,125 kB). Verify the increase by running this command inside a terminal window to show the memory available in kB.
 
 ```
 cat /proc/meminfo | grep MemTotal
 ```
 
-What is the output of that command? What should be the effect on the VM's performance?
+What number would you expect to see? If the number wasn't what you expected, why? (Feel free to do an internet search for the answer).
 
 
 :::::::::::::::::::::::: solution 
 
-You should see `2014504 kB`. Performance should increase, especially when applications are loading a lot of data into memory. Web browsers are especially heavy memory users.
+a) Performance should increase, especially when applications are loading a lot of data into memory. Web browsers are especially heavy memory users.
 
-To see the memory usage within the graphical interface of the guest OS, click Applications -> About Xfce. The memory is shown on the System tab. Note this is specific to this installation of the guest OS.
+b) You should see a number like `2014504 kB`. The exact number may vary. You may expect to see `2097152 kB` which is exactly 2048 MB (2048 x 1024). The command we used actually shows available memory.
 
 :::::::::::::::::::::::::::::::::
 
