@@ -144,6 +144,44 @@ The VM should look exactly the same as before you deleted the snapshot. The diff
 :::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Multiple Snapshots
+
+It is possible to create multiple snapshots. This is useful to be able to return the state of the VM to various points in time. Creating such a chain of snapshots will appear as a set of nested entries in the VirtualBox snapshots pane. A new snapshot can be created from any prior snapshot, thereby creating a complex heirarchical set of snaphots, kind of like a folder structure on a computer. Refer to this explanation from user "[gronostaj](https://superuser.com/a/1730771)":
+
+Let's start with this situation:  
+```
+Snapshot A  
+ |  
+ +-- Snapshot B  (current) 
+```
+ 
+You can now make some changes create a Snapshot C:  
+```
+Snapshot A  
+ |  
+ +-- Snapshot B  
+      |  
+      +-- Snapshot C  (current)  
+```
+It was created under Snapshot B because B was the active snapshot at the time.  
+
+Now you can switch to Snapshot A, make some changes and create a new Snapshot D. It will be created under Snapshot A, because it's derived from A (A was active):  
+```
+Snapshot A  
+ |  
+ +-- Snapshot B  
+ |    |  
+ |    +-- Snapshot C  
+ |  
+ +-- Snapshot D  (current)  
+```
+You can still switch to other snapshots, including other branches of the hierarchy, without losing anything (as long as you don't have non-snapshotted changes).  
+
+It works a bit like folders. When you create a new folder, it will be created under the current folder.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Managing VM Resources
 
