@@ -311,7 +311,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Virtual machines using VirtualBox</h1>
-        <p>Last updated on 2025-07-16 |
+        <p>Last updated on 2025-08-14 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/virtualmachines.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -495,6 +495,51 @@ to the state that was stored in the snapshot.</p>
 </div>
 </div>
 </div>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Multiple Snapshots </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<p>It is possible to create multiple snapshots. This is useful to be
+able to return the state of the VM to various points in time. Creating
+such a chain of snapshots will appear as a set of nested entries in the
+VirtualBox snapshots pane. A new snapshot can be created from any prior
+snapshot, thereby creating a complex heirarchical set of snaphots, kind
+of like a folder structure on a computer. Refer to this explanation from
+user “<a href="https://superuser.com/a/1730771" class="external-link">gronostaj</a>”:</p>
+<p>Let’s start with this situation:</p>
+<pre><code>Snapshot A
+ |
+ +-- Snapshot B  (current) </code></pre>
+<p>You can now make some changes create a Snapshot C:</p>
+<pre><code>Snapshot A
+ |
+ +-- Snapshot B
+      |
+      +-- Snapshot C  (current)  </code></pre>
+<p>It was created under Snapshot B because B was the active snapshot at
+the time.</p>
+<p>Now you can switch to Snapshot A, make some changes and create a new
+Snapshot D. It will be created under Snapshot A, because it’s derived
+from A (A was active):</p>
+<pre><code>Snapshot A
+ |
+ +-- Snapshot B
+ |    |
+ |    +-- Snapshot C
+ |
+ +-- Snapshot D  (current)  </code></pre>
+<p>You can still switch to other snapshots, including other branches of
+the hierarchy, without losing anything (as long as you don’t have
+non-snapshotted changes).</p>
+<p>It works a bit like folders. When you create a new folder, it will be
+created under the current folder.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section><section><h2 class="section-heading" id="managing-vm-resources">Managing VM Resources<a class="anchor" aria-label="anchor" href="#managing-vm-resources"></a></h2>
 <hr class="half-width"><p>Recall that VMs share the resources of the host OS. These resources
@@ -621,9 +666,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/virtualmachines.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/virtualmachines.html",
-  "dateCreated": "2025-07-16",
-  "dateModified": "2025-07-16",
-  "datePublished": "2025-08-12"
+  "dateCreated": "2025-08-14",
+  "dateModified": "2025-08-14",
+  "datePublished": "2025-08-14"
 }
 
   </script><script>
