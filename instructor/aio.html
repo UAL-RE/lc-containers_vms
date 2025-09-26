@@ -792,7 +792,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-virtualmachines"><p>Content from <a href="virtualmachines.html">Virtual machines using VirtualBox</a></p>
 <hr>
-<p>Last updated on 2025-08-14 |
+<p>Last updated on 2025-09-26 |
 
         <a href="https://github.com/carpentries/workbench-template-md/edit/main/episodes/virtualmachines.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 18 minutes</p>
@@ -870,7 +870,7 @@ permissions or showing you some notifications. Grant all the permissions
 it asks for and close any popups (if the popup shows an error, ask the
 instructor for help). You may also get a question asking whether you
 want to use the “basic” or “expert” interface (choose basic).</p>
-<p>You should see a window that resembles this: <img src="../fig/vbox-gui-win.png" alt="VirtualBox UI on Windows" class="figure"></p>
+<p>You should see a window that resembles this: <img src="../fig/vbox-gui-win.png" alt="The VirtualBox main window showing toolbar icons and the text Welcome to Virtualbox" class="figure"></p>
 <p>Now, let’s import the VM you downloaded previously</p>
 <ul>
 <li>Extract the Zip file you downloaded into a folder somewhere on your
@@ -954,7 +954,7 @@ see the red Shut Down button.</p>
 <p>Another way to turn off the VM is to close the window the VM is
 running in. On Windows, click the ‘X’ at the top right corner of the VM
 window. You should see a popup that’s similar to this.</p>
-<figure><img src="../fig/vbox-close-vm.png" alt="Screenshot of the Close Virtual Machine dialog" class="figure mx-auto d-block"><div class="figcaption">Screenshot of the Close Virtual Machine
+<figure><img src="../fig/vbox-close-vm.png" alt='A dialog window showing the options "save the machine state", "send the shut down signal", "power off the machine"' class="figure mx-auto d-block"><div class="figcaption">Screenshot of the Close Virtual Machine
 dialog</div>
 </figure><p>What do you think the difference is between the “Send the shutdown
 signal” option and the “Power off the machine” option?</p>
@@ -1005,10 +1005,10 @@ the same windows you opened before.</p>
 <p>You can also take more than one snapshot. To do so, go to VirtuaBox,
 select the VM, and click the Take button. These snapshots act like
 checkpoints and you can go back to any of them at any time.</p>
-<figure><img src="../fig/vbox-snapshots.png" alt="Screenshot of managing VM snapshots. If your VirtualBox window looks different than this, click the button with the three vertical squares and lines on the left-hand pane (beside the VM name), then select Snapshots from the menu that pops up." class="figure mx-auto d-block"><div class="figcaption">Screenshot of managing VM snapshots. If your
-VirtualBox window looks different than this, click the button with the
-three vertical squares and lines on the left-hand pane (beside the VM
-name), then select Snapshots from the menu that pops up.</div>
+<figure><img src="../fig/vbox-snapshots.png" alt='A VirtualBox window with the "Current State" entry selected in the snapshots pane' class="figure mx-auto d-block"><div class="figcaption">If your VirtualBox window looks different than
+this, click the button with the three vertical squares and lines on the
+left-hand pane (beside the VM name), then select Snapshots from the menu
+that pops up.</div>
 </figure><p>To restore a snapshot, right-click on it and select “Restore”.</p>
 <div id="challenge-2" class="callout challenge">
 <div class="callout-square">
@@ -1090,7 +1090,7 @@ created under the current folder.</p>
 <p>Recall that VMs share the resources of the host OS. These resources
 can be managed on a per-VM basis.</p>
 <p>Right-click the VM and select Settings. You should see a window that
-looks like this: <img src="../fig/vbox-vmsettings.png" alt="Manage a VMs resources using the Settings window" class="figure"></p>
+looks like this: <img src="../fig/vbox-vmsettings.png" alt="A VirtualBox window showing various settings in a tabbed interface" class="figure"></p>
 <p>There are various sections that can be modified. Note that changing
 some of these after a guest OS is installed may break it. However, some
 are safe to change. The ones that are safe generally correspond to
@@ -1222,7 +1222,7 @@ settings as a prior study.</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Instructors should feel free to add their own examples in the
 introduction, to help your learners appreciate the utility of
@@ -1300,7 +1300,7 @@ explain images and containers?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Several analogies exist, and here are a few:</p>
 <ul>
@@ -1382,7 +1382,7 @@ command:</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
   <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
 <div class="accordion-body">
 <p>The instructions included in the two episodes on containers assume
 that learners are using the virtual machines described in prior
@@ -1489,7 +1489,7 @@ can read about them at <a href="https://docs.docker.com/engine/install/linux-pos
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> DockerHub vs GitHub Container Registry </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>By default, the command <code>docker pull</code> will only look for
 images on DockerHub; if you want to download images from another source,
@@ -1542,7 +1542,7 @@ if) you receive the “permission denied” error message, you need to add
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>The messages you are likely to see may end with:</p>
 <pre><code>08:07:39.496 [  refine] Sorry, some error prevented us from launching the browser for you.
@@ -1560,7 +1560,7 @@ the web browser ourselves later in the lesson.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
   <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <p>What are these “ports”? Why 3333?</p>
 <p>One of the great things about containers (and virtual machines) is
@@ -1735,7 +1735,7 @@ need in order to stop the container from running.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
   <h3 class="accordion-header" id="headingSpoiler4">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
 <div class="accordion-body">
 <p>What if the table is empty? That is, what if after running
 <code>docker ps</code>, you see</p>
@@ -1779,7 +1779,7 @@ same command now? What about when you run the same command with the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ul>
 <li>
@@ -1829,7 +1829,7 @@ docker ps</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <pre><code>docker run -p 3333:3333 easypi/openrefine
 docker ps
@@ -2093,7 +2093,7 @@ include the Dockerfile.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ul>
 <li>To use an analogy from architecture, Dockerfiles are a file with
@@ -2190,7 +2190,7 @@ version 3.12 (instead of Python version 3.9)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Update the Dockerfile </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>To change the base image, update the information passed to the
 <code>FROM</code> command. That is, open the Dockerfile and change this
@@ -2327,7 +2327,7 @@ your changes were updated.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Update the Dockerfile to use Python 3.13 </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ul>
 <li>Open the Dockerfile in a text editor (we have been using nano, so
@@ -2446,9 +2446,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries.github.io/workbench-template-md/instructor/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-md/instructor/aio.html",
-  "dateCreated": "2025-09-02",
-  "dateModified": "2025-09-23",
-  "datePublished": "2025-09-23"
+  "dateCreated": "2025-09-26",
+  "dateModified": "2025-09-26",
+  "datePublished": "2025-09-26"
 }
 
   </script><script>
