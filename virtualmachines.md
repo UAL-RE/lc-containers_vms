@@ -59,14 +59,6 @@ Start the VM
 - Accept any additional dialogs that pop up (if any)
 - A new window will appear that shows some commands being run, followed by a graphical desktop. If prompted for a login, enter `vboxuser` and `changeme`.
 
-::::::::::::::::::::::::::::::::::::: callout
-## Interacting with the VM
-
-Look for and open the web browser in the VM. What do you notice about interacting with stuff inside the VM? How is it different or the same than your normal computer?
-
-::::::::::::::::::::::::::::::::::::
-
-
 ::::::::::::::::::::::: instructor
 
 If students get an error opening VirtualBox or importing the VM, there may be something you can do (reinstalling, rebooting, checking there is enough disk space, making sure they are not trying to import directly from inside the Zip). 
@@ -81,6 +73,33 @@ If they have an error trying to run the VM, there is less you can do. Some thing
 If none of that works, there is nothing else you can do and they will have to pair up with someone that has it working. 
 
 ::::::::::::::::::::::: 
+
+
+::::::::::::::::::::::::::::::::::::: callout
+## Interacting with the VM
+
+::::::::::::::::::::::: instructor
+
+Allow learners to play around with the VM as you talk.
+
+- Explain that what they're seeing is an entire operating system running in the window.
+- Mention that this particular OS is Linux (Debian 12 Bookworm if they care)
+- Explain that the way they interact with this OS might be different than their main computer
+- Point out where the main menu is (top left, called Applications)
+- Point out familiar things like the icons on the desktop
+- A launcher at the bottom-center of the screen that allows quick access to some apps (e.g., web browser). Note the launcher may be hidden until they mouse over the area.
+- Consider opening the file manager app to show/open some files, noting how things might look different than their normal computer
+- Explain what a few icons in the launcher do. 
+
+:::::::::::::::::::::::
+
+Look for and open the web browser in the VM. What do you notice about interacting with stuff inside the VM? How is it different or the same than your normal computer?
+
+
+::::::::::::::::::::::::::::::::::::
+
+
+
 
 
 ## Common tasks
