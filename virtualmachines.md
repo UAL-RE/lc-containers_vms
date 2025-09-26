@@ -42,7 +42,7 @@ If there are other issues running the VM on Windows, refer to the [setup](index.
 First, run VirtualBox. Depending on your operating system and exact system configuration, you may get different popups asking for certain permissions or showing you some notifications. Grant all the permissions it asks for and close any popups (if the popup shows an error, ask the instructor for help). You may also get a question asking whether you want to use the "basic" or "expert" interface (choose basic).
 
 You should see a window that resembles this:
-![VirtualBox UI on Windows](fig/vbox-gui-win.png)
+![VirtualBox UI on Windows](fig/vbox-gui-win.png){alt='The VirtualBox main window showing toolbar icons and the text Welcome to Virtualbox'}
 
 
 Now, let's import the VM you downloaded previously
@@ -97,7 +97,7 @@ To properly turn off the VM, use the functionality built into the guest OS. In o
 
 Another way to turn off the VM is to close the window the VM is running in. On Windows, click the 'X' at the top right corner of the VM window. You should see a popup that's similar to this.
 
-![Screenshot of the Close Virtual Machine dialog](fig/vbox-close-vm.png)
+![Screenshot of the Close Virtual Machine dialog](fig/vbox-close-vm.png){alt='A dialog window showing the options "save the machine state", "send the shut down signal", "power off the machine"'}
 
 What do you think the difference is between the "Send the shutdown signal" option and the "Power off the machine" option?
 
@@ -127,7 +127,7 @@ The VM will close. In VirtualBox, start the VM again. You should see the same wi
 
 You can also take more than one snapshot. To do so, go to VirtuaBox, select the VM, and click the Take button. These snapshots act like checkpoints and you can go back to any of them at any time.
 
-![Screenshot of managing VM snapshots. If your VirtualBox window looks different than this, click the button with the three vertical squares and lines on the left-hand pane (beside the VM name), then select Snapshots from the menu that pops up.](fig/vbox-snapshots.png)
+![If your VirtualBox window looks different than this, click the button with the three vertical squares and lines on the left-hand pane (beside the VM name), then select Snapshots from the menu that pops up.](fig/vbox-snapshots.png){alt='A VirtualBox window with the "Current State" entry selected in the snapshots pane'}
 
 To restore a snapshot, right-click on it and select "Restore".
 
@@ -188,7 +188,7 @@ It works a bit like folders. When you create a new folder, it will be created un
 Recall that VMs share the resources of the host OS. These resources can be managed on a per-VM basis.
 
 Right-click the VM and select Settings. You should see a window that looks like this:
-![Manage a VMs resources using the Settings window](fig/vbox-vmsettings.png)
+![Manage a VMs resources using the Settings window](fig/vbox-vmsettings.png){alt='A VirtualBox window showing various settings in a tabbed interface'}
 
 There are various sections that can be modified. Note that changing some of these after a guest OS is installed may break it. However, some are safe to change. The ones that are safe generally correspond to things that can be upgraded in a normal computer (e.g., memory, number of monitors).
 

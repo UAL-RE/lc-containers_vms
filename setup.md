@@ -37,7 +37,7 @@ Then proceed with the steps below, following specific instructions for your spec
 1. [Download](https://www.debian.org/distrib/netinst) the appropriate Debian base distribution from the Small CDs or USB Sticks section (pick one below)
     - [AMD64 plain netinst ISO](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/) [x64]
     - [ARM64](https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/) [arm]
-1. Launch VirtualBox, accept all messages, and create a new virtual machine ![VirtualBox Create New Virtual Machine menu](instructors/fig/vbox-newvm.png)
+1. Launch VirtualBox, accept all messages, and create a new virtual machine ![VirtualBox Create New Virtual Machine menu](instructors/fig/vbox-newvm.png){alt='A VirtualBox menu with the New entry selected'}
 1. Select the downloaded file in the Create Virtual Machine wizard. 
 1. Leave all the options at their defaults but check the box to skip unattended installation. The unattended installation installs a heavier graphical interface and more packages that bloat the size of the image. Reduce the memory to 1 or 1.5 GB **In earlier versions of VirtualBox 7, the unattended installation could be done as it did not install a graphical interface for you**.
 1. When prompted, set the root password to `changeme` and create a new user `vboxuser` with the password `changeme`.
@@ -63,10 +63,10 @@ Then proceed with the steps below, following specific instructions for your spec
 1. Turn off the virtual machine
     - Click the 'x' at the top right of the VirtualBox window
     - Select the option 'Send the shutdown signal'
-    - ![VirtualBox shut down virtual machine](instructors/fig/vbox-shutdownvm.png)
+    - ![VirtualBox shut down virtual machine](instructors/fig/vbox-shutdownvm.png){alt='A dialog window showing the options "save the machine state", "send the shut down signal", "power off the machine"'}
 1. Package up the virtual machine for distribution
     - Open the virtual machine files on your file system by selecting Show in Explorer. Note that the text may appear differently depending on your host operating system. E.g. on Mac, it will say Show in Finder.
-    - ![Show in Explorer](instructors/fig/vbox-showinexplorer.png)
+    - ![Show in Explorer](instructors/fig/vbox-showinexplorer.png){alt='A VirtualBox menu showing a list of VM options with the Show in Explorer entry selected'}
     - Select the .vbox file, the .vdi file (and for [arm] only, the .nvram file) and copy them to another folder on your system.
     - [arm] only: open the .vbox file in a text editor and look for the line that starts with `<NVRAM path=`.
     - [arm] only: ensure that the path to the NVRAM file is set to the file name of the NVRAM file you copied, without any path. Save the file.
