@@ -6,8 +6,8 @@ title: Setup
 
 We will be using a prebuilt virtual machine that already contains most things needed to get started.  Download the correct Zip file to your system but do not do anything else with it at the moment. We will import it as part of the [virtual machines](virtualmachines.html) episode.
 
-* [Download](https://github.com/UAL-RE/lc-containers_vms/releases/download/v1.0-alpha/LC-ContVM-Debian12.9.0-x64.zip) if you have a Windows or Intel-based Mac.
-* [Download](https://github.com/UAL-RE/lc-containers_vms/releases/download/v1.0-alpha/LC-ContVM-Debian12.9.0-arm64.zip) if you have an ARM-based Mac.
+* [Download](https://github.com/LibraryCarpentry/lc-containers_vms/releases/download/1.0-beta/LC-ContVM-Debian12.9.0-x64.zip) if you have an x64 system (usually Windows, Linux or an Intel-based Mac).
+* [Download](https://github.com/LibraryCarpentry/lc-containers_vms/releases/download/1.0-beta/LC-ContVM-Debian12.9.0-arm64.zip) if you have an ARM-based Mac. To check if you have an ARM-based Mac, click the Apple icon in the top left of the menu bar and select About This Mac. If you see Apple M1, Apple M2 or similar under the Chip or Processor section, you have an ARM-based Mac (you should not see anything that says Intel).
 
 ::::::::::::::::::::::::::::: instructor
 
