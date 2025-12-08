@@ -10,5 +10,5 @@
 "episodes/containers-part2.md" "85ff8970c432affc7272ec3b6def8955" "site/built/containers-part2.md" "2025-06-24"
 "instructors/instructor-notes.md" "2951d1e3b32ada3b23d3841ee470668d" "site/built/instructor-notes.md" "2024-08-28"
 "learners/reference.md" "7e76167a86df698d347218d0e38153ef" "site/built/reference.md" "2024-10-14"
-"learners/setup.md" "f4421e596cff925cf032ab21f71e94b7" "site/built/setup.md" "2025-09-26"
+"learners/setup.md" "3a06b97526694b6c08f67e5f42c47adc" "site/built/setup.md" "2025-12-08"
 "profiles/learner-profiles.md" "60b93493cf1da06dfd63255d73854461" "site/built/learner-profiles.md" "2022-04-22"
